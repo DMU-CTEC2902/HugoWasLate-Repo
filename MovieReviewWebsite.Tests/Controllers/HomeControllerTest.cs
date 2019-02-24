@@ -35,7 +35,7 @@ namespace MovieReviewWebsite.Tests.Controllers
             ViewResult result = controller.About() as ViewResult;
 
             // Assert
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
+            Assert.AreEqual("Movie review about page", result.ViewBag.Message);
         }
 
         [TestMethod]

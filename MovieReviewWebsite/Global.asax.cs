@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Data.Entity;
+using MovieReviewWebsite.Models;
 
 namespace MovieReviewWebsite
 {
@@ -12,6 +14,7 @@ namespace MovieReviewWebsite
     {
         protected void Application_Start()
         {
+            Database.SetInitializer(new MovieDataInitialiser());
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
