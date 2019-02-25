@@ -16,6 +16,7 @@ namespace MovieReviewWebsite
         {
             Database.SetInitializer(new MovieDataInitialiser());
             Database.SetInitializer(new ForumDataInitialiser());
+            Database.SetInitializer(new PersonDataInitialiser());
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
