@@ -26,6 +26,7 @@ namespace MovieReviewWebsite.Models
             prod1.MovieName = "Now That's What I Call Music 261";
             prod1.Description = "More terrible hits";
             prod1.Category = cat1;
+            prod1.Rating = 3.0f;
             context.Movies.Add(prod1);
             Movie prod2 = new Movie();
             prod2.MovieID = 2;
@@ -33,6 +34,7 @@ namespace MovieReviewWebsite.Models
             prod2.MovieName = "Fast and Furious 261";
             prod2.Description = "More terrible car wrecks";
             prod2.Category = cat2;
+            prod2.Rating = 7.0f;
             context.Movies.Add(prod2);
 
             base.Seed(context);

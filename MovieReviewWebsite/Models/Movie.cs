@@ -15,6 +15,11 @@ namespace MovieReviewWebsite.Models
         public virtual string MovieName { get; set; }
         public virtual string Description { get; set; }
         public virtual decimal Price { get; set; }
+        public virtual float Rating { get; set; }
+
+        public virtual int actorID { get; set; } // add actor and director in other places
+        public virtual int directorID { get; set; }
+
         public virtual Category Category { get; set; }
 
 
