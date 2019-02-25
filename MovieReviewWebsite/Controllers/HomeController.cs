@@ -16,7 +16,7 @@ namespace MovieReviewWebsite.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Movie review about page";
-
+            
             return View();
         }
 
