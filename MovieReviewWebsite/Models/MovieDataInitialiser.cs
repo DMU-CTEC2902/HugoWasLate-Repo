@@ -12,12 +12,12 @@ namespace MovieReviewWebsite.Models
         {
             Category cat1 = new Category();
             cat1.CategoryId = 1;
-            cat1.Name = "CDs";
+            cat1.Name = "Comedy";
             cat1.Description = "Music compact discs";
             context.Categories.Add(cat1);
             Category cat2 = new Category();
             cat2.CategoryId = 2;
-            cat2.Name = "DVDs";
+            cat2.Name = "Horror";
             cat2.Description = "Film DVDs";
             context.Categories.Add(cat2);
             Movie prod1 = new Movie();
