@@ -21,6 +21,6 @@ namespace MovieReviewWebsite.Models
 
         public System.Data.Entity.DbSet<MovieReviewWebsite.Models.Forum> Fora { get; set; }
 
-        public System.Data.Entity.DbSet<MovieReviewWebsite.Models.Category> Categories { get; set; }
+      
     }
 }

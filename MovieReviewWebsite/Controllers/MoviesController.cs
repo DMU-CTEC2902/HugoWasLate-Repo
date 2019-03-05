@@ -17,8 +17,8 @@ namespace MovieReviewWebsite.Controllers
         // GET: Movies
         public ActionResult Index()
         {
-            var movies = db.Movies.Include(m => m.Category);
-            return View(movies.ToList());
+          
+            return View(db.Movies.ToList());
         }
 
         // GET: Movies/Details/5
@@ -39,7 +39,7 @@ namespace MovieReviewWebsite.Controllers
         // GET: Movies/Create
         public ActionResult Create()
         {
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name");
+           
             return View();
         }
 
@@ -48,7 +48,7 @@ namespace MovieReviewWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MovieID,CategoryId,MovieName,Description,Price,Rating")] Movie movie)
+        public ActionResult Create([Bind(Include = "MovieID,CategoryName,MovieName,Description,Price,Rating")] Movie movie)
         {
             if (ModelState.IsValid)
             {
@@ -57,8 +57,7 @@ namespace MovieReviewWebsite.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name", movie.CategoryId);
-            return View(movie);
+                     return View(movie);
         }
 
         // GET: Movies/Edit/5
@@ -73,7 +72,6 @@ namespace MovieReviewWebsite.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name", movie.CategoryId);
             return View(movie);
         }
 
@@ -82,7 +80,7 @@ namespace MovieReviewWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MovieID,CategoryId,MovieName,Description,Price,Rating")] Movie movie)
+        public ActionResult Edit([Bind(Include = "MovieID,CategoryName,MovieName,Description,Price,Rating")] Movie movie)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +88,6 @@ namespace MovieReviewWebsite.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name", movie.CategoryId);
             return View(movie);
         }
 

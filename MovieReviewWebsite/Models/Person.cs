@@ -16,7 +16,6 @@ namespace MovieReviewWebsite.Models
         public virtual DateTime dateOfBirth { get; set; }
         public virtual string personMovies { get; set; }
         public virtual string personRole { get; set; }
-        //public virtual int CategoryId { get; set; }
-        //public virtual Category Category { get; set; }
+       
     }
 }

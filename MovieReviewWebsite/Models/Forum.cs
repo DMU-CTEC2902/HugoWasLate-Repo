@@ -14,8 +14,8 @@ namespace MovieReviewWebsite.Models
         public virtual string postTitle { get; set; }
         public virtual string postContent { get; set; }
         public virtual string postAuthorID { get; set; }
-        public virtual int CategoryId { get; set; }
+        public virtual string CategoryName { get; set; }
 
-        public virtual Category Category { get; set; }
+       
     }
 }
