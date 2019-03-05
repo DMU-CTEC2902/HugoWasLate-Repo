@@ -10,112 +10,107 @@ using MovieReviewWebsite.Models;
 
 namespace MovieReviewWebsite.Controllers
 {
-    public class MoviesController : Controller
+    public class PeopleController : Controller
     {
-        private MovieContext db = new MovieContext();
+        private PersonContext db = new PersonContext();
 
-        // GET: Movies
+        // GET: People
         public ActionResult Index()
         {
-            var movies = db.Movies.Include(m => m.Category);
-            return View(movies.ToList());
+            return View(db.People.ToList());
         }
 
-        // GET: Movies/Details/5
+        // GET: People/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Movie movie = db.Movies.Find(id);
-            if (movie == null)
+            Person person = db.People.Find(id);
+            if (person == null)
             {
                 return HttpNotFound();
             }
-            return View(movie);
+            return View(person);
         }
 
-        // GET: Movies/Create
+        // GET: People/Create
         public ActionResult Create()
         {
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name");
             return View();
         }
 
-        // POST: Movies/Create
+        // POST: People/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MovieID,CategoryId,MovieName,Description,Price,Rating")] Movie movie)
+        public ActionResult Create([Bind(Include = "personID,personName,personSurname,dateOfBirth,personMovies,personRole")] Person person)
         {
             if (ModelState.IsValid)
             {
-                db.Movies.Add(movie);
+                db.People.Add(person);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name", movie.CategoryId);
-            return View(movie);
+            return View(person);
         }
 
-        // GET: Movies/Edit/5
+        // GET: People/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Movie movie = db.Movies.Find(id);
-            if (movie == null)
+            Person person = db.People.Find(id);
+            if (person == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name", movie.CategoryId);
-            return View(movie);
+            return View(person);
         }
 
-        // POST: Movies/Edit/5
+        // POST: People/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MovieID,CategoryId,MovieName,Description,Price,Rating")] Movie movie)
+        public ActionResult Edit([Bind(Include = "personID,personName,personSurname,dateOfBirth,personMovies,personRole")] Person person)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(movie).State = EntityState.Modified;
+                db.Entry(person).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name", movie.CategoryId);
-            return View(movie);
+            return View(person);
         }
 
-        // GET: Movies/Delete/5
+        // GET: People/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Movie movie = db.Movies.Find(id);
-            if (movie == null)
+            Person person = db.People.Find(id);
+            if (person == null)
             {
                 return HttpNotFound();
             }
-            return View(movie);
+            return View(person);
         }
 
-        // POST: Movies/Delete/5
+        // POST: People/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Movie movie = db.Movies.Find(id);
-            db.Movies.Remove(movie);
+            Person person = db.People.Find(id);
+            db.People.Remove(person);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

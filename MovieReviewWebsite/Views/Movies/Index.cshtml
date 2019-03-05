@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<MovieReviewWebsite.Models.Movie>
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -29,6 +29,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Price)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
             <th></th>
         </tr>
     
@@ -47,9 +50,12 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.MovieID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.MovieID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.MovieID })
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.MovieID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.MovieID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.MovieID })
             </td>
         </tr>
     }
