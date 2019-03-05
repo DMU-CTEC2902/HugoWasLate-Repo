@@ -23,6 +23,6 @@ namespace MovieReviewWebsite.Models
         public System.Data.Entity.DbSet<MovieReviewWebsite.Models.Movie> Movies { get; set; }
 
         //public DbSet<Category> Categories { get; set; }
-        public System.Data.Entity.DbSet<MovieReviewWebsite.Models.Category> Categories { get; set; }
+       
     }
 }

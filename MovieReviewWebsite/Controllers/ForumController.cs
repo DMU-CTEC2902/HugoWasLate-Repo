@@ -17,8 +17,8 @@ namespace MovieReviewWebsite.Controllers
         // GET: Forum
         public ActionResult Index()
         {
-            var fora = db.Fora.Include(f => f.Category);
-            return View(fora.ToList());
+           
+            return View(db.Fora.ToList());
         }
 
         // GET: Forum/Details/5
@@ -39,7 +39,6 @@ namespace MovieReviewWebsite.Controllers
         // GET: Forum/Create
         public ActionResult Create()
         {
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name");
             return View();
         }
 
@@ -48,7 +47,7 @@ namespace MovieReviewWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "postID,postTitle,postContent,postAuthorID,CategoryId")] Forum forum)
+        public ActionResult Create([Bind(Include = "postID,postTitle,postContent,postAuthorID,CategoryName")] Forum forum)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +56,6 @@ namespace MovieReviewWebsite.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name", forum.CategoryId);
             return View(forum);
         }
 
@@ -73,7 +71,6 @@ namespace MovieReviewWebsite.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name", forum.CategoryId);
             return View(forum);
         }
 
@@ -82,7 +79,7 @@ namespace MovieReviewWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "postID,postTitle,postContent,postAuthorID,CategoryId")] Forum forum)
+        public ActionResult Edit([Bind(Include = "postID,postTitle,postContent,postAuthorID,CategoryName")] Forum forum)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +87,6 @@ namespace MovieReviewWebsite.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name", forum.CategoryId);
             return View(forum);
         }
 
