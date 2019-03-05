@@ -49,22 +49,6 @@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.personID)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.personID)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.person)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.person)
-            </dd>
-
-            <dt>
                 @Html.DisplayNameFor(model => model.Rating)
             </dt>
 
@@ -72,7 +56,24 @@
                 @Html.DisplayFor(model => model.Rating)
             </dd>
 
-        </dl>
+            <dt>
+                @Html.DisplayNameFor(model => model.person)
+            </dt>
+
+
+            <dt>
+                @foreach (var item in Model.People)
+                {
+                <dd>
+
+                    @Html.ActionLink(item.personName + " " + item.personSurname, "People/Details", new { id = item.personID })
+                </dd>
+            }
+                </dt>
+
+
+
+            </dl>
     </div>
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.MovieID }) |
