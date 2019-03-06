@@ -11,16 +11,16 @@ namespace MovieReviewWebsite.Models
     {
         [Key]
         public virtual int MovieID { get; set; }
-        public virtual int CategoryId { get; set; }
+        public virtual string CategoryName { get; set; }
         public virtual string MovieName { get; set; }
         public virtual string Description { get; set; }
         public virtual decimal Price { get; set; }
         public virtual float Rating { get; set; }
+        public virtual List<Person> People { get; set; }
 
-        public virtual int actorID { get; set; } // add actor and director in other places
-        public virtual int directorID { get; set; }
-
-        public virtual Category Category { get; set; }
+        public virtual int personID{ get; set; }
+        public virtual Person[] person { get; set; }
+      
 
 
     }
