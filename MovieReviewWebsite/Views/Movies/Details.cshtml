@@ -64,12 +64,14 @@
             <dt>
                 @foreach (var item in Model.People)
                 {
-                <dd>
+            <dd>
+                @Html.ActionLink(item.personName + " " + item.personSurname, "Details", "People", new { id = item.personID }, null)
+                @*@Html.ActionLink(item.personName + " " + item.personSurname, "Index", "People/Details" , new { id = item.personID })*@
 
-                    @Html.ActionLink(item.personName + " " + item.personSurname, "People/Details", new { id = item.personID })
-                </dd>
-            }
-                </dt>
+                
+            </dd>
+                 }
+            </dt>
 
 
 
