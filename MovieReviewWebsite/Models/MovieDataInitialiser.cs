@@ -19,24 +19,24 @@ namespace MovieReviewWebsite.Models
             prod1.Description = "Animated movie";
             prod1.CategoryName = "Horror";
             prod1.Rating = 3.0f;
-            prod1.personID = 1;
+            //prod1.personID = 1;
             prod1.People = new List<Person>();
-            Person cat1 = new Person();
-            cat1.personID = 1;
-            cat1.personName = "Bob";
-            cat1.personSurname = "Marley";
-            cat1.dateOfBirth = new DateTime(2008, 5, 1, 8, 30, 52);
-            cat1.personMovies = "Cars";
-            cat1.personRole = "Actor";
-            prod1.People.Add(cat1);
-            Person cat2 = new Person();
-            cat2.personID = 2;
-            cat2.personName = "Hugo";
-            cat2.personSurname = "HO";
-            cat2.dateOfBirth = new DateTime(2028, 3, 4, 8, 30, 52);
-            cat2.personMovies = "Cars";
-            cat2.personRole = "Director";
-            prod1.People.Add(cat2);
+            Person p1 = new Person();//p1=person1
+            p1.personID = 1;
+            p1.personName = "Bob";
+            p1.personSurname = "Marley";
+            p1.dateOfBirth = new DateTime(2008, 5, 1, 8, 30, 52);
+            p1.movies= "Cars";
+            p1.personRole = "Actor";
+            prod1.People.Add(p1);
+            Person p2 = new Person();//p2=person2
+            p2.personID = 2;
+            p2.personName = "Hugo";
+            p2.personSurname = "HO";
+            p2.dateOfBirth = new DateTime(2028, 3, 4, 8, 30, 52);
+            p2.movies = "Cars";
+            p2.personRole = "Director";
+            prod1.People.Add(p2);
             context.Movies.Add(prod1);
 
             //Movie prod2 = new Movie();

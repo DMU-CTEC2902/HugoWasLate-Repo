@@ -18,8 +18,8 @@ namespace MovieReviewWebsite.Models
         public virtual float Rating { get; set; }
         public virtual List<Person> People { get; set; }
 
-        public virtual int personID{ get; set; }
-        public virtual Person[] person { get; set; }
+        //public virtual int personID{ get; set; }
+        //public virtual Person[] person { get; set; }
       
 
 

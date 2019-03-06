@@ -14,16 +14,19 @@ namespace MovieReviewWebsite.Models
             cat1.personName = "Lala";
             cat1.personSurname = "fsafsa";
             cat1.dateOfBirth = new DateTime(2008, 5, 1, 8, 30, 52);
-            cat1.personMovies = "Game of Thrones";
+            cat1.movies = "Game of Thrones";
             cat1.personRole = "Actor";
             context.People.Add(cat1);
+
+
+
 
             Person cat2 = new Person();
             cat2.personID = 2;
             cat2.personName = "hugo";
             cat2.personSurname = "HO";
             cat2.dateOfBirth = new DateTime(2028, 3, 4, 8, 30, 52);
-            cat2.personMovies = "asadsadsadsad";
+            cat2.movies = "asadsadsadsad";
             cat2.personRole = "Director";
             context.People.Add(cat2);
 

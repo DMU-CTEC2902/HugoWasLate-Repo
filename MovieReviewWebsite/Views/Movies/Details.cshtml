@@ -57,17 +57,18 @@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.person)
+                @Html.DisplayNameFor(model => model.People)
             </dt>
 
 
             <dt>
                 @foreach (var item in Model.People)
                 {
-                <dd>
+            <dd>
 
-                    @Html.ActionLink(item.personName + " " + item.personSurname, "People/Details", new { id = item.personID })
-                </dd>
+                @Html.ActionLink(item.personName + " " + item.personSurname, "Details","People", new { id = item.personID },null)
+
+            </dd>
             }
                 </dt>
 
