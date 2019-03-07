@@ -215,9 +215,8 @@
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\MovieContext.cs" />
     <Compile Include="Models\MovieDataInitialiser.cs" />
+    <Compile Include="Models\MoviePerson.cs" />
     <Compile Include="Models\Person.cs" />
-    <Compile Include="Models\PersonContext.cs" />
-    <Compile Include="Models\PersonDataInitialiser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

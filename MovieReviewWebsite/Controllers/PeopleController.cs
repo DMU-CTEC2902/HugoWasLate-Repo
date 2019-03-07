@@ -12,7 +12,7 @@ namespace MovieReviewWebsite.Controllers
 {
     public class PeopleController : Controller
     {
-        private PersonContext db = new PersonContext();
+        private MovieContext db = new MovieContext();
 
         // GET: People
         public ActionResult Index()
@@ -46,7 +46,7 @@ namespace MovieReviewWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "personID,personName,personSurname,dateOfBirth,personMovies,personRole")] Person person)
+        public ActionResult Create([Bind(Include = "personID,personName,personSurname,dateOfBirth,movies,personRole")] Person person)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace MovieReviewWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "personID,personName,personSurname,dateOfBirth,personMovies,personRole")] Person person)
+        public ActionResult Edit([Bind(Include = "personID,personName,personSurname,dateOfBirth,movies,personRole")] Person person)
         {
             if (ModelState.IsValid)
             {
