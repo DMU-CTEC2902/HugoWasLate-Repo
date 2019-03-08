@@ -1,0 +1,58 @@
+﻿@model IEnumerable<MovieReviewWebsite.Models.Person>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.personName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.personSurname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateOfBirth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.movies)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.personRole)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.personName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.personSurname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateOfBirth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.movies)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.personRole)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.personID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.personID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.personID })
+        </td>
+    </tr>
+}
+
+</table>
