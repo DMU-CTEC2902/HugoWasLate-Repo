@@ -47,7 +47,7 @@ namespace MovieReviewWebsite.Controllers
             //koniec petli
 
 
-            ;//p2=person2
+            //p2=person2
             
             //p2.personID = 4;
             //p2.personName = "Hugo";

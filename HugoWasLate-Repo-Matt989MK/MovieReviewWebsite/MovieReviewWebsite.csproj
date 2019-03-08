@@ -198,7 +198,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
@@ -208,8 +207,6 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Forum.cs" />
-    <Compile Include="Models\ForumContext.cs" />
-    <Compile Include="Models\ForumDataInitialiser.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Movie.cs" />
@@ -285,11 +282,6 @@
     <Content Include="Views\Movies\Details.cshtml" />
     <Content Include="Views\Movies\Edit.cshtml" />
     <Content Include="Views\Movies\Index.cshtml" />
-    <Content Include="Views\Forum\Create.cshtml" />
-    <Content Include="Views\Forum\Delete.cshtml" />
-    <Content Include="Views\Forum\Details.cshtml" />
-    <Content Include="Views\Forum\Edit.cshtml" />
-    <Content Include="Views\Forum\Index.cshtml" />
     <Content Include="Views\People\Create.cshtml" />
     <Content Include="Views\People\Delete.cshtml" />
     <Content Include="Views\People\Details.cshtml" />

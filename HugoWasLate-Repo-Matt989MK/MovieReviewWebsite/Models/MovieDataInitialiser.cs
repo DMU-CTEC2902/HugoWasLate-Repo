@@ -15,7 +15,7 @@ namespace MovieReviewWebsite.Models
             cat1.personName = "Lala";
             cat1.personSurname = "fsafsa";
             cat1.dateOfBirth = new DateTime(2008, 5, 1, 8, 30, 52);
-           // cat1.movies = "Game of Thrones";
+          
             cat1.personRole = "Actor";
             context.People.Add(cat1);
 
@@ -27,7 +27,7 @@ namespace MovieReviewWebsite.Models
             cat2.personName = "hugo";
             cat2.personSurname = "HO";
             cat2.dateOfBirth = new DateTime(2028, 3, 4, 8, 30, 52);
-          //  cat2.movies = "asadsadsadsad";
+          
             cat2.personRole = "Director";
             context.People.Add(cat2);
 
@@ -37,7 +37,7 @@ namespace MovieReviewWebsite.Models
             p1.personName = "Bob";
             p1.personSurname = "Marley";
             p1.dateOfBirth = new DateTime(2008, 5, 1, 8, 30, 52);
-          //  p1.movies = "Cars";
+         
             p1.personRole = "Actor";
             context.People.Add(p1);
 
@@ -46,19 +46,9 @@ namespace MovieReviewWebsite.Models
             p2.personName = "Alf";
             p2.personSurname = "HO";
             p2.dateOfBirth = new DateTime(2028, 3, 4, 8, 30, 52);
-          //  p2.movies = "Cars";
             p2.personRole = "Director";
             context.People.Add(p2);
 
-
-           // MovieContext m = new MovieContext();
-
-            //List<Person> PersonDB = new List<Person>();
-
-            //foreach (Person p in context.People)
-            //{
-            //    PersonDB.Add(p);
-            //}
 
 
             Movie prod1 = new Movie();
@@ -71,14 +61,7 @@ namespace MovieReviewWebsite.Models
           
             prod1.People = new List<Person>();
 
-            //foreach (Person p in PersonDB)
-            //{
-               
-            //    if (p.movies == "Cars")
-            //    {
-            //        prod1.People.Add(p);
-            //    }
-            //}
+          
             context.Movies.Add(prod1);
 
 
@@ -106,7 +89,7 @@ namespace MovieReviewWebsite.Models
 
             prod2.MovieName = "Fast and Furious 261";
             prod2.Description = "More terrible car wrecks";
-            prod2.CategoryName = "Horror";
+            prod2.CategoryName = "Comedy";
             prod2.Rating = 7.0f;
             context.Movies.Add(prod2);
 
