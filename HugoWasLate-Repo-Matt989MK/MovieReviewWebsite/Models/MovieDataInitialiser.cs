@@ -15,7 +15,7 @@ namespace MovieReviewWebsite.Models
             cat1.personName = "Lala";
             cat1.personSurname = "fsafsa";
             cat1.dateOfBirth = new DateTime(2008, 5, 1, 8, 30, 52);
-            cat1.movies = "Game of Thrones";
+           // cat1.movies = "Game of Thrones";
             cat1.personRole = "Actor";
             context.People.Add(cat1);
 
@@ -27,7 +27,7 @@ namespace MovieReviewWebsite.Models
             cat2.personName = "hugo";
             cat2.personSurname = "HO";
             cat2.dateOfBirth = new DateTime(2028, 3, 4, 8, 30, 52);
-            cat2.movies = "asadsadsadsad";
+          //  cat2.movies = "asadsadsadsad";
             cat2.personRole = "Director";
             context.People.Add(cat2);
 
@@ -37,28 +37,28 @@ namespace MovieReviewWebsite.Models
             p1.personName = "Bob";
             p1.personSurname = "Marley";
             p1.dateOfBirth = new DateTime(2008, 5, 1, 8, 30, 52);
-            p1.movies = "Cars";
+          //  p1.movies = "Cars";
             p1.personRole = "Actor";
             context.People.Add(p1);
 
             Person p2 = new Person();//p2=person2
             p2.personID = 4;
-            p2.personName = "Hugo";
+            p2.personName = "Alf";
             p2.personSurname = "HO";
             p2.dateOfBirth = new DateTime(2028, 3, 4, 8, 30, 52);
-            p2.movies = "Cars";
+          //  p2.movies = "Cars";
             p2.personRole = "Director";
             context.People.Add(p2);
 
 
-            MovieContext m = new MovieContext();
+           // MovieContext m = new MovieContext();
 
-            List<Person> PersonDB = new List<Person>();
+            //List<Person> PersonDB = new List<Person>();
 
-            foreach (Person p in m.People)
-            {
-                PersonDB.Add(p);
-            }
+            //foreach (Person p in context.People)
+            //{
+            //    PersonDB.Add(p);
+            //}
 
 
             Movie prod1 = new Movie();
@@ -71,13 +71,14 @@ namespace MovieReviewWebsite.Models
           
             prod1.People = new List<Person>();
 
-            foreach (Person p in PersonDB)
-            {
-                if (p.movies == "Cars")
-                {
-                    prod1.People.Add(p);
-                }
-            }
+            //foreach (Person p in PersonDB)
+            //{
+               
+            //    if (p.movies == "Cars")
+            //    {
+            //        prod1.People.Add(p);
+            //    }
+            //}
             context.Movies.Add(prod1);
 
 
@@ -91,18 +92,23 @@ namespace MovieReviewWebsite.Models
             MoviePerson mp1 = new MoviePerson();
             mp1.MoviePersonId = 2;
             mp1.MovieID = 1;
-            mp1.personID = 4;
+            mp1.personID = 1;
             context.MoviePerson.Add(mp1);
 
-            //Movie prod2 = new Movie();
-            //prod2.MovieID = 2;
+            MoviePerson mp2 = new MoviePerson();
+            mp2.MoviePersonId = 3;
+            mp2.MovieID = 2;
+            mp2.personID = 4;
+            context.MoviePerson.Add(mp2);
 
-            //prod2.MovieName = "Fast and Furious 261";
-            //prod2.Description = "More terrible car wrecks";
-            //prod2.CategoryName = "Horror";
-            //prod2.Rating = 7.0f;
-            //prod2.personID = 2;
-            //context.Movies.Add(prod2);
+            Movie prod2 = new Movie();
+            prod2.MovieID = 2;
+
+            prod2.MovieName = "Fast and Furious 261";
+            prod2.Description = "More terrible car wrecks";
+            prod2.CategoryName = "Horror";
+            prod2.Rating = 7.0f;
+            context.Movies.Add(prod2);
 
             base.Seed(context);
         }
