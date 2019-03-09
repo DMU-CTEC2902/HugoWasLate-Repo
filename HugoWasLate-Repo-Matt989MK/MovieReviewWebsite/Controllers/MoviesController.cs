@@ -15,10 +15,20 @@ namespace MovieReviewWebsite.Controllers
         private MovieContext db = new MovieContext();
 
         // GET: Movies
-        public ActionResult Index()
+        public ActionResult Index(string CategoryName, string Rating)
         {
-          
-            return View(db.Movies.ToList());
+            List<Movie> lstMovies = new List<Movie>();
+            if (CategoryName == "Any" || CategoryName == null)
+            {
+                lstMovies = db.Movies.ToList();
+                if (Rating == "Worst") { lstMovies= lstMovies.OrderBy(i => i.Rating).ToList(); }
+              else if (Rating == "Best") { lstMovies=lstMovies.OrderByDescending(i => i.Rating).ToList(); }
+            }
+            else
+            { lstMovies = db.Movies.Where(i => i.CategoryName == CategoryName).ToList(); }
+            if (Rating == "Worst") { lstMovies=lstMovies.OrderBy(i => i.Rating).ToList(); }
+            else if(Rating == "Best") { lstMovies=lstMovies.OrderByDescending(i => i.Rating).ToList(); }
+            return View(lstMovies);
         }
 
         // GET: Movies/Details/5
@@ -46,15 +56,6 @@ namespace MovieReviewWebsite.Controllers
 
             //koniec petli
 
-
-            //p2=person2
-            
-            //p2.personID = 4;
-            //p2.personName = "Hugo";
-            //p2.personSurname = "HO";
-            //p2.dateOfBirth = new DateTime(2028, 3, 4, 8, 30, 52);
-            //p2.movies = "Cars";
-            //p2.personRole = "Director";
 
             
             if (movie == null)
