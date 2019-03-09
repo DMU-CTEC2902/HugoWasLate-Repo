@@ -11,8 +11,10 @@
     <h4>Person</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>Comment</dt>
+        <dd>@Html.DisplayFor(model=>model)</dd>
         <dt>
-           Name
+            Name
         </dt>
         <dd>
             @Html.DisplayFor(model => model.personName)
@@ -47,8 +49,17 @@
             <dd>
                 @Html.DisplayFor(model => model.personRole)
             </dd>
+        
+
         </dl>
-</div>
+        @using (Html.BeginForm())
+        {
+            
+                @Html.TextArea("Comment","")
+                <input type="submit" value="send"/>
+           
+        }
+    </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.personID }) |
     @Html.ActionLink("Back to List", "Index")
