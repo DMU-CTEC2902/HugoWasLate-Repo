@@ -12,46 +12,55 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>Comment</dt>
-        <dd>@Html.DisplayFor(model=>model)</dd>
+       
         <dt>
-            Name
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.personName)
-        </dd>
-        <dt>
-            Surname
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.personSurname)
-        </dd>
-        <dt>
-            Date of Birth
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.dateOfBirth)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Movies)
-        </dt>
-        <dt>
-            @foreach (var item in Model.Movies)
+            @foreach (var item in Model.Comment)
             {
             <dd>
-                @Html.ActionLink(item.MovieName + " " + item.Description, "Details", "Movies", new { id = item.MovieID }, null)
+                @Html.DisplayFor(Model=>item.Content )
             </dd>
         }
             </dt>
 
             <dt>
-                Role
+                Name
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.personRole)
+                @Html.DisplayFor(model => model.personName)
             </dd>
-        
+            <dt>
+                Surname
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.personSurname)
+            </dd>
+            <dt>
+                Date of Birth
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.dateOfBirth)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Movies)
+            </dt>
+            <dt>
+                @foreach (var item in Model.Movies)
+                {
+                <dd>
+                    @Html.ActionLink(item.MovieName + " " + item.Description, "Details", "Movies", new { id = item.MovieID }, null)
+                </dd>
+            }
+                </dt>
 
-        </dl>
+                <dt>
+                    Role
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.personRole)
+                </dd>
+
+
+            </dl>
         @using (Html.BeginForm())
         {
             
