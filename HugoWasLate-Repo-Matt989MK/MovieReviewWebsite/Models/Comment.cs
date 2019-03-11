@@ -4,14 +4,17 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+
 namespace MovieReviewWebsite.Models
 {
-    [Table("comments")]
+    [Table("Comments")]
     public class Comment
     {
         [Key]
-         public virtual int postID { get; set; }
-         public virtual int commentID { get; set; }
-         public virtual string commentContent { get; set; }
+        public virtual int CommentID { get; set; }
+        public virtual int AuthorID { get; set; }
+        public virtual int PersonID { get; set; }
+        public virtual int PostID { get; set; }
+        public virtual string Content { get; set; }
     }
 }
