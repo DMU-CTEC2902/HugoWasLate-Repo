@@ -1,0 +1,47 @@
+﻿@model IEnumerable<MovieReviewWebsite.Models.Person>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+
+            Name
+
+        </th>
+            
+        <th>
+            Role
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+           
+            @Html.ActionLink(item.personName + " " + item.personSurname, "Details", "People", new { id = item.personID }, null)
+
+        </td>
+              
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.personRole)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.personID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.personID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.personID })
+        </td>
+    </tr>
+}
+
+</table>

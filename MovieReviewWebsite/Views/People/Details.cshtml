@@ -1,0 +1,59 @@
+﻿@model MovieReviewWebsite.Models.Person
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Person</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.personName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.personName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.personSurname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.personSurname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateOfBirth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateOfBirth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.movies)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.movies)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.personRole)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.personRole)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.personID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
