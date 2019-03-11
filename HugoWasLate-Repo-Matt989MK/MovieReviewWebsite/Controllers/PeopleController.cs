@@ -23,17 +23,16 @@ namespace MovieReviewWebsite.Controllers
         // GET: People/Details/5
         public ActionResult Details(int? id)
         {
-            List<Comment> lstComment = db.Comment.ToList();
+            List<Comment> lstComment = db.Comment.Where(c => c.PersonID == id).ToList();
             
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Person person = db.People.Find(id);
-            person.Comment = lstComment;//not working correctly, displaying all the info of personinstead of comment
+            person.Comment = lstComment;
             int numerosoby = person.personID;
-                                         
-
+          
             List<MoviePerson> mp = db.MoviePerson.Where(i => i.personID == numerosoby).ToList();
             foreach (MoviePerson movpers in mp)
             {
