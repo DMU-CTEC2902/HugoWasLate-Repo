@@ -12,52 +12,67 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>Comment</dt>
-        <dd>@Html.DisplayFor(model=>model)</dd>
+
         <dt>
-            Name
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.personName)
-        </dd>
-        <dt>
-            Surname
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.personSurname)
-        </dd>
-        <dt>
-            Date of Birth
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.dateOfBirth)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Movies)
-        </dt>
-        <dt>
-            @foreach (var item in Model.Movies)
+            @foreach (var item in Model.Comment)
             {
-            <dd>
-                @Html.ActionLink(item.MovieName + " " + item.Description, "Details", "Movies", new { id = item.MovieID }, null)
-            </dd>
+                if (item.PersonID==Model.personID)
+                {
+                <dd>
+                    @Html.DisplayFor(Model => item.Content)
+                </dd>
+                }
+
         }
             </dt>
 
             <dt>
-                Role
+                Name
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.personRole)
+                @Html.DisplayFor(model => model.personName)
             </dd>
-        
+            <dt>
+                Surname
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.personSurname)
+            </dd>
+            <dt>
+                Date of Birth
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.dateOfBirth)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Movies)
+            </dt>
+            <dt>
+                @foreach (var item in Model.Movies)
+                {
+                <dd>
+                    @Html.ActionLink(item.MovieName + " " + item.Description, "Details", "Movies", new { id = item.MovieID }, null)
+                </dd>
+            }
+                
 
-        </dl>
+                <dt>
+                    Role
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.personRole)
+
+                </dd>
+
+
+            </dl>
         @using (Html.BeginForm())
         {
             
                 @Html.TextArea("Comment","")
-                <input type="submit" value="send"/>
-           
+                <input type="submit" value="send" />
+
+              
         }
     </div>
 <p>

@@ -74,6 +74,7 @@ namespace MovieReviewWebsite.Models
             prod2.Rating = 7.0f;
             context.Movies.Add(prod2);
             
+
             //----------------------------------------- MOVIEPERSON
             MoviePerson mp = new MoviePerson();
             mp.MoviePersonId = 1;
@@ -105,19 +106,25 @@ namespace MovieReviewWebsite.Models
             mp4.MovieID = 3;
             mp4.personID = 3;
             context.MoviePerson.Add(mp4);
+
+            MoviePerson mp5 = new MoviePerson();
+            mp5.MoviePersonId = 6;
+            mp5.MovieID = 1;
+            mp5.personID = 2;
+            context.MoviePerson.Add(mp5);
             //------------------------------------------------------ COMMENTS
             Comment com1 = new Comment();
-            com1.ID = 1;
+            com1.CommentID = 1;
             com1.AuthorID = 1;
-            com1.Content = "Comment";
+            com1.Content = "A really good actor ";
             com1.PersonID = 1;
            // com1.PostID = 1;
             context.Comment.Add(com1);
 
             Comment com2 = new Comment();
-            com2.ID = 2;
+            com2.CommentID = 2;
             com2.AuthorID = 1;
-            com2.Content = "Comment2";
+            com2.Content = "So talented! ";
             com2.PersonID = 1;
             //com2.PostID = 1;
             context.Comment.Add(com2);
