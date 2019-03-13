@@ -118,7 +118,8 @@ namespace MovieReviewWebsite.Models
             com1.AuthorID = 1;
             com1.Content = "A really good actor ";
             com1.PersonID = 1;
-           // com1.PostID = 1;
+            com1.MovieID = 1;
+            com1.PostID = 1;
             context.Comment.Add(com1);
 
             Comment com2 = new Comment();
@@ -126,9 +127,12 @@ namespace MovieReviewWebsite.Models
             com2.AuthorID = 1;
             com2.Content = "So talented! ";
             com2.PersonID = 1;
-            //com2.PostID = 1;
+            com2.MovieID = 1;
+            com2.PostID = 1;
             context.Comment.Add(com2);
             base.Seed(context);
+
+            
         }
 
     }
