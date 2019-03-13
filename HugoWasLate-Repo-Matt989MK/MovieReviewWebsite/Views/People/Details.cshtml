@@ -1,27 +1,23 @@
 ﻿@model MovieReviewWebsite.Models.Person
-
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <h2>Details</h2>
-
 <div>
     <h4>Person</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>Comment</dt>
-
         <dt>
             @foreach (var item in Model.Comment)
             {
-                if (item.PersonID==Model.personID)
+                if (item.PersonID == Model.personID)
                 {
                 <dd>
                     @Html.DisplayFor(Model => item.Content)
                 </dd>
-                }
+            }
 
         }
             </dt>
@@ -54,28 +50,29 @@
                     @Html.ActionLink(item.MovieName + " " + item.Description, "Details", "Movies", new { id = item.MovieID }, null)
                 </dd>
             }
-                
 
                 <dt>
                     Role
                 </dt>
                 <dd>
                     @Html.DisplayFor(model => model.personRole)
-
                 </dd>
 
-
             </dl>
-        @using (Html.BeginForm())
-        {
-            
-                @Html.TextArea("Comment","")
+            @using (Html.BeginForm())
+            {
+               
+                @Html.TextBoxFor(model => model.personID, new { style = "display: none;" })
+              
+
+                @Html.TextArea("Comment", "")
+
                 <input type="submit" value="send" />
 
-              
-        }
-    </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.personID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+                }
+            </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.personID }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
