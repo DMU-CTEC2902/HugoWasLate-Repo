@@ -60,10 +60,13 @@
                     {
                         if (item.PersonID == Model.personID)
                         {
-                        <dd>
-                            @Html.DisplayFor(Model => item.Content)
-                        </dd>
+                <dd>
+                    @Html.DisplayFor(Model => item.Content)
+                    <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
+
+                </dd>
                     }
+                        <br />
 
                 }
                     </dt>

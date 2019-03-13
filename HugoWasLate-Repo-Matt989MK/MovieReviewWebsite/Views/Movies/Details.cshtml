@@ -85,11 +85,14 @@
                 {
                     if (item.MovieID == Model.MovieID)
                     {
-                        <dd>
-                            @Html.DisplayFor(Model => item.Content)
-                        </dd>
-                    }
+                <dd>
+                    @Html.DisplayFor(Model => item.Content)
 
+
+                </dd>
+                        
+                    }
+                    <br />
                 }
                 <dd>
                     @using (Html.BeginForm())
