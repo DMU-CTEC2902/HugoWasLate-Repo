@@ -2,15 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace MovieReviewWebsite.Models
 {
+    [Table("Forums")]
     public class Forum
     {
+        [Key]
         public virtual int PostID { get; set; }
-        public virtual int UserID { get; set; }
+        public virtual int PersonID { get; set; }
         public virtual string Title { get; set; }
+        public virtual DateTime PostTime { get; set; }
         public virtual string Content { get; set; }
+        public virtual int LikeForums { get; set; }
+        public virtual List<Movie> Movies { get; set; }
 
 
     }
