@@ -16,65 +16,90 @@
         <h4>Movie</h4>
         <hr />
         <dl class="dl-horizontal">
+            <dt>Comment</dt>
             <dt>
-             Category
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.CategoryName)
-            </dd>
-
-            <dt>
-                Movie
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.MovieName)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Description)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Description)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Price)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Price)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Rating)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Rating)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.People)
-            </dt>
-
-
-            <dt>
-                @foreach (var item in Model.People)
+                @foreach (var item in Model.Comment)
                 {
-            <dd>
+                    if (item.MovieID == Model.MovieID)
+                    {
+                    <dd>
+                        @Html.DisplayFor(Model => item.Content)
+                    </dd>
+                }
 
-                @Html.ActionLink(item.personName + " " + item.personSurname, "Details","People", new { id = item.personID },null)
-
-            </dd>
             }
+                </dt>
+                <dt>
+                    Category
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CategoryName)
+                </dd>
+
+                <dt>
+                    Movie
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.MovieName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Rating)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Rating)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.People)
                 </dt>
 
 
+                <dt>
+                    @foreach (var item in Model.People)
+                    {
+                    <dd>
 
-            </dl>
+                        @Html.ActionLink(item.personName + " " + item.personSurname, "Details", "People", new { id = item.personID }, null)
+
+                    </dd>
+                }
+                    </dt>
+
+                    @using (Html.BeginForm())
+                    {
+
+                        @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" })
+
+
+                        @Html.TextArea("Comment", "")
+
+                        <input type="submit" value="send" />
+
+
+                    }
+
+
+                </dl>
     </div>
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.MovieID }) |
