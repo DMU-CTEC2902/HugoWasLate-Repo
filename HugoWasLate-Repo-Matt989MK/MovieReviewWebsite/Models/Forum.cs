@@ -16,9 +16,8 @@ namespace MovieReviewWebsite.Models
         public virtual string Title { get; set; }
         public virtual DateTime PostTime { get; set; }
         public virtual string Content { get; set; }
-        public virtual int LikeForums { get; set; }
-        public virtual List<Movie> Movies { get; set; }
-
+      
+        public virtual List<Comment> Comment { get; set; }
 
     }
 }

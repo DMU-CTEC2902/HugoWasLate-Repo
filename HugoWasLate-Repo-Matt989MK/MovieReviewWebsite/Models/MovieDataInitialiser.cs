@@ -129,25 +129,26 @@ namespace MovieReviewWebsite.Models
             com2.PersonID = 2;
             com2.MovieID = 1;
             com2.PostID = 1;
+
             context.Comment.Add(com2);
 
-            Comment com3 = new Comment();
-            com3.CommentID = 3;
-            //com3.AuthorID = 1;
-            com3.Content = "So GOOD! ";
-            com3.PersonID = 2;
-            com3.MovieID = 2;
-            com3.PostID = 1;
-            context.Comment.Add(com3);
+            //Comment com3 = new Comment();
+            //com3.CommentID = 3;
+            ////com3.AuthorID = 1;
+            //com3.Content = "So GOOD! ";
+            //com3.PersonID = 2;
+            //com3.MovieID = 2;
+            //com3.PostID = 1;
+            //context.Comment.Add(com3);
 
-            Comment com4 = new Comment();
-            com4.CommentID = 4;
-            //com4.AuthorID = 1;
-            com4.Content = "So BADDD! ";
-            com4.PersonID = 1;
-            com4.MovieID = 2;
-            com4.PostID = 1;
-            context.Comment.Add(com4);
+            //Comment com4 = new Comment();
+            //com4.CommentID = 4;
+            ////com4.AuthorID = 1;
+            //com4.Content = "So BADDD! ";
+            //com4.PersonID = 1;
+            //com4.MovieID = 2;
+            //com4.PostID = 1;
+            //context.Comment.Add(com4);
 
 
             //------------------------------------------------------ Forums
@@ -158,7 +159,6 @@ namespace MovieReviewWebsite.Models
             foru1.Title = "check this movie";
             foru1.PostTime = new DateTime(2028, 2, 14, 8, 30, 50);
             foru1.Content = "I think this movie is the best";
-            foru1.LikeForums = 13;
             context.Forums.Add(foru1);
 
 
@@ -168,7 +168,6 @@ namespace MovieReviewWebsite.Models
             foru2.Title = "check this aksjdnakjsdh movie";
             foru2.PostTime = new DateTime(2128, 12, 4, 8, 30, 50);
             foru2.Content = "I think this movie is the sadasdasdas best";
-            foru2.LikeForums = 137;
             context.Forums.Add(foru2);
 
             //------------------------------------------------------ 

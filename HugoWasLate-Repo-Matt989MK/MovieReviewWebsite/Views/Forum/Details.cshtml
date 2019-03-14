@@ -43,13 +43,42 @@
             @Html.DisplayFor(model => model.Content)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LikeForums)
-        </dt>
+        <br />
+        <br />
+        <br />
+        <br />
+        <dt>Comment</dt>
 
+        @foreach (var item in Model.Comment)
+        {
+            if (item.MovieID == Model.PostID)
+            {
         <dd>
-            @Html.DisplayFor(model => model.LikeForums)
+            @Html.DisplayFor(Model => item.Content)
+            <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
+
+            123
         </dd>
+
+            }
+            <br />
+        }
+        <dd>
+            @using (Html.BeginForm())
+            {
+
+                @Html.TextBoxFor(model => model.PostID, new { style = "display: none;" })
+
+
+                @Html.TextArea("Comment", "")
+
+                <input type="submit" value="send" />
+
+
+            }
+        </dd>
+
+
 
     </dl>
 </div>

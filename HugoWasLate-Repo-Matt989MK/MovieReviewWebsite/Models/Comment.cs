@@ -17,5 +17,6 @@ namespace MovieReviewWebsite.Models
         public virtual int MovieID { get; set; }//added this
         public virtual int PostID { get; set; }
         public virtual string Content { get; set; }
+        
     }
 }
