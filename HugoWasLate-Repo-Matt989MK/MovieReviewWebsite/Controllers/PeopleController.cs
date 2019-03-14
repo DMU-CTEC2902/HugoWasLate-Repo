@@ -60,6 +60,7 @@ namespace MovieReviewWebsite.Controllers
             comment.AuthorID = 1;
             comment.PostID = 1;
             comment.PersonID = id;
+            comment.MovieID = 1;
             db.Comment.Add(comment);
             db.SaveChanges();
             List<Comment> lstComment = db.Comment.Where(c => c.PersonID == id).ToList();
