@@ -12,40 +12,77 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Category.Name)
+            @Html.DisplayNameFor(model => model.PersonID)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Category.Name)
+            @Html.DisplayFor(model => model.PersonID)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.postTitle)
+            @Html.DisplayNameFor(model => model.Title)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.postTitle)
+            @Html.DisplayFor(model => model.Title)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.postContent)
+            @Html.DisplayNameFor(model => model.PostTime)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.postContent)
+            @Html.DisplayFor(model => model.PostTime)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.postAuthorID)
+            @Html.DisplayNameFor(model => model.Content)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.postAuthorID)
+            @Html.DisplayFor(model => model.Content)
         </dd>
+
+        <br />
+        <br />
+        <br />
+        <br />
+        <dt>Comment</dt>
+
+        @foreach (var item in Model.Comment)
+        {
+            if (item.MovieID == Model.PostID)
+            {
+        <dd>
+            @Html.DisplayFor(Model => item.Content)
+            <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
+
+            123
+        </dd>
+
+            }
+            <br />
+        }
+        <dd>
+            @using (Html.BeginForm())
+            {
+
+                @Html.TextBoxFor(model => model.PostID, new { style = "display: none;" })
+
+
+                @Html.TextArea("Comment", "")  
+
+                <input type="submit" value="send" />
+
+
+            }
+        </dd>
+
+
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.postID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PostID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

@@ -4,18 +4,20 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+
 namespace MovieReviewWebsite.Models
 {
-    [Table("postdetails")]
+    [Table("Forums")]
     public class Forum
     {
         [Key]
-         public virtual int postID { get; set; }
-        public virtual string postTitle { get; set; }
-        public virtual string postContent { get; set; }
-        public virtual string postAuthorID { get; set; }
-        public virtual string CategoryName { get; set; }
+        public virtual int PostID { get; set; }
+        public virtual int PersonID { get; set; }
+        public virtual string Title { get; set; }
+        public virtual DateTime PostTime { get; set; }
+        public virtual string Content { get; set; }
+      
+        public virtual List<Comment> Comment { get; set; }
 
-       
     }
 }

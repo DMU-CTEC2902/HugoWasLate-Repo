@@ -12,13 +12,12 @@ namespace MovieReviewWebsite.Controllers
 {
     public class ForumController : Controller
     {
-        private ForumContext db = new ForumContext();
+        private MovieContext db = new MovieContext();
 
         // GET: Forum
         public ActionResult Index()
         {
-           
-            return View(db.Fora.ToList());
+            return View(db.Forums.ToList());
         }
 
         // GET: Forum/Details/5
@@ -28,7 +27,7 @@ namespace MovieReviewWebsite.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Forum forum = db.Fora.Find(id);
+            Forum forum = db.Forums.Find(id);
             if (forum == null)
             {
                 return HttpNotFound();
@@ -47,11 +46,11 @@ namespace MovieReviewWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "postID,postTitle,postContent,postAuthorID,CategoryName")] Forum forum)
+        public ActionResult Create([Bind(Include = "PostID,UserID,Title,PostTime,Content,LikeForums")] Forum forum)
         {
             if (ModelState.IsValid)
             {
-                db.Fora.Add(forum);
+                db.Forums.Add(forum);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -66,7 +65,7 @@ namespace MovieReviewWebsite.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Forum forum = db.Fora.Find(id);
+            Forum forum = db.Forums.Find(id);
             if (forum == null)
             {
                 return HttpNotFound();
@@ -79,7 +78,7 @@ namespace MovieReviewWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "postID,postTitle,postContent,postAuthorID,CategoryName")] Forum forum)
+        public ActionResult Edit([Bind(Include = "PostID,UserID,Title,PostTime,Content,LikeForums")] Forum forum)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +96,7 @@ namespace MovieReviewWebsite.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Forum forum = db.Fora.Find(id);
+            Forum forum = db.Forums.Find(id);
             if (forum == null)
             {
                 return HttpNotFound();
@@ -110,8 +109,8 @@ namespace MovieReviewWebsite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Forum forum = db.Fora.Find(id);
-            db.Fora.Remove(forum);
+            Forum forum = db.Forums.Find(id);
+            db.Forums.Remove(forum);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

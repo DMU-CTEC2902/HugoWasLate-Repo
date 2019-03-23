@@ -13,38 +13,40 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.CategoryName)
+            @Html.DisplayNameFor(model => model.PersonID)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.postTitle)
+            @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.postContent)
+            @Html.DisplayNameFor(model => model.PostTime)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.postAuthorID)
+            @Html.DisplayNameFor(model => model.Content)
         </th>
+
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.CategoryName)
+            @Html.DisplayFor(modelItem => item.PersonID)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.postTitle)
+            @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.postContent)
+            @Html.DisplayFor(modelItem => item.PostTime)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.postAuthorID)
+            @Html.DisplayFor(modelItem => item.Content)
         </td>
+
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.postID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.postID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.postID })
+            @Html.ActionLink("Edit", "Edit", new { id=item.PostID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PostID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PostID })
         </td>
     </tr>
 }

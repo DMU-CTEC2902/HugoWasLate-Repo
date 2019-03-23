@@ -16,8 +16,10 @@
         <h4>Movie</h4>
         <hr />
         <dl class="dl-horizontal">
+
+
             <dt>
-                @Html.DisplayNameFor(model => model.CategoryName)
+                Category
             </dt>
 
             <dd>
@@ -25,7 +27,7 @@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.MovieName)
+                Movie
             </dt>
 
             <dd>
@@ -64,15 +66,56 @@
             <dt>
                 @foreach (var item in Model.People)
                 {
-            <dd>
+                <dd>
 
-                @Html.ActionLink(item.personName + " " + item.personSurname, "Details","People", new { id = item.personID },null)
+                    @Html.ActionLink(item.personName + " " + item.personSurname, "Details", "People", new { id = item.personID }, null)
 
-            </dd>
+                </dd>
             }
                 </dt>
+                <br />
+                <br />
+                <br />
+                <br />
 
 
+                <dt>Comment</dt>
+
+                @foreach (var item in Model.Comment)
+                {
+                    if (item.MovieID == Model.MovieID)
+                    {
+                        <dd>
+                            @Html.DisplayFor(Model => item.Content)
+                            <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
+                            <nbsp></nbsp>
+                            <p style="color:forestgreen">
+
+                                <input type="submit" value="reply" id="@item.CommentID" />
+                            </p>
+                        </dd>
+
+                    }
+
+                    <br />
+                }
+
+                    <dd>
+                        @using (Html.BeginForm())
+                        {
+
+
+
+                            @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" })
+
+
+                            @Html.TextArea("Comment", "");
+
+                            <input type="submit" value="send" />
+
+
+                        }
+                    </dd>
 
             </dl>
     </div>

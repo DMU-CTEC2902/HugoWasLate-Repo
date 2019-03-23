@@ -15,15 +15,25 @@ namespace MovieReviewWebsite.Controllers
         private MovieContext db = new MovieContext();
 
         // GET: Movies
-        public ActionResult Index()
+        public ActionResult Index(string CategoryName, string Rating)
         {
-          
-            return View(db.Movies.ToList());
+            List<Movie> lstMovies = new List<Movie>();
+            if (CategoryName == "Any" || CategoryName == null)
+            {
+                lstMovies = db.Movies.ToList();
+                if (Rating == "Worst") { lstMovies= lstMovies.OrderBy(i => i.Rating).ToList(); }
+              else if (Rating == "Best") { lstMovies=lstMovies.OrderByDescending(i => i.Rating).ToList(); }
+            }
+            else
+            { lstMovies = db.Movies.Where(i => i.CategoryName == CategoryName).ToList(); }
+            if (Rating == "Worst") { lstMovies=lstMovies.OrderBy(i => i.Rating).ToList(); }
+            else if(Rating == "Best") { lstMovies=lstMovies.OrderByDescending(i => i.Rating).ToList(); }
+            return View(lstMovies);
         }
-
-        // GET: Movies/Details/5
+        [HttpGet]
         public ActionResult Details(int? id)
         {
+            List<Comment> lstComment = db.Comment.Where(c => c.MovieID == id).ToList();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -31,31 +41,50 @@ namespace MovieReviewWebsite.Controllers
             Movie movie = db.Movies.Find(id);//
 
             int numerFilmu = movie.MovieID;//
-            //int idosoby = 0;
 
-         List<MoviePerson> mp = db.MoviePerson.Where(i => i.MovieID == numerFilmu).ToList();
-           /// MoviePerson osob = mp.Last();
-           // idosoby = osob.personID;
+            List<MoviePerson> mp = db.MoviePerson.Where(i => i.MovieID == numerFilmu).ToList();
 
-            //petla
+            foreach (MoviePerson movpers in mp)
+            {
+                Person p2 = db.People.Find(movpers.personID);
+                movie.People.Add(p2);
+            }
+
+            if (movie == null)
+            {
+                return HttpNotFound();
+            }
+            return View(movie);
+        }
+        [HttpPost]
+        public ActionResult Details()
+        {
+
+            int id = Convert.ToInt32(Request.Params["MovieID"]);
+            Comment comment = new Comment();
+            comment.Content = Request.Params["Comment"];
+            comment.AuthorID = 1;
+            comment.PostID = 1;
+            comment.MovieID = id;
+            comment.PersonID = 1;
+            db.Comment.Add(comment);
+            db.SaveChanges();
+            List<Comment> lstComment = db.Comment.Where(c => c.MovieID == id).ToList();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Movie movie = db.Movies.Find(id);//
+
+            int numerFilmu = movie.MovieID;//
+          
+            List<MoviePerson> mp = db.MoviePerson.Where(i => i.MovieID == numerFilmu).ToList();
+          
             foreach (MoviePerson movpers in mp)
             {
                 Person p2 = db.People.Find(movpers.personID);
             movie.People.Add(p2);
             }
-
-            //koniec petli
-
-
-            ;//p2=person2
-            
-            //p2.personID = 4;
-            //p2.personName = "Hugo";
-            //p2.personSurname = "HO";
-            //p2.dateOfBirth = new DateTime(2028, 3, 4, 8, 30, 52);
-            //p2.movies = "Cars";
-            //p2.personRole = "Director";
-
             
             if (movie == null)
             {
