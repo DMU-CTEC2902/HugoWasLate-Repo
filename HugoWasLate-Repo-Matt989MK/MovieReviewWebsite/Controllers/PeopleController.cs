@@ -25,10 +25,6 @@ namespace MovieReviewWebsite.Controllers
         public ActionResult Details(int? id)
         {
                   List<Comment> lstComment = db.Comment.Where(c => c.PersonID == id).ToList();
-            // List<CommentReply> lstCommentReply = db.CommentReply.Where(c => c.CommentReplyID ==).ToList();
-            //list of commentsReply
-            //foreach loop of comments
-            //commentID
                 foreach(Comment item in lstComment)
             {
                 CommentReply commentReply = new CommentReply();
@@ -85,8 +81,40 @@ namespace MovieReviewWebsite.Controllers
                 return HttpNotFound();
             }
             return View(person);
-            return View();
+        }
+        [HttpPost]
+        public ActionResult CommentReply()
+        {
+             int id = Convert.ToInt32(Request.Params["PersonId"]);
+            int commentID = Convert.ToInt32(Request.Params["CommentID"]);
+            CommentReply commentReply = new CommentReply();
+            commentReply.Content = Request.Params["Comment"];
+            commentReply.CommentID = commentID;
+            commentReply.CommentReplyID = 2;
+            commentReply.AuthorID = 1;
+            commentReply.PostID = 1;
+            commentReply.PersonID = id;
+            commentReply.MovieID = 1;
+            db.CommentReply.Add(commentReply);
+            db.SaveChanges();
+            //-----------------
+            List<Comment> lstComment = db.Comment.Where(c => c.PersonID == id).ToList();
+           
+            Person person = db.People.Find(id);
+            person.Comment = lstComment;
+            int numerosoby = person.personID;
 
+            List<MoviePerson> mp = db.MoviePerson.Where(i => i.personID == numerosoby).ToList();
+            foreach (MoviePerson movpers in mp)
+            {
+                Movie m2 = db.Movies.Find(movpers.MovieID);
+                person.Movies.Add(m2);
+            }
+            if (person == null)
+            {
+                return HttpNotFound();
+            }
+            return View(person);
         }
         [HttpPost]
         public ActionResult Details()
@@ -116,10 +144,6 @@ namespace MovieReviewWebsite.Controllers
                 Movie m2 = db.Movies.Find(movpers.MovieID);
                 person.Movies.Add(m2);
             }
-
-            //koniec petli
-
-
             if (person == null)
             {
                 return HttpNotFound();
