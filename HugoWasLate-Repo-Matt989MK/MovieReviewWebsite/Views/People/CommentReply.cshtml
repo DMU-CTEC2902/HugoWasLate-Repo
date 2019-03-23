@@ -51,27 +51,46 @@
                 {
                     if (item.PersonID == Model.personID)
                     {
-            <dd>
-                <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
+                    <dd>
+                        @if (item.CommentID==Int32.Parse(Request.Params["CommentID"]))
+                        {
+                    <dd>
+                        @using (Html.BeginForm())
+                        {
+                            @Html.TextBoxFor(model => model.personID, new { style = "display: none;" })
+                            @Html.TextArea("Comment", "")
 
-                @Html.DisplayFor(Model => item.Content)
-               @Html.ActionLink("Reply","CommentReply", new { id = item.PersonID,commentID=item.CommentID }, null)
-               @* @Html.ActionLink(item.MovieName + " " + item.Description, "Details", "Movies", new { id = item.MovieID }, null)*@
+                            <input type="submit" value="reply" />
+                        }
 
-            </dd>
+                    </dd>
+                        }
+                        <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
+
+                        @Html.DisplayFor(Model => item.Content)
+                        @Html.ActionLink("Reply", "CommentReply", new { id = item.MovieID, commentID = item.CommentID }, null)
+                      
+                      
+
+                    </dd>
                 }
 
             }
                 </dt>
             </dl>
             @using (Html.BeginForm())
-            {    
+            {
+
                 @Html.TextBoxFor(model => model.personID, new { style = "display: none;" })
+
+
                 @Html.TextArea("Comment", "")
 
                 <input type="submit" value="send" />
-                }
-            </div>
+
+
+            }
+        </div>
         <p>
             @Html.ActionLink("Edit", "Edit", new { id = Model.personID }) |
             @Html.ActionLink("Back to List", "Index")

@@ -40,10 +40,6 @@ namespace MovieReviewWebsite.Controllers
                 Movie m2 = db.Movies.Find(movpers.MovieID);
                 person.Movies.Add(m2);
             }
-
-            //koniec petli
-
-
             if (person == null)
             {
                 return HttpNotFound();
@@ -51,6 +47,35 @@ namespace MovieReviewWebsite.Controllers
             return View(person);
         }
 
+        [HttpGet]
+        public ActionResult CommentReply(int? id,int? commentID)
+        {
+            ViewBag.id = id;
+            ViewBag.commentID = commentID;
+            List<Comment> lstComment = db.Comment.Where(c => c.PersonID == id).ToList();
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Person person = db.People.Find(id);
+            person.Comment = lstComment;
+            int numerosoby = person.personID;
+
+            List<MoviePerson> mp = db.MoviePerson.Where(i => i.personID == numerosoby).ToList();
+            foreach (MoviePerson movpers in mp)
+            {
+                Movie m2 = db.Movies.Find(movpers.MovieID);
+                person.Movies.Add(m2);
+            }
+            if (person == null)
+            {
+                return HttpNotFound();
+            }
+            return View(person);
+            return View();
+
+        }
         [HttpPost]
         public ActionResult Details()
         {

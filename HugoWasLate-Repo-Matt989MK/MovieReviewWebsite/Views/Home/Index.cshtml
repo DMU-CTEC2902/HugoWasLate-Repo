@@ -1,4 +1,5 @@
-﻿@{
+﻿@model MovieReviewWebsite.Models.Person
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -9,10 +10,32 @@
 </div>
 
 <div class="row">
-    <div>
-        <h2>Movie 1</h2>
-        <p> test movie description </p>
-        <p><a href="~/Movies/Details/2" @*class="btn btn-primary*@ ">Fast n Furious &raquo;</a></p>
-    </div>
-    
+    <dt>
+        Name
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.personName)
+    </dd>
+    <dt>
+        Surname
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.personSurname)
+    </dd>
+    <dt>
+        Date of Birth
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.dateOfBirth)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Movies)
+    </dt>
+    <dt>
+        @*@foreach (var item in Model.Movies)
+        {
+            <dd>
+                @Html.ActionLink(item.MovieName + " " + item.Description, "Details", "Movies", new { id = item.MovieID }, null)
+            </dd>
+        }*@
 </div>
