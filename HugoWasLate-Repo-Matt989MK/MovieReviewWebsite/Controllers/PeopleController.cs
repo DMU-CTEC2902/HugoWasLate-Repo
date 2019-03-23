@@ -29,14 +29,13 @@ namespace MovieReviewWebsite.Controllers
             //list of commentsReply
             //foreach loop of comments
             //commentID
-            List<CommentReply> lstCommentReply = new List<CommentReply>();
                 foreach(Comment item in lstComment)
             {
                 CommentReply commentReply = new CommentReply();
-                if (db.CommentReply.Where(c => c.CommentID == item.CommentID).SingleOrDefault() != null)
+                List<CommentReply> lstCommentReply = new List<CommentReply>();
+                if (db.CommentReply.Where(c => c.CommentID == item.CommentID).ToList() != null)//
                 {
-                    commentReply = db.CommentReply.Where(c => c.CommentID ==item.CommentID).SingleOrDefault();
-                    if (commentReply != null) { lstCommentReply.Add(commentReply); }
+                    lstCommentReply =db.CommentReply.Where(c => c.CommentID == item.CommentID).ToList();
                 }
             }
             if (id == null)
@@ -56,7 +55,7 @@ namespace MovieReviewWebsite.Controllers
             {
                 return HttpNotFound();
             }
-            person.CommentReply = lstCommentReply;
+            
             return View(person);
         }
 

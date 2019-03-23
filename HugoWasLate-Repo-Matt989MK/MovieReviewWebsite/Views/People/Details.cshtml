@@ -47,20 +47,31 @@
             </dd>
             <dt>Comment</dt>
             <dt>
+
                 @foreach (var item in Model.Comment)
                 {
-                    if (item.PersonID == Model.personID)
+                <dd>
+                    @if (item.PersonID == Model.personID)
                     {
-            <dd>
-                <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
 
-                @Html.DisplayFor(Model => item.Content)
-               @Html.ActionLink("Reply","CommentReply", new { id = item.PersonID,commentID=item.CommentID }, null)
-               @* @Html.ActionLink(item.MovieName + " " + item.Description, "Details", "Movies", new { id = item.MovieID }, null)*@
+                    <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
 
-            </dd>
-                }
+                    @Html.DisplayFor(Model => item.Content)
+                    @Html.ActionLink("Reply", "CommentReply", new { id = item.PersonID, commentID = item.CommentID }, null)
 
+
+                    
+
+                    }
+                
+                    @foreach (var reply in item.CommentReply)
+                    {
+                        <br />
+                        @Html.DisplayFor(model => reply.Content);
+                        
+                    }
+                
+                </dd>
             }
                 </dt>
             </dl>
