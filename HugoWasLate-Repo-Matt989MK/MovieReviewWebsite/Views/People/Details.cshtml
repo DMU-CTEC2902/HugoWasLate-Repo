@@ -15,34 +15,34 @@
         <dl class="dl-horizontal">
 
 
-            <dt>
-                Name
-            </dt>
+        <dt>
+            Name
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.personName)
+        </dd>
+        <dt>
+            Surname
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.personSurname)
+        </dd>
+        <dt>
+            Date of Birth
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.dateOfBirth)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Movies)
+        </dt>
+        <dt>
+            @foreach (var item in Model.Movies)
+            {
             <dd>
-                @Html.DisplayFor(model => model.personName)
+                @Html.ActionLink(item.MovieName + " " + item.Description, "Details", "Movies", new { id = item.MovieID }, null)
             </dd>
-            <dt>
-                Surname
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.personSurname)
-            </dd>
-            <dt>
-                Date of Birth
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.dateOfBirth)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Movies)
-            </dt>
-            <dt>
-                @foreach (var item in Model.Movies)
-                {
-                <dd>
-                    @Html.ActionLink(item.MovieName + " " + item.Description, "Details", "Movies", new { id = item.MovieID }, null)
-                </dd>
-            }
+        }
 
                 <dt>
                     Role
@@ -68,28 +68,19 @@
                     }
                         <br />
 
+            </dl>
+            @using (Html.BeginForm())
+            {
+               
+                @Html.TextBoxFor(model => model.personID, new { style = "display: none;" })
+              
+
+                @Html.TextArea("Comment", "")
+
+                <input type="submit" value="send" />
+
+
                 }
-                    </dt>
-                        <dd>
-                            @using (Html.BeginForm())
-                            {
-
-                                @Html.TextBoxFor(model => model.personID, new { style = "display: none;" })
-
-                                
-
-                                @Html.TextArea("Comment", "")
-
-                                <input type="submit" value="send" />
-
-
-                            }
-                        </dd>
-
-
-
-                </dl>
-
             </div>
             <p>
                 @Html.ActionLink("Edit", "Edit", new { id = Model.personID }) |
