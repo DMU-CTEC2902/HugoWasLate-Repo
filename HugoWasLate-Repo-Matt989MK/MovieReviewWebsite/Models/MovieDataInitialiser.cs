@@ -73,7 +73,39 @@ namespace MovieReviewWebsite.Models
             prod2.CategoryName = "Comedy";
             prod2.Rating = 7.0f;
             context.Movies.Add(prod2);
-            
+
+            Movie prod4 = new Movie();
+            prod4.MovieID = 4;
+            prod4.MovieName = "Avengers";
+            prod4.Description = "Movie with all marvel heroes";
+            prod4.CategoryName = "Action";
+            prod4.Rating = 10f;
+            context.Movies.Add(prod4);
+
+            Movie prod5 = new Movie();
+            prod5.MovieID = 5;
+            prod5.MovieName = "Avengers: Age Of Ultron";
+            prod5.Description = "2nd Movie with all marvel heroes";
+            prod5.CategoryName = "Action";
+            prod5.Rating = 9f;
+            context.Movies.Add(prod5);
+
+            Movie prod6 = new Movie();
+            prod6.MovieID = 6;
+            prod6.MovieName = "Titanic";
+            prod6.Description = "Romance movie with Di Caprio";
+            prod6.CategoryName = "Romance";
+            prod6.Rating = 5f;
+            context.Movies.Add(prod6);
+
+            Movie prod7 = new Movie();
+            prod7.MovieID = 7;
+            prod7.MovieName = "The Nun";
+            prod7.Description = "Scary movie prequel of The Conjuring";
+            prod7.CategoryName = "Horror";
+            prod7.Rating = 10f;
+            context.Movies.Add(prod7);
+
 
             //----------------------------------------- MOVIEPERSON
             MoviePerson mp = new MoviePerson();
@@ -112,6 +144,18 @@ namespace MovieReviewWebsite.Models
             mp5.MovieID = 1;
             mp5.personID = 2;
             context.MoviePerson.Add(mp5);
+
+            MoviePerson mp6 = new MoviePerson();
+            mp6.MoviePersonId = 7;
+            mp6.MovieID = 6;
+            mp6.personID = 3;
+            context.MoviePerson.Add(mp6);
+
+            MoviePerson mp7 = new MoviePerson();
+            mp7.MoviePersonId = 8;
+            mp7.MovieID = 6;
+            mp7.personID = 2;
+            context.MoviePerson.Add(mp7);
             //------------------------------------------------------ COMMENTS
             Comment com1 = new Comment();
             com1.CommentID = 1;
