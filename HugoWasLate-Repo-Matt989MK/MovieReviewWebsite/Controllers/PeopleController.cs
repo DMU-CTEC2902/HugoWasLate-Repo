@@ -24,8 +24,21 @@ namespace MovieReviewWebsite.Controllers
         [HttpGet]
         public ActionResult Details(int? id)
         {
-            List<Comment> lstComment = db.Comment.Where(c => c.PersonID == id).ToList();
-
+                  List<Comment> lstComment = db.Comment.Where(c => c.PersonID == id).ToList();
+            // List<CommentReply> lstCommentReply = db.CommentReply.Where(c => c.CommentReplyID ==).ToList();
+            //list of commentsReply
+            //foreach loop of comments
+            //commentID
+            List<CommentReply> lstCommentReply = new List<CommentReply>();
+                foreach(Comment item in lstComment)
+            {
+                CommentReply commentReply = new CommentReply();
+                if (db.CommentReply.Where(c => c.CommentID == item.CommentID).SingleOrDefault() != null)
+                {
+                    commentReply = db.CommentReply.Where(c => c.CommentID ==item.CommentID).SingleOrDefault();
+                    if (commentReply != null) { lstCommentReply.Add(commentReply); }
+                }
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -33,7 +46,6 @@ namespace MovieReviewWebsite.Controllers
             Person person = db.People.Find(id);
             person.Comment = lstComment;
             int numerosoby = person.personID;
-
             List<MoviePerson> mp = db.MoviePerson.Where(i => i.personID == numerosoby).ToList();
             foreach (MoviePerson movpers in mp)
             {
@@ -44,6 +56,7 @@ namespace MovieReviewWebsite.Controllers
             {
                 return HttpNotFound();
             }
+            person.CommentReply = lstCommentReply;
             return View(person);
         }
 

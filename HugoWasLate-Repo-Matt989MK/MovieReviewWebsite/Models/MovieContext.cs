@@ -22,6 +22,7 @@ namespace MovieReviewWebsite.Models
 
         public System.Data.Entity.DbSet<MovieReviewWebsite.Models.Movie> Movies { get; set; }
         public System.Data.Entity.DbSet<MovieReviewWebsite.Models.Comment> Comment { get; set; }
+        public System.Data.Entity.DbSet<MovieReviewWebsite.Models.CommentReply> CommentReply { get; set; }
 
         public System.Data.Entity.DbSet<MovieReviewWebsite.Models.Person> People { get; set; }
 

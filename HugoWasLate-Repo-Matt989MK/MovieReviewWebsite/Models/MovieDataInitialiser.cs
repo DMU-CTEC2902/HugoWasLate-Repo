@@ -18,13 +18,13 @@ namespace MovieReviewWebsite.Models
             cat1.dateOfBirth = new DateTime(2008, 5, 1, 8, 30, 52);
             cat1.personRole = "Actor";
             context.People.Add(cat1);
-    
+
             Person cat2 = new Person();
             cat2.personID = 2;
             cat2.personName = "hugo";
             cat2.personSurname = "HO";
             cat2.dateOfBirth = new DateTime(2028, 3, 4, 8, 30, 52);
-          
+
             cat2.personRole = "Director";
             context.People.Add(cat2);
 
@@ -34,7 +34,7 @@ namespace MovieReviewWebsite.Models
             p1.personName = "Bob";
             p1.personSurname = "Marley";
             p1.dateOfBirth = new DateTime(2008, 5, 1, 8, 30, 52);
-         
+
             p1.personRole = "Actor";
             context.People.Add(p1);
 
@@ -73,7 +73,7 @@ namespace MovieReviewWebsite.Models
             prod2.CategoryName = "Comedy";
             prod2.Rating = 7.0f;
             context.Movies.Add(prod2);
-            
+
 
             //----------------------------------------- MOVIEPERSON
             MoviePerson mp = new MoviePerson();
@@ -130,9 +130,12 @@ namespace MovieReviewWebsite.Models
             com2.MovieID = 1;
             com2.PostID = 1;
             context.Comment.Add(com2);
+            //-------------------------------------------------------------CommentReply
+            CommentReply comReply = new CommentReply() { CommentID = 1, CommentReplyID = 1, AuthorID = 1, PersonID = 1, MovieID = 1, PostID = 1, Content = "this is a reply" };
+            context.CommentReply.Add(comReply);
+
             base.Seed(context);
 
-            
         }
 
     }
