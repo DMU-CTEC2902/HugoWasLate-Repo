@@ -59,6 +59,7 @@ namespace MovieReviewWebsite.Controllers
         [HttpPost]
         public ActionResult Details()
         {
+
             int id = Convert.ToInt32(Request.Params["MovieID"]);
             Comment comment = new Comment();
             comment.Content = Request.Params["Comment"];

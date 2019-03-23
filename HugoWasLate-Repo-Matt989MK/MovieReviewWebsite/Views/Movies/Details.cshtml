@@ -100,20 +100,22 @@
                     <br />
                 }
 
-                <dd>
-                    @using (Html.BeginForm())
-                    {
+                    <dd>
+                        @using (Html.BeginForm())
+                        {
 
 
 
-
-                        @Html.TextArea("Comment", "");
-
-                        <input type="submit" value="send" />
+                            @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" })
 
 
-                    }
-                </dd>
+                            @Html.TextArea("Comment", "");
+
+                            <input type="submit" value="send" />
+
+
+                        }
+                    </dd>
 
             </dl>
     </div>
