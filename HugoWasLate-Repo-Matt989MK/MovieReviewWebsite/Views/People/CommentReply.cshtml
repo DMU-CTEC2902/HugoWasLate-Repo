@@ -5,6 +5,11 @@
 }
 <h2>Details</h2>
 <div>
+    <script>
+        function RedirectToPeopleDetails() {
+           window.location=""
+        }
+    </script>
     <h4>Person</h4>
     <hr />
     <dl class="dl-horizontal">
@@ -47,40 +52,50 @@
             </dd>
             <dt>Comment</dt>
             <dt>
-
                 @foreach (var item in Model.Comment)
                 {
-                <dd>
-                    @if (item.PersonID == Model.personID)
+                    if (item.PersonID == Model.personID)
                     {
+                    <dd>
+                        @if (item.CommentID == Int32.Parse(Request.Params["CommentID"]))
+                        {
+                        <dd>
+                            @using (Html.BeginForm())
+                            {
+                                @Html.TextBoxFor(model => model.personID, new { style = "display: none;" })
+                                @Html.TextArea("Comment", "")
 
+                                
+                                 <input type="submit" value="reply" onclick="ReirectToPeopleDetails()" />
+                            }
+
+                        </dd>
+                    }
                         <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
 
                         @Html.DisplayFor(Model => item.Content)
-                        @Html.ActionLink("Reply", "CommentReply", new { id = item.PersonID, commentID = item.CommentID }, null)
+                        @Html.ActionLink("Reply", "CommentReply", new { id = item.MovieID, commentID = item.CommentID }, null)
 
 
 
-
+                        </dd>
                     }
 
-                    @foreach (var reply in item.CommentReply)
-                    {
-                        <br />
-                        @Html.DisplayFor(model => reply.Content);
+                }
 
-                    }
-
-                </dd>
-            }
                 </dt>
             </dl>
             @using (Html.BeginForm())
             {
+
                 @Html.TextBoxFor(model => model.personID, new { style = "display: none;" })
+
+
                 @Html.TextArea("Comment", "")
 
                 <input type="submit" value="send" />
+
+
             }
         </div>
         <p>
