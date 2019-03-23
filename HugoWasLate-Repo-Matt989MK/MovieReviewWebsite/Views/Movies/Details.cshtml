@@ -85,29 +85,37 @@
                 {
                     if (item.MovieID == Model.MovieID)
                     {
-                <dd>
-                    @Html.DisplayFor(Model => item.Content)
+                        <dd>
+                            @Html.DisplayFor(Model => item.Content)
+                            <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
+                            <nbsp></nbsp>
+                            <p style="color:forestgreen">
 
+                                <input type="submit" value="reply" id="@item.CommentID" />
+                            </p>
+                        </dd>
 
-                </dd>
-                        
                     }
+
                     <br />
                 }
-                <dd>
-                    @using (Html.BeginForm())
-                    {
 
-                        @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" })
-
-
-                        @Html.TextArea("Comment", "")
-
-                        <input type="submit" value="send" />
+                    <dd>
+                        @using (Html.BeginForm())
+                        {
 
 
-                    }
-                </dd>
+
+                            @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" })
+
+
+                            @Html.TextArea("Comment", "");
+
+                            <input type="submit" value="send" />
+
+
+                        }
+                    </dd>
 
             </dl>
     </div>

@@ -73,7 +73,39 @@ namespace MovieReviewWebsite.Models
             prod2.CategoryName = "Comedy";
             prod2.Rating = 7.0f;
             context.Movies.Add(prod2);
-            
+
+            Movie prod4 = new Movie();
+            prod4.MovieID = 4;
+            prod4.MovieName = "Avengers";
+            prod4.Description = "Movie with all marvel heroes";
+            prod4.CategoryName = "Action";
+            prod4.Rating = 10f;
+            context.Movies.Add(prod4);
+
+            Movie prod5 = new Movie();
+            prod5.MovieID = 5;
+            prod5.MovieName = "Avengers: Age Of Ultron";
+            prod5.Description = "2nd Movie with all marvel heroes";
+            prod5.CategoryName = "Action";
+            prod5.Rating = 9f;
+            context.Movies.Add(prod5);
+
+            Movie prod6 = new Movie();
+            prod6.MovieID = 6;
+            prod6.MovieName = "Titanic";
+            prod6.Description = "Romance movie with Di Caprio";
+            prod6.CategoryName = "Romance";
+            prod6.Rating = 5f;
+            context.Movies.Add(prod6);
+
+            Movie prod7 = new Movie();
+            prod7.MovieID = 7;
+            prod7.MovieName = "The Nun";
+            prod7.Description = "Scary movie prequel of The Conjuring";
+            prod7.CategoryName = "Horror";
+            prod7.Rating = 10f;
+            context.Movies.Add(prod7);
+
 
             //----------------------------------------- MOVIEPERSON
             MoviePerson mp = new MoviePerson();
@@ -112,6 +144,18 @@ namespace MovieReviewWebsite.Models
             mp5.MovieID = 1;
             mp5.personID = 2;
             context.MoviePerson.Add(mp5);
+
+            MoviePerson mp6 = new MoviePerson();
+            mp6.MoviePersonId = 7;
+            mp6.MovieID = 6;
+            mp6.personID = 3;
+            context.MoviePerson.Add(mp6);
+
+            MoviePerson mp7 = new MoviePerson();
+            mp7.MoviePersonId = 8;
+            mp7.MovieID = 6;
+            mp7.personID = 2;
+            context.MoviePerson.Add(mp7);
             //------------------------------------------------------ COMMENTS
             Comment com1 = new Comment();
             com1.CommentID = 1;
@@ -126,32 +170,49 @@ namespace MovieReviewWebsite.Models
             com2.CommentID = 2;
             com2.AuthorID = 1;
             com2.Content = "So talented! ";
-            com2.PersonID = 1;
+            com2.PersonID = 2;
             com2.MovieID = 1;
             com2.PostID = 1;
+
             context.Comment.Add(com2);
+
+            //Comment com3 = new Comment();
+            //com3.CommentID = 3;
+            ////com3.AuthorID = 1;
+            //com3.Content = "So GOOD! ";
+            //com3.PersonID = 2;
+            //com3.MovieID = 2;
+            //com3.PostID = 1;
+            //context.Comment.Add(com3);
+
+            //Comment com4 = new Comment();
+            //com4.CommentID = 4;
+            ////com4.AuthorID = 1;
+            //com4.Content = "So BADDD! ";
+            //com4.PersonID = 1;
+            //com4.MovieID = 2;
+            //com4.PostID = 1;
+            //context.Comment.Add(com4);
 
 
             //------------------------------------------------------ Forums
 
-            //Forum foru1 = new Forum();
-            //foru1.PostID = 1;
-            //foru1.PersonID = 1;
-            //foru1.Title = "check this movie";
-            //foru1.PostTime = new DateTime(1028, 2, 14, 8, 30, 50);
-            //foru1.Content = "I think this movie is the best";
-            //foru1.LikeForums = 13;
-            //context.Forums.Add(foru1);
+            Forum foru1 = new Forum();
+            foru1.PostID = 1;
+            foru1.PersonID = 1;
+            foru1.Title = "check this movie";
+            foru1.PostTime = new DateTime(2028, 2, 14, 8, 30, 50);
+            foru1.Content = "I think this movie is the best";
+            context.Forums.Add(foru1);
 
 
-            //Forum foru2 = new Forum();
-            //foru2.PostID = 2;
-            //foru2.PersonID = 2;
-            //foru2.Title = "check this aksjdnakjsdh movie";
-            //foru2.PostTime = new DateTime(2128, 12, 4, 8, 30, 50);
-            //foru2.Content = "I think this movie is the sadasdasdas best";
-            //foru2.LikeForums = 137;
-            //context.Forums.Add(foru2);
+            Forum foru2 = new Forum();
+            foru2.PostID = 2;
+            foru2.PersonID = 2;
+            foru2.Title = "check this aksjdnakjsdh movie";
+            foru2.PostTime = new DateTime(2128, 12, 4, 8, 30, 50);
+            foru2.Content = "I think this movie is the sadasdasdas best";
+            context.Forums.Add(foru2);
 
             //------------------------------------------------------ 
 

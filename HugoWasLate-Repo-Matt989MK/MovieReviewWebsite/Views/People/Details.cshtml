@@ -70,20 +70,21 @@
 
                 }
                     </dt>
-                    <dd>
-                        @using (Html.BeginForm())
-                        {
+                        <dd>
+                            @using (Html.BeginForm())
+                            {
 
-                            @Html.TextBoxFor(model => model.personID, new { style = "display: none;" })
+                                @Html.TextBoxFor(model => model.personID, new { style = "display: none;" })
+
+                                
+
+                                @Html.TextArea("Comment", "")
+
+                                <input type="submit" value="send" />
 
 
-                            @Html.TextArea("Comment", "")
-
-                            <input type="submit" value="send" />
-
-
-                        }
-                    </dd>
+                            }
+                        </dd>
 
 
 
