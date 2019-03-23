@@ -1,30 +1,19 @@
 ﻿@model MovieReviewWebsite.Models.Person
-
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<!DOCTYPE html>
+
+<html>
 <h2>Details</h2>
+<body>
+    <div>
+        <h4>Person</h4>
+        <hr />
+        <dl class="dl-horizontal">
 
-<div>
-    <h4>Person</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>Comment</dt>
-
-        <dt>
-            @foreach (var item in Model.Comment)
-            {
-                if (item.PersonID==Model.personID)
-                {
-                <dd>
-                    @Html.DisplayFor(Model => item.Content)
-                </dd>
-                }
-
-        }
-            </dt>
 
             <dt>
                 Name
@@ -54,28 +43,57 @@
                     @Html.ActionLink(item.MovieName + " " + item.Description, "Details", "Movies", new { id = item.MovieID }, null)
                 </dd>
             }
-                
 
                 <dt>
                     Role
                 </dt>
                 <dd>
                     @Html.DisplayFor(model => model.personRole)
+                </dd>
+                <br />
+                <br />
+                <br />
+                <br />
+                <dt>Comment</dt>
+                <dt>
+                    @foreach (var item in Model.Comment)
+                    {
+                        if (item.PersonID == Model.personID)
+                        {
+                <dd>
+                    @Html.DisplayFor(Model => item.Content)
+                    <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
 
                 </dd>
+                    }
+                        <br />
+
+                }
+                    </dt>
+                    <dd>
+                        @using (Html.BeginForm())
+                        {
+
+                            @Html.TextBoxFor(model => model.personID, new { style = "display: none;" })
 
 
-            </dl>
-        @using (Html.BeginForm())
-        {
-            
-                @Html.TextArea("Comment","")
-                <input type="submit" value="send" />
+                            @Html.TextArea("Comment", "")
 
-              
-        }
-    </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.personID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+                            <input type="submit" value="send" />
+
+
+                        }
+                    </dd>
+
+
+
+                </dl>
+
+            </div>
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.personID }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+
+ </body>
+ </html>

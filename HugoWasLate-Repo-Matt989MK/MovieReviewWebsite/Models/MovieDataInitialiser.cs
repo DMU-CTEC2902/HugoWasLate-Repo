@@ -118,7 +118,8 @@ namespace MovieReviewWebsite.Models
             com1.AuthorID = 1;
             com1.Content = "A really good actor ";
             com1.PersonID = 1;
-           // com1.PostID = 1;
+            com1.MovieID = 1;
+            com1.PostID = 1;
             context.Comment.Add(com1);
 
             Comment com2 = new Comment();
@@ -126,9 +127,36 @@ namespace MovieReviewWebsite.Models
             com2.AuthorID = 1;
             com2.Content = "So talented! ";
             com2.PersonID = 1;
-            //com2.PostID = 1;
+            com2.MovieID = 1;
+            com2.PostID = 1;
             context.Comment.Add(com2);
+
+
+            //------------------------------------------------------ Forums
+
+            //Forum foru1 = new Forum();
+            //foru1.PostID = 1;
+            //foru1.PersonID = 1;
+            //foru1.Title = "check this movie";
+            //foru1.PostTime = new DateTime(1028, 2, 14, 8, 30, 50);
+            //foru1.Content = "I think this movie is the best";
+            //foru1.LikeForums = 13;
+            //context.Forums.Add(foru1);
+
+
+            //Forum foru2 = new Forum();
+            //foru2.PostID = 2;
+            //foru2.PersonID = 2;
+            //foru2.Title = "check this aksjdnakjsdh movie";
+            //foru2.PostTime = new DateTime(2128, 12, 4, 8, 30, 50);
+            //foru2.Content = "I think this movie is the sadasdasdas best";
+            //foru2.LikeForums = 137;
+            //context.Forums.Add(foru2);
+
+            //------------------------------------------------------ 
+
             base.Seed(context);
+
         }
 
     }

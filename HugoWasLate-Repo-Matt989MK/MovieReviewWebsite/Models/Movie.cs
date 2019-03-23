@@ -17,8 +17,9 @@ namespace MovieReviewWebsite.Models
         public virtual decimal Price { get; set; }
         public virtual float Rating { get; set; }
         public virtual List<Person> People { get; set; }
-        
-      
+        public virtual List<Comment> Comment { get; set; }//added this
+
+
 
 
     }
