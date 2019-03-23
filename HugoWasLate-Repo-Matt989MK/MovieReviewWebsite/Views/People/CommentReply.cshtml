@@ -5,6 +5,11 @@
 }
 <h2>Details</h2>
 <div>
+    <script>
+        function RedirectToPeopleDetails() {
+           window.location=""
+        }
+    </script>
     <h4>Person</h4>
     <hr />
     <dl class="dl-horizontal">
@@ -52,30 +57,32 @@
                     if (item.PersonID == Model.personID)
                     {
                     <dd>
-                        @if (item.CommentID==Int32.Parse(Request.Params["CommentID"]))
+                        @if (item.CommentID == Int32.Parse(Request.Params["CommentID"]))
                         {
-                    <dd>
-                        @using (Html.BeginForm())
-                        {
-                            @Html.TextBoxFor(model => model.personID, new { style = "display: none;" })
-                            @Html.TextArea("Comment", "")
+                        <dd>
+                            @using (Html.BeginForm())
+                            {
+                                @Html.TextBoxFor(model => model.personID, new { style = "display: none;" })
+                                @Html.TextArea("Comment", "")
 
-                            <input type="submit" value="reply" />
-                        }
+                                
+                                 <input type="submit" value="reply" onclick="ReirectToPeopleDetails()" />
+                            }
 
-                    </dd>
-                        }
+                        </dd>
+                    }
                         <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
 
                         @Html.DisplayFor(Model => item.Content)
                         @Html.ActionLink("Reply", "CommentReply", new { id = item.MovieID, commentID = item.CommentID }, null)
-                                          
-                          
 
-                    </dd>
+
+
+                        </dd>
+                    }
+
                 }
 
-            }
                 </dt>
             </dl>
             @using (Html.BeginForm())
