@@ -85,7 +85,7 @@ namespace MovieReviewWebsite.Controllers
         [HttpPost]
         public ActionResult CommentReply()
         {
-             int id = Convert.ToInt32(Request.Params["PersonId"]);
+            int id = Convert.ToInt32(Request.Params["PersonId"]);
             int commentID = Convert.ToInt32(Request.Params["CommentID"]);
             CommentReply commentReply = new CommentReply();
             commentReply.Content = Request.Params["Comment"];
@@ -99,7 +99,7 @@ namespace MovieReviewWebsite.Controllers
             db.SaveChanges();
             //-----------------
             List<Comment> lstComment = db.Comment.Where(c => c.PersonID == id).ToList();
-           
+
             Person person = db.People.Find(id);
             person.Comment = lstComment;
             int numerosoby = person.personID;
@@ -114,7 +114,7 @@ namespace MovieReviewWebsite.Controllers
             {
                 return HttpNotFound();
             }
-            return View(person);
+            return RedirectToAction("Details/" + id);
         }
         [HttpPost]
         public ActionResult Details()
