@@ -1,0 +1,161 @@
+﻿@model MovieReviewWebsite.Models.Movie
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<h2>Details</h2>
+<div>
+    <script>
+        function RedirectToPeopleDetails() {
+            window.location = ""
+        }
+    </script>
+    <h4>Person</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+
+        <dt>
+            Category
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+
+        <dt>
+            Movie
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MovieName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rating)
+        </dd>
+
+        <dt>
+            @foreach (var item in Model.People)
+            {
+            <dd>
+
+                @Html.ActionLink(item.personName + " " + item.personSurname, "Details", "People", new { id = item.personID }, null)
+
+            </dd>
+             }
+            </dt>
+            <br />
+            <br />
+            <br />
+            <br />
+
+            <dt>Comment</dt>
+
+            @foreach (var item in Model.Comment)
+            {
+                if (item.MovieID == Model.MovieID)
+                {
+                    <dd>
+                       
+                        @Html.DisplayFor(Model => item.Content)
+                        <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
+                         @if(item.CommentID == Int32.Parse(Request.Params["CommentID"]))
+                        {
+                             using (Html.BeginForm())
+                             {
+
+                                 
+                                @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" })
+                                @Html.TextArea("NewReply", "")
+                                <input type="submit" value="reply" onclick="ReirectToPeopleDetails()" />
+                             }
+
+                        }
+
+                        @*@using (Html.BeginForm())
+                        {
+                            @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" })
+                            @Html.TextArea("NewReply", "")
+
+
+                            <input type="submit" value="reply" onclick="ReirectToPeopleDetails()" />
+                        }*@
+
+                        @*@Html.DisplayFor(Model => item.Content)*@
+                        @Html.ActionLink("Reply", "CommentReply", new { id = item.PersonID, commentID = item.CommentID }, null)
+                    </dd>
+
+                }
+
+                    <dd>
+                        @foreach (var reply in item.CommentReply)
+                        {
+
+                            <nbsp> -----  </nbsp>
+                            @Html.DisplayFor(model => reply.Content);
+                            <br />
+
+                        }
+                        <br />
+
+                    </dd>
+
+
+              
+            }
+
+        <dt>
+            New Comment
+        </dt>
+
+
+                    <dd>
+                        @using (Html.BeginForm())
+                        {
+
+                            @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" })
+
+
+                            @Html.TextArea("NewComment", "")
+
+                            <input type="submit" value="send" />
+
+
+                        }
+                    </dd>
+
+
+        </dl>
+
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.MovieID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+
+</html>

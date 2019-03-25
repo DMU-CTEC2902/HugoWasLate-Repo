@@ -80,42 +80,96 @@
 
 
                 <dt>Comment</dt>
+                @*<dt>
+
 
                 @foreach (var item in Model.Comment)
                 {
                     if (item.MovieID == Model.MovieID)
                     {
-                        <dd>
-                            @Html.DisplayFor(Model => item.Content)
-                            <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
-                            <nbsp></nbsp>
-                            <p style="color:forestgreen">
+                    <dd>
+                        @Html.DisplayFor(Model => item.Content)
+                        <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
 
-                                <input type="submit" value="reply" id="@item.CommentID" />
-                            </p>
-                        </dd>
 
-                    }
+                        @Html.DisplayFor(Model => item.Content)
+                        @Html.ActionLink("Reply", "CommentReply", new { id = item.PersonID, commentID = item.CommentID }, null)
 
+                        <p style="color:forestgreen">
+
+                            <input type="submit" value="reply" id="@item.CommentID" />
+                        </p>
+                    </dd>
+
+                }
+                <dd></dd>
+                foreach (var reply in item.CommentReply)
+                {
                     <br />
+                    @Html.DisplayFor(model => reply.Content);
+
                 }
 
-                    <dd>
-                        @using (Html.BeginForm())
+                <br />
+            }
+            </dt>*@
+                <dt>
+                </dt>
+                <dd>
+                    @foreach (var item in Model.Comment)
+                    {
+
+
+                        if (item.MovieID == Model.MovieID)
                         {
 
 
+                            @Html.DisplayFor(Model => item.Content)
 
-                            @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" })
+                            <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
+                            @Html.ActionLink("Reply", "CommentReply", new { id = item.PersonID, commentID = item.CommentID }, null)
 
 
-                            @Html.TextArea("Comment", "");
+                            <br />
+                            //item.CommentReply =
+                            @*foreach (var reply in item.CommentReply)
+                            {
 
-                            <input type="submit" value="send" />
+                                <nbsp> -----  </nbsp>
+
+                                @Html.DisplayFor(model => reply.Content);
+
+                                <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
+                                <br />
+                            }*@
+                            <br />
 
 
                         }
-                    </dd>
+
+
+                    }
+
+                </dd>
+                <br /><br /><br /><br /><br />
+
+                <dt>
+
+                    New Comment
+                </dt>
+                <dd>
+                    qweqweqweqwe
+                    @using (Html.BeginForm())
+                    {
+
+
+                        @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" })
+                        @Html.TextArea("NewComment", "");
+
+                        <input type="submit" value="send" />
+
+                    }
+                </dd>
 
             </dl>
     </div>

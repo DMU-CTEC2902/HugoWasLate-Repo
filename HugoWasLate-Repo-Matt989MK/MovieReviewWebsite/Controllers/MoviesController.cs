@@ -56,13 +56,76 @@ namespace MovieReviewWebsite.Controllers
             }
             return View(movie);
         }
+
+        [HttpGet]
+        public ActionResult CommentReply(int? id, int? commentID)
+        {
+            ViewBag.id = id;
+            ViewBag.commentID = commentID;
+            List<Comment> lstComment = db.Comment.Where(c => c.PersonID == id).ToList();
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Movie movie = db.Movies.Find(id);
+            movie.Comment = lstComment;
+            int numerosoby = movie.MovieID;
+
+            List<MoviePerson> mp = db.MoviePerson.Where(i => i.MovieID == numerosoby).ToList();
+            foreach (MoviePerson movpers in mp)
+            {
+                Person p2 = db.People.Find(movpers.personID);
+                movie.People.Add(p2);
+            }
+
+            if (movie == null)
+            {
+                return HttpNotFound();
+            }
+            return View(movie);
+        }
+        [HttpPost]
+        public ActionResult CommentReply()
+        {
+            int id = Convert.ToInt32(Request.Params["MovieID"]);
+            int commentID = Convert.ToInt32(Request.Params["CommentID"]);
+            CommentReply commentReply = new CommentReply();
+            commentReply.Content = Request.Params["NewReply"];
+            commentReply.CommentID = commentID;
+            commentReply.CommentReplyID = 2;
+            commentReply.AuthorID = 1;
+            commentReply.PostID = 1;
+            commentReply.PersonID = id;
+            commentReply.MovieID = 1;
+            db.CommentReply.Add(commentReply);
+            db.SaveChanges();
+            //-----------------
+            List<Comment> lstComment = db.Comment.Where(c => c.MovieID == id).ToList();
+
+            Movie movie = db.Movies.Find(id);
+            movie.Comment = lstComment;
+            int numerosoby = movie.MovieID;
+
+            List<MoviePerson> mp = db.MoviePerson.Where(i => i.MovieID == numerosoby).ToList();
+            foreach (MoviePerson movpers in mp)
+            {
+                Person m2 = db.People.Find(movpers.personID);
+                movie.People.Add(m2);
+            }
+            if (movie == null)
+            {
+                return HttpNotFound();
+            }
+            return View(movie);
+        }
         [HttpPost]
         public ActionResult Details()
         {
 
             int id = Convert.ToInt32(Request.Params["MovieID"]);
             Comment comment = new Comment();
-            comment.Content = Request.Params["Comment"];
+            comment.Content = Request.Params["NewComment"];
             comment.AuthorID = 1;
             comment.PostID = 1;
             comment.MovieID = id;
