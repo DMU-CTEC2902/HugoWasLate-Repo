@@ -106,7 +106,13 @@ namespace MovieReviewWebsite.Models
             prod7.Rating = 10f;
             context.Movies.Add(prod7);
 
-
+            Movie prod8 = new Movie();
+            prod8.MovieID = 8;
+            prod8.MovieName = "Salim";
+            prod8.Description = "Oscar nominated, movie about teacher giving top grades to students";
+            prod8.CategoryName = "Comedy";
+            prod8.Rating = 10f;
+            context.Movies.Add(prod8);
             //----------------------------------------- MOVIEPERSON
             MoviePerson mp = new MoviePerson();
             mp.MoviePersonId = 1;

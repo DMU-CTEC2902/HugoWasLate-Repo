@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Forum</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -34,7 +34,9 @@
             @Html.DisplayFor(modelItem => item.PersonID)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Title)
+            @*@Html.DisplayFor(modelItem => item.Title)*@
+            @Html.ActionLink(item.Title, "Details", new { id = item.PostID })
+
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.PostTime)
