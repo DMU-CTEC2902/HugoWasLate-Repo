@@ -48,16 +48,16 @@
                 @Html.DisplayFor(model => model.personRole)
             </dd>
             <dt>Comment</dt>
-            <dt>
+            <dd>
                 @foreach (var item in Model.Comment)
                 {
                     if (item.PersonID == Model.personID)
                     {
-                    <dd>
-                        @if (item.CommentID == Int32.Parse(Request.Params["CommentID"]))
+                    
+                        if (item.CommentID == Int32.Parse(Request.Params["CommentID"]))
                         {
-                        <dd>
-                            @using (Html.BeginForm())
+                        
+                            using (Html.BeginForm())
                             {
                                 @Html.TextBoxFor(model => model.personID, new { style = "display: none;" })
                                 @Html.TextArea("Comment", "")
@@ -66,21 +66,22 @@
                                  <input type="submit" value="reply"  />
                             }
 
-                        </dd>
-                    }
+                        
+                       }
+                        
                         <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
 
                         @Html.DisplayFor(Model => item.Content)
                         @Html.ActionLink("Reply", "CommentReply", new { id = item.MovieID, commentID = item.CommentID }, null)
 
 
-
-                        </dd>
+                        <br />
+                        
                     }
 
                 }
 
-                </dt>
+                </dd>
             </dl>
             @using (Html.BeginForm())
             {
