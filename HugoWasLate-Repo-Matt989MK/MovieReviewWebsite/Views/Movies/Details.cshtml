@@ -4,8 +4,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<!DOCTYPE html>
 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
     <div>
         <h4>Movie</h4>
         <hr />
@@ -41,14 +47,33 @@
             <dt>
                 @Html.DisplayNameFor(model => model.Rating)
             </dt>
-
+            
             <dd>
-                @Html.DisplayFor(model => model.Rating)
+
+                @*@Html.DisplayFor(model => model.Rating)
+                @{
+                    @if (Model.Comment != null)
+                    {
+                        float testing = 0f;
+                        foreach (var item in Model.Comment)
+                        {
+
+                            float testing= testing + item.UserRating;
+
+                        }
+                    }
+                }*@
+
+
+
+
             </dd>
 
             <dt>
                 @Html.DisplayNameFor(model => model.People)
             </dt>
+
+
 
 
             <dt>
@@ -69,41 +94,79 @@
 
                 <dt>Comment</dt>
 
-                @foreach (var item in Model.Comment)
-                {
-                    if (item.MovieID == Model.MovieID)
+                <dd>
+                    @foreach (var item in Model.Comment)
                     {
-                        <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
-                        @Html.DisplayFor(Model => item.Content)
-                        @Html.ActionLink("Reply", "CommentReply", new { id = item.PersonID, commentID = item.CommentID }, null)
-                    }
 
-                    if (item.CommentReply != null)
-                    {
-                        foreach (var reply in item.CommentReply)
+
+                        if (item.MovieID == Model.MovieID)
                         {
+
+                            <nbsp style="color:red" > @Html.DisplayFor(model => item.UserRating) </nbsp>
+                            @Html.DisplayFor(Model => item.Content)
+
+                            <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
+                            @Html.ActionLink("Reply", "CommentReply", new { id = item.MovieID, commentID = item.CommentID }, null)
+
+
                             <br />
-                            @Html.DisplayFor(model => reply.Content);
 
                         }
-                    }
-                }
+                        if (item.CommentReply != null)
+                        {
+                            foreach (var reply in item.CommentReply)
+                            {
 
+                                <nbsp> -----  </nbsp>
+
+                                @Html.DisplayFor(model => reply.Content);
+
+                                <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
+                                <br />
+                            }
+                            <br />
+
+                        }
+
+
+
+                    }
+
+
+
+
+                </dd>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+
+                <dt>
+
+                    New Comment
+                </dt>
                 <dd>
+                    
                     @using (Html.BeginForm())
                     {
 
+
                         @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" })
-                        @Html.TextArea("Comment", "");
+                        @Html.TextArea("NewComment", "");
+                        <nbsp>Rating</nbsp>
+                        @Html.TextArea("NewUserRating", "0.0",1,2,0);
+
                         <input type="submit" value="send" />
+
                     }
                 </dd>
 
             </dl>
     </div>
     <p>
-
+        @Html.ActionLink("Edit", "Edit", new { id = Model.MovieID }) |
         @Html.ActionLink("Back to List", "Index")
     </p>
-
-
+</body>
+</html>

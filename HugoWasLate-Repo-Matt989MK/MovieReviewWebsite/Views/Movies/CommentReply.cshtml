@@ -3,10 +3,18 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>Details</h2>
 
+<!DOCTYPE html>
+
+<html>
+<h2>Details</h2>
 <div>
-    <h4>Movie</h4>
+    <script>
+        function RedirectToPeopleDetails() {
+            window.location = ""
+        }
+    </script>
+    <h4>Person</h4>
     <hr />
     <dl class="dl-horizontal">
 
@@ -35,13 +43,13 @@
             @Html.DisplayFor(model => model.Description)
         </dd>
 
-        @*<dt>
+        <dt>
             @Html.DisplayNameFor(model => model.Price)
-        </dt>*@
+        </dt>
 
-        @*<dd>
+        <dd>
             @Html.DisplayFor(model => model.Price)
-        </dd>*@
+        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Rating)
@@ -52,11 +60,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.People)
-        </dt>
-
-
-        <dt>
             @foreach (var item in Model.People)
             {
             <dd>
@@ -64,59 +67,95 @@
                 @Html.ActionLink(item.personName + " " + item.personSurname, "Details", "People", new { id = item.personID }, null)
 
             </dd>
-        }
+             }
             </dt>
+            <br />
+            <br />
+            <br />
+            <br />
 
             <dt>Comment</dt>
-            <dd>
-                @foreach (var item in Model.Comment)
+
+            @foreach (var item in Model.Comment)
+            {
+                if (item.MovieID == Model.MovieID)
                 {
-                    if (item.MovieID == Model.MovieID)
-                    {
-                    
-                        if (item.CommentID == Int32.Parse(Request.Params["CommentID"]))
-                        {
-                        
-                            using (Html.BeginForm())
-                            {
-                                <br>
-                                @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" })
-                                @Html.TextArea("Comment", "")
-
-
-                                <input type="submit" value="reply"  />
-                            }
-
-                        
-                    }
-                        <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
-
+                    <dd>
+                       
                         @Html.DisplayFor(Model => item.Content)
-                        @Html.ActionLink("Reply", "CommentReply", new { id = item.MovieID, commentID = item.CommentID }, null)
+                        <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
+                         @if(item.CommentID == Int32.Parse(Request.Params["CommentID"]))
+                        {
+                             using (Html.BeginForm())
+                             {
+
+                                 
+                                @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" })
+                                @Html.TextArea("NewReply", "")
+                                <input type="submit" value="reply" onclick="ReirectToPeopleDetails()" />
+                             }
+
+                        }
+
+                        @*@using (Html.BeginForm())
+                        {
+                            @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" })
+                            @Html.TextArea("NewReply", "")
 
 
+                            <input type="submit" value="reply" onclick="ReirectToPeopleDetails()" />
+                        }*@
 
-                        
-                    }
+                        @*@Html.DisplayFor(Model => item.Content)*@
+                        @Html.ActionLink("Reply", "CommentReply", new { id = item.PersonID, commentID = item.CommentID }, null)
+                    </dd>
 
                 }
 
-                </dd>
-            </dl>
-            @using (Html.BeginForm())
-            {
+                    <dd>
+                        @foreach (var reply in item.CommentReply)
+                        {
 
-                @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" })
+                            <nbsp> -----  </nbsp>
+                            @Html.DisplayFor(model => reply.Content);
+                            <br />
+
+                        }
+                        <br />
+
+                    </dd>
 
 
-                @Html.TextArea("Comment", "")
-
-                <input type="submit" value="send" />
-
-
+              
             }
-        </div>
-        <p>
-          
-            @Html.ActionLink("Back to List", "Index")
-        </p>
+
+        <dt>
+            New Comment
+        </dt>
+
+
+                    <dd>
+                        @using (Html.BeginForm())
+                        {
+
+                            @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" })
+
+
+                            @Html.TextArea("NewComment", "")
+
+                            <input type="submit" value="send" />
+
+
+                        }
+                    </dd>
+
+
+        </dl>
+
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.MovieID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+
+</html>
