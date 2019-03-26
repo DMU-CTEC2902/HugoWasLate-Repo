@@ -59,7 +59,6 @@ namespace MovieReviewWebsite.Controllers
             Movie movie = db.Movies.Find(id);//
             movie.Comment = lstComment;
             int numerFilmu = movie.MovieID;//
-            
             movie.Rating= averageRating / count;
             List<MoviePerson> mp = db.MoviePerson.Where(i => i.MovieID == numerFilmu).ToList();
 
@@ -139,7 +138,9 @@ namespace MovieReviewWebsite.Controllers
             comment.PostID = 1;
             comment.MovieID = id;
             comment.PersonID = 1;
-            
+            float averageRating = 0;
+            int count = 0;
+
             comment.UserRating = float.Parse( Request.Params["NewUserRating"]) ;
             db.Comment.Add(comment);
             db.SaveChanges();
@@ -152,6 +153,8 @@ namespace MovieReviewWebsite.Controllers
                 {
                     lstCommentReply = db.CommentReply.Where(c => c.CommentID == item.CommentID).ToList();
                 }
+                averageRating += item.UserRating;
+                count++;
             }
             if (id == null)
             {
@@ -160,7 +163,7 @@ namespace MovieReviewWebsite.Controllers
             Movie movie = db.Movies.Find(id);//
 
             int numerFilmu = movie.MovieID;//
-          
+            movie.Rating = averageRating / count;
             List<MoviePerson> mp = db.MoviePerson.Where(i => i.MovieID == numerFilmu).ToList();
           
             foreach (MoviePerson movpers in mp)
