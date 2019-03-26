@@ -26,7 +26,7 @@ namespace MovieReviewWebsite.Controllers
         {
                   List<Comment> lstComment = db.Comment.Where(c => c.PersonID == id).ToList();
                 foreach(Comment item in lstComment)
-            {
+                {
                 CommentReply commentReply = new CommentReply();
                 List<CommentReply> lstCommentReply = new List<CommentReply>();
                 if (db.CommentReply.Where(c => c.CommentID == item.CommentID).ToList() != null)//
@@ -129,8 +129,16 @@ namespace MovieReviewWebsite.Controllers
             db.Comment.Add(comment);
             db.SaveChanges();
             List<Comment> lstComment = db.Comment.Where(c => c.PersonID == id).ToList();
-
-            if (id == null)
+            foreach (Comment item in lstComment)
+            {
+                CommentReply commentReply = new CommentReply();
+                List<CommentReply> lstCommentReply = new List<CommentReply>();
+                if (db.CommentReply.Where(c => c.CommentID == item.CommentID).ToList() != null)//
+                {
+                    lstCommentReply = db.CommentReply.Where(c => c.CommentID == item.CommentID).ToList();
+                }
+            }
+                if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
