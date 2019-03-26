@@ -36,12 +36,22 @@ namespace MovieReviewWebsite.Controllers
         public ActionResult Details(int? id)
         {
             List<Comment> lstComment = db.Comment.Where(c => c.MovieID == id).ToList();
+            foreach (Comment item in lstComment)
+            {
+                CommentReply commentReply = new CommentReply();
+                List<CommentReply> lstCommentReply = new List<CommentReply>();
+                if (db.CommentReply.Where(c => c.CommentID == item.CommentID).ToList() != null)//
+                {
+                    lstCommentReply = db.CommentReply.Where(c => c.CommentID == item.CommentID).ToList();
+                }
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Movie movie = db.Movies.Find(id);//
 
+            Movie movie = db.Movies.Find(id);//
+            movie.Comment = lstComment;
             int numerFilmu = movie.MovieID;//
 
             List<MoviePerson> mp = db.MoviePerson.Where(i => i.MovieID == numerFilmu).ToList();
@@ -58,6 +68,58 @@ namespace MovieReviewWebsite.Controllers
             }
             return View(movie);
         }
+        [HttpGet]
+        public ActionResult CommentReply(int? id, int? commentID)
+        {
+            ViewBag.id = id;
+            ViewBag.commentID = commentID;
+            List<Comment> lstComment = db.Comment.Where(c => c.MovieID == id).ToList();
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Movie movie = db.Movies.Find(id);
+            movie.Comment = lstComment;
+            int numerosoby = movie.MovieID;
+
+           
+            if (movie == null)
+            {
+                return HttpNotFound();
+            }
+            return View(movie);
+        }
+        [HttpPost]
+        public ActionResult CommentReply()
+        {
+            int id = Convert.ToInt32(Request.Params["MovieID"]);
+            int commentID = Convert.ToInt32(Request.Params["CommentID"]);
+            CommentReply commentReply = new CommentReply();
+            commentReply.Content = Request.Params["Comment"];
+            commentReply.CommentID = commentID;
+            commentReply.CommentReplyID = 2;
+            commentReply.AuthorID = 1;
+            commentReply.PostID = 1;
+            commentReply.PersonID = id;
+            commentReply.MovieID = 1;
+            db.CommentReply.Add(commentReply);
+            db.SaveChanges();
+            //-----------------
+            List<Comment> lstComment = db.Comment.Where(c => c.PersonID == id).ToList();
+
+            Movie movie = db.Movies.Find(id);
+            movie.Comment = lstComment;
+            int numerosoby = movie.MovieID;
+
+            List<MoviePerson> mp = db.MoviePerson.Where(i => i.personID == numerosoby).ToList();
+        
+            if (movie == null)
+            {
+                return HttpNotFound();
+            }
+            return RedirectToAction("Details/" + id);
+        }
         [HttpPost]
         public ActionResult Details()
         {
@@ -72,6 +134,15 @@ namespace MovieReviewWebsite.Controllers
             db.Comment.Add(comment);
             db.SaveChanges();
             List<Comment> lstComment = db.Comment.Where(c => c.MovieID == id).ToList();
+            foreach (Comment item in lstComment)
+            {
+                CommentReply commentReply = new CommentReply();
+                List<CommentReply> lstCommentReply = new List<CommentReply>();
+                if (db.CommentReply.Where(c => c.CommentID == item.CommentID).ToList() != null)//
+                {
+                    lstCommentReply = db.CommentReply.Where(c => c.CommentID == item.CommentID).ToList();
+                }
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

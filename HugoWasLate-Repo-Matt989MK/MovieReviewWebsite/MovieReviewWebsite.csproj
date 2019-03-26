@@ -297,6 +297,7 @@
     <Content Include="Views\Forum\Index.cshtml" />
     <Content Include="Views\People\CommentReply.cshtml" />
     <Content Include="Views\Forum\CommentReply.cshtml" />
+    <Content Include="Views\Movies\CommentReply.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
