@@ -19,10 +19,20 @@ namespace MovieReviewWebsite.Controllers
         {
             return View(db.Forums.ToList());
         }
-
+        [HttpGet]
         // GET: Forum/Details/5
         public ActionResult Details(int? id)
         {
+            List<Comment> lstComment = db.Comment.Where(c => c.PersonID == id).ToList();
+            foreach (Comment item in lstComment)
+            {
+                CommentReply commentReply = new CommentReply();
+                List<CommentReply> lstCommentReply = new List<CommentReply>();
+                if (db.CommentReply.Where(c => c.CommentID == item.CommentID).ToList() != null)//
+                {
+                    lstCommentReply = db.CommentReply.Where(c => c.CommentID == item.CommentID).ToList();
+                }
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -34,7 +44,92 @@ namespace MovieReviewWebsite.Controllers
             }
             return View(forum);
         }
+        [HttpGet]
+        public ActionResult CommentReply(int? id, int? commentID)
+        {
+            ViewBag.id = id;
+            ViewBag.commentID = commentID;
+            List<Comment> lstComment = db.Comment.Where(c => c.PostID == id).ToList();
 
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Forum forum = db.Forums.Find(id);
+            forum.Comment = lstComment;
+            int numerosoby = forum.PostID;
+
+        
+           
+            if (forum == null)
+            {
+                return HttpNotFound();
+            }
+            return View(forum);
+        }
+        [HttpPost]
+        public ActionResult CommentReply()
+        {
+            int id = Convert.ToInt32(Request.Params["PostId"]);
+            int commentID = Convert.ToInt32(Request.Params["CommentID"]);
+            CommentReply commentReply = new CommentReply();
+            commentReply.Content = Request.Params["Comment"];
+            commentReply.CommentID = commentID;
+            commentReply.CommentReplyID = 2;
+            commentReply.AuthorID = 1;
+            commentReply.PostID = 1;
+            commentReply.PersonID = id;
+            commentReply.MovieID = 0;
+            db.CommentReply.Add(commentReply);
+            db.SaveChanges();
+            //-----------------
+            List<Comment> lstComment = db.Comment.Where(c => c.PostID == id).ToList();
+
+            Forum forum = db.Forums.Find(id);
+            forum.Comment = lstComment;
+            int numerosoby = forum.PostID;
+
+          
+            if (forum == null)
+            {
+                return HttpNotFound();
+            }
+            return RedirectToAction("Details/" + id);
+        }
+        [HttpPost]
+        public ActionResult Details()
+        {
+            int id = Convert.ToInt32(Request.Params["PostId"]);
+            Comment comment = new Comment();
+            comment.Content = Request.Params["Comment"];
+            comment.AuthorID = 1;
+            comment.PostID = 1;
+            comment.PersonID = id;
+            comment.MovieID = 1;
+            db.Comment.Add(comment);
+            db.SaveChanges();
+            List<Comment> lstComment = db.Comment.Where(c => c.PersonID == id).ToList();
+            foreach (Comment item in lstComment)
+            {
+                CommentReply commentReply = new CommentReply();
+                List<CommentReply> lstCommentReply = new List<CommentReply>();
+                if (db.CommentReply.Where(c => c.CommentID == item.CommentID).ToList() != null)//
+                {
+                    lstCommentReply = db.CommentReply.Where(c => c.CommentID == item.CommentID).ToList();
+                }
+            }
+          
+            Forum forum = db.Forums.Find(id);
+            forum.Comment = lstComment;
+            int numerosoby = forum.PostID;
+
+
+            if (forum == null)
+            {
+                return HttpNotFound();
+            }
+            return View(forum);
+        }
         // GET: Forum/Create
         public ActionResult Create()
         {

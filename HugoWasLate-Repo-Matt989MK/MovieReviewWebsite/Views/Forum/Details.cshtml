@@ -51,16 +51,26 @@
 
         @foreach (var item in Model.Comment)
         {
-            if (item.MovieID == Model.PostID)
+            <dd>
+            @if (item.PostID == Model.PostID)
             {
-        <dd>
-            @Html.DisplayFor(Model => item.Content)
-            <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
-
-            123
-        </dd>
-
+               
+                 
+                    <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
+                    @Html.DisplayFor(Model => item.Content)
+                    @Html.ActionLink("Reply", "CommentReply", new { id = item.PersonID, commentID = item.CommentID }, null)
+                
             }
+            @if (item.CommentReply != null)
+            {
+                foreach (var reply in item.CommentReply)
+                {
+                    <br />
+                    @Html.DisplayFor(model => reply.Content);
+
+                }
+            }
+            </dd>
             <br />
         }
         <dd>
@@ -70,7 +80,7 @@
                 @Html.TextBoxFor(model => model.PostID, new { style = "display: none;" })
 
 
-                @Html.TextArea("Comment", "")  
+                @Html.TextArea("Comment", "")
 
                 <input type="submit" value="send" />
 

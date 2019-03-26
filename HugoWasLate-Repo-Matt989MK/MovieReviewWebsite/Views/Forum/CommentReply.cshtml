@@ -1,14 +1,12 @@
 ﻿@model MovieReviewWebsite.Models.Forum
-
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <h2>Details</h2>
-
 <div>
-    <h4>Forum</h4>
+
+    <h4>Person</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -42,13 +40,11 @@
         <dd>
             @Html.DisplayFor(model => model.Content)
         </dd>
-
-        <br />
         <dt>Comment</dt>
         <dt>
             @foreach (var item in Model.Comment)
             {
-                if (item.MovieID == Model.PostID)
+                if (item.PostID == Model.PostID)
                 {
                 <dd>
                     @if (item.CommentID == Int32.Parse(Request.Params["CommentID"]))
@@ -56,11 +52,11 @@
                     <dd>
                         @using (Html.BeginForm())
                         {
-                            @Html.TextBoxFor(model => model.PersonID, new { style = "display: none;" })
+                            @Html.TextBoxFor(model => model.PostID, new { style = "display: none;" })
                             @Html.TextArea("Comment", "")
 
 
-                            <input type="submit" value="reply" onclick="ReirectToPeopleDetails()" />
+                            <input type="submit" value="reply"  />
                         }
 
                     </dd>
@@ -68,7 +64,7 @@
                     <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
 
                     @Html.DisplayFor(Model => item.Content)
-                    @Html.ActionLink("Reply", "CommentReply", new { id = item.MovieID, commentID = item.CommentID }, null)
+                    @Html.ActionLink("Reply", "CommentReply", new { id = item.PostID, commentID = item.CommentID }, null)
 
 
 
@@ -79,19 +75,6 @@
 
             </dt>
         </dl>
-        @using (Html.BeginForm())
-        {
-
-            @Html.TextBoxFor(model => model.PersonID, new { style = "display: none;" })
-
-
-            @Html.TextArea("Comment", "")
-
-            <input type="submit" value="send" />
-
-
-        }
-        <dd>
             @using (Html.BeginForm())
             {
 
@@ -104,13 +87,8 @@
 
 
             }
-        </dd>
-
-
-
-        </dl>
-    </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.PostID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.PostID }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
