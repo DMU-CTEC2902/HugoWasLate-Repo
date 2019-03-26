@@ -37,10 +37,16 @@
             @Html.DisplayFor(modelItem => item.personRole)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.personID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.personID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.personID })
-        </td>
+            @if (ViewBag.UserId != null)
+            {
+                if (ViewBag.UserId == item.User)
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.personID })
+
+                    @Html.ActionLink("Delete", "Delete", new { id = item.personID })
+                }
+            }
+                </td>
     </tr>
 }
 
