@@ -68,17 +68,18 @@
             </dt>
 
             <dt>Comment</dt>
-            <dt>
+            <dd>
                 @foreach (var item in Model.Comment)
                 {
                     if (item.MovieID == Model.MovieID)
                     {
-                    <dd>
-                        @if (item.CommentID == Int32.Parse(Request.Params["CommentID"]))
+                    
+                        if (item.CommentID == Int32.Parse(Request.Params["CommentID"]))
                         {
-                        <dd>
-                            @using (Html.BeginForm())
+                        
+                            using (Html.BeginForm())
                             {
+                                <br>
                                 @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" })
                                 @Html.TextArea("Comment", "")
 
@@ -86,7 +87,7 @@
                                 <input type="submit" value="reply"  />
                             }
 
-                        </dd>
+                        
                     }
                         <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
 
@@ -95,12 +96,12 @@
 
 
 
-                        </dd>
+                        
                     }
 
                 }
 
-                </dt>
+                </dd>
             </dl>
             @using (Html.BeginForm())
             {
