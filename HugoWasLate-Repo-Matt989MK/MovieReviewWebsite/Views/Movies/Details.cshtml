@@ -132,23 +132,38 @@
 
                             <br />
                             //item.CommentReply =
-                            @*foreach (var reply in item.CommentReply)
+
+                            @*if (item.CommentReply != null)
                             {
+                                foreach (var reply in item.CommentReply)
+                                {
+                                    <br />
+                                    @Html.DisplayFor(model => reply.Content);
 
-                                <nbsp> -----  </nbsp>
+                                }*@
+                            }
+                            if (item.CommentReply != null)
+                            {
+                                foreach (var reply in item.CommentReply)
+                                {
 
-                                @Html.DisplayFor(model => reply.Content);
+                                    <nbsp> -----  </nbsp>
 
-                                <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
+                                    @Html.DisplayFor(model => reply.Content);
+
+                                    <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
+                                    <br />
+                                }
                                 <br />
-                            }*@
-                            <br />
+
+                            }
+
 
 
                         }
 
 
-                    }
+                    
 
                 </dd>
                 <br /><br /><br /><br /><br />
