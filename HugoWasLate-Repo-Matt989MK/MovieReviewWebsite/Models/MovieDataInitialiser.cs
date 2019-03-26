@@ -160,7 +160,7 @@ namespace MovieReviewWebsite.Models
             Comment com1 = new Comment();
             com1.CommentID = 1;
             com1.AuthorID = 1;
-            com1.Content = "A really good actor ";
+            com1.Content = "1 A really good actor ";
             com1.PersonID = 1;
             com1.MovieID = 1;
             com1.PostID = 1;
@@ -169,30 +169,30 @@ namespace MovieReviewWebsite.Models
             Comment com2 = new Comment();
             com2.CommentID = 2;
             com2.AuthorID = 1;
-            com2.Content = "So talented! ";
+            com2.Content = " 2 So talented! ";
             com2.PersonID = 2;
             com2.MovieID = 1;
             com2.PostID = 1;
 
             context.Comment.Add(com2);
 
-            //Comment com3 = new Comment();
-            //com3.CommentID = 3;
-            ////com3.AuthorID = 1;
-            //com3.Content = "So GOOD! ";
-            //com3.PersonID = 2;
-            //com3.MovieID = 2;
-            //com3.PostID = 1;
-            //context.Comment.Add(com3);
+            Comment com3 = new Comment();
+            com3.CommentID = 3;
+            com3.AuthorID = 1;
+            com3.Content = " 3 So GOOD! ";
+            com3.PersonID = 2;
+            com3.MovieID = 1;
+            com3.PostID = 1;
+            context.Comment.Add(com3);
 
-            //Comment com4 = new Comment();
-            //com4.CommentID = 4;
-            ////com4.AuthorID = 1;
-            //com4.Content = "So BADDD! ";
-            //com4.PersonID = 1;
-            //com4.MovieID = 2;
-            //com4.PostID = 1;
-            //context.Comment.Add(com4);
+            Comment com4 = new Comment();
+            com4.CommentID = 4;
+            com4.AuthorID = 1;
+            com4.Content = "4 So BADDD! ";
+            com4.PersonID = 1;
+            com4.MovieID = 1;
+            com4.PostID = 1;
+            context.Comment.Add(com4);
 
 
             //------------------------------------------------------ Forums
@@ -219,6 +219,17 @@ namespace MovieReviewWebsite.Models
             //-------------------------------------------------------------CommentReply
             CommentReply comReply = new CommentReply() { CommentID = 1, CommentReplyID = 1, AuthorID = 1, PersonID = 1, MovieID = 1, PostID = 1, Content = "this is a reply" };
             context.CommentReply.Add(comReply);
+            CommentReply comReply1 = new CommentReply() { CommentID = 1, CommentReplyID = 2, AuthorID = 1, PersonID = 1, MovieID = 1, PostID = 1, Content = "reply1-2" };
+            context.CommentReply.Add(comReply1);
+            CommentReply comReply2 = new CommentReply() { CommentID = 1, CommentReplyID = 3, AuthorID = 1, PersonID = 1, MovieID = 1, PostID = 1, Content = "this is a reply1-3" };
+            context.CommentReply.Add(comReply2);
+
+            CommentReply comReply3 = new CommentReply() { CommentID = 2, CommentReplyID = 4, AuthorID = 1, PersonID = 1, MovieID = 1, PostID = 1, Content = "this is a reply" };
+            context.CommentReply.Add(comReply3);
+            CommentReply comReply4 = new CommentReply() { CommentID = 2, CommentReplyID = 5, AuthorID = 1, PersonID = 1, MovieID = 1, PostID = 1, Content = "reply1-2" };
+            context.CommentReply.Add(comReply4);
+            CommentReply comReply5 = new CommentReply() { CommentID = 2, CommentReplyID = 6, AuthorID = 1, PersonID = 1, MovieID = 1, PostID = 1, Content = "this is a reply1-3" };
+            context.CommentReply.Add(comReply5);
 
             base.Seed(context);
 
