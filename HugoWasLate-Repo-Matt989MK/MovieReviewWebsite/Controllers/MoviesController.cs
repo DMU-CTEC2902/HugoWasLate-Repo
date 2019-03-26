@@ -125,12 +125,15 @@ namespace MovieReviewWebsite.Controllers
         {
 
             int id = Convert.ToInt32(Request.Params["MovieID"]);
+            
             Comment comment = new Comment();
             comment.Content = Request.Params["NewComment"];
             comment.AuthorID = 1;
             comment.PostID = 1;
             comment.MovieID = id;
             comment.PersonID = 1;
+            
+            comment.UserRating = float.Parse( Request.Params["NewUserRating"]) ;
             db.Comment.Add(comment);
             db.SaveChanges();
             List<Comment> lstComment = db.Comment.Where(c => c.MovieID == id).ToList();

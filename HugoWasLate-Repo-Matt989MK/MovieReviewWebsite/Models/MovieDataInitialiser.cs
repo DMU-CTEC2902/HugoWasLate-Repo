@@ -164,6 +164,7 @@ namespace MovieReviewWebsite.Models
             com1.PersonID = 1;
             com1.MovieID = 1;
             com1.PostID = 1;
+            com1.UserRating = 5.0f;
             context.Comment.Add(com1);
 
             Comment com2 = new Comment();
@@ -174,6 +175,7 @@ namespace MovieReviewWebsite.Models
             com2.MovieID = 1;
             com2.PostID = 1;
 
+            com2.UserRating = 6.0f;
             context.Comment.Add(com2);
 
             Comment com3 = new Comment();
@@ -183,6 +185,8 @@ namespace MovieReviewWebsite.Models
             com3.PersonID = 2;
             com3.MovieID = 1;
             com3.PostID = 1;
+
+            com3.UserRating = 4.0f;
             context.Comment.Add(com3);
 
             Comment com4 = new Comment();
@@ -192,6 +196,8 @@ namespace MovieReviewWebsite.Models
             com4.PersonID = 1;
             com4.MovieID = 1;
             com4.PostID = 1;
+
+            com4.UserRating = 5.7f;
             context.Comment.Add(com4);
 
 
