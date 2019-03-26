@@ -18,5 +18,7 @@ namespace MovieReviewWebsite.Models
         public virtual string personRole { get; set; }
         public virtual List<Movie> Movies { get; set; }
         public virtual List<Comment> Comment { get; set; }
+        public virtual string User { get; set; }
+
     }
 }

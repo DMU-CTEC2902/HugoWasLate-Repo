@@ -1,57 +1,77 @@
-﻿@model MovieReviewWebsite.Models.Person
+﻿@model MovieReviewWebsite.Models.Movie
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h2>Details</h2>
+
 <div>
-
-
-    <h4>Person</h4>
+    <h4>Movie</h4>
     <hr />
     <dl class="dl-horizontal">
 
 
         <dt>
-            Name
+            Category
         </dt>
+
         <dd>
-            @Html.DisplayFor(model => model.personName)
+            @Html.DisplayFor(model => model.CategoryName)
         </dd>
+
         <dt>
-            Surname
+            Movie
         </dt>
+
         <dd>
-            @Html.DisplayFor(model => model.personSurname)
+            @Html.DisplayFor(model => model.MovieName)
         </dd>
+
         <dt>
-            Date of Birth
+            @Html.DisplayNameFor(model => model.Description)
         </dt>
+
         <dd>
-            @Html.DisplayFor(model => model.dateOfBirth)
+            @Html.DisplayFor(model => model.Description)
         </dd>
+
         <dt>
-            @Html.DisplayNameFor(model => model.Movies)
+            @Html.DisplayNameFor(model => model.Price)
         </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
         <dt>
-            @foreach (var item in Model.Movies)
+            @Html.DisplayNameFor(model => model.Rating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.People)
+        </dt>
+
+
+        <dt>
+            @foreach (var item in Model.People)
             {
             <dd>
-                @Html.ActionLink(item.MovieName + " " + item.Description, "Details", "Movies", new { id = item.MovieID }, null)
+
+                @Html.ActionLink(item.personName + " " + item.personSurname, "Details", "People", new { id = item.personID }, null)
+
             </dd>
         }
-
-            <dt>
-                Role
             </dt>
-            <dd>
-                @Html.DisplayFor(model => model.personRole)
-            </dd>
+
             <dt>Comment</dt>
             <dt>
                 @foreach (var item in Model.Comment)
                 {
-                    if (item.PersonID == Model.personID)
+                    if (item.MovieID == Model.MovieID)
                     {
                     <dd>
                         @if (item.CommentID == Int32.Parse(Request.Params["CommentID"]))
@@ -59,11 +79,11 @@
                         <dd>
                             @using (Html.BeginForm())
                             {
-                                @Html.TextBoxFor(model => model.personID, new { style = "display: none;" })
+                                @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" })
                                 @Html.TextArea("Comment", "")
 
-                                
-                                 <input type="submit" value="reply"  />
+
+                                <input type="submit" value="reply"  />
                             }
 
                         </dd>
@@ -85,7 +105,7 @@
             @using (Html.BeginForm())
             {
 
-                @Html.TextBoxFor(model => model.personID, new { style = "display: none;" })
+                @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" })
 
 
                 @Html.TextArea("Comment", "")
@@ -96,6 +116,6 @@
             }
         </div>
         <p>
-           
+          
             @Html.ActionLink("Back to List", "Index")
         </p>

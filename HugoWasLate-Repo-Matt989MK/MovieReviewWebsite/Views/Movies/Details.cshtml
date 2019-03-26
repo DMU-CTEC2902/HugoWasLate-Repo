@@ -4,14 +4,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
+<h2>Details</h2>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
     <div>
         <h4>Movie</h4>
         <hr />
@@ -85,43 +79,37 @@
                 {
                     if (item.MovieID == Model.MovieID)
                     {
-                        <dd>
-                            @Html.DisplayFor(Model => item.Content)
-                            <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
-                            <nbsp></nbsp>
-                            <p style="color:forestgreen">
-
-                                <input type="submit" value="reply" id="@item.CommentID" />
-                            </p>
-                        </dd>
-
+                        <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
+                        @Html.DisplayFor(Model => item.Content)
+                        @Html.ActionLink("Reply", "CommentReply", new { id = item.PersonID, commentID = item.CommentID }, null)
                     }
 
-                    <br />
-                }
-
-                    <dd>
-                        @using (Html.BeginForm())
+                    if (item.CommentReply != null)
+                    {
+                        foreach (var reply in item.CommentReply)
                         {
-
-
-
-                            @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" })
-
-
-                            @Html.TextArea("Comment", "");
-
-                            <input type="submit" value="send" />
-
+                            <br />
+                            @Html.DisplayFor(model => reply.Content);
 
                         }
-                    </dd>
+                    }
+                }
+
+                <dd>
+                    @using (Html.BeginForm())
+                    {
+
+                        @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" })
+                        @Html.TextArea("Comment", "");
+                        <input type="submit" value="send" />
+                    }
+                </dd>
 
             </dl>
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.MovieID }) |
+
         @Html.ActionLink("Back to List", "Index")
     </p>
-</body>
-</html>
+
+
