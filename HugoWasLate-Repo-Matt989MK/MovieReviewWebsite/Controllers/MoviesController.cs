@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using MovieReviewWebsite.Models;
 
 namespace MovieReviewWebsite.Controllers
@@ -17,6 +18,7 @@ namespace MovieReviewWebsite.Controllers
         // GET: Movies
         public ActionResult Index(string CategoryName, string Rating)
         {
+            ViewBag.UserId = User.Identity.GetUserId();//impletemnt
             List<Movie> lstMovies = new List<Movie>();
             if (CategoryName == "Any" || CategoryName == null)
             {
@@ -109,6 +111,7 @@ namespace MovieReviewWebsite.Controllers
         {
             if (ModelState.IsValid)
             {
+                movie.User = User.Identity.GetUserId();//added this to user
                 db.Movies.Add(movie);
                 db.SaveChanges();
                 return RedirectToAction("Index");
