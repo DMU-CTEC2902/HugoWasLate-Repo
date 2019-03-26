@@ -36,6 +36,8 @@ namespace MovieReviewWebsite.Controllers
         public ActionResult Details(int? id)
         {
             List<Comment> lstComment = db.Comment.Where(c => c.MovieID == id).ToList();
+            float averageRating = 0;
+            int count = 0;
             foreach (Comment item in lstComment)
             {
                 CommentReply commentReply = new CommentReply();
@@ -44,7 +46,11 @@ namespace MovieReviewWebsite.Controllers
                 {
                     lstCommentReply = db.CommentReply.Where(c => c.CommentID == item.CommentID).ToList();
                 }
+                averageRating += item.UserRating;
+                count++;
             }
+
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -53,7 +59,8 @@ namespace MovieReviewWebsite.Controllers
             Movie movie = db.Movies.Find(id);//
             movie.Comment = lstComment;
             int numerFilmu = movie.MovieID;//
-
+            
+            movie.Rating= averageRating / count;
             List<MoviePerson> mp = db.MoviePerson.Where(i => i.MovieID == numerFilmu).ToList();
 
             foreach (MoviePerson movpers in mp)

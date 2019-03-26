@@ -50,17 +50,21 @@
             
             <dd>
 
-                @*@Html.DisplayFor(model => model.Rating)
-                @{
-                    @if (Model.Comment != null)
+                @Html.DisplayFor(model => model.Rating)
+                @*@{
+                    float testing = 0f;
+                    int count = 0;
+                    if (Model.Comment != null)
                     {
-                        float testing = 0f;
+
                         foreach (var item in Model.Comment)
                         {
 
-                            float testing= testing + item.UserRating;
-
+                            testing+= item.UserRating;
+                            count++;
                         }
+                        Model.Rating = testing / count;
+                        Html.DisplayFor(model => model.Rating);
                     }
                 }*@
 
