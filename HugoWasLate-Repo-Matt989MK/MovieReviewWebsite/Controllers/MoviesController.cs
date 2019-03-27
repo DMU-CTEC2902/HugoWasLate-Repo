@@ -134,15 +134,15 @@ namespace MovieReviewWebsite.Controllers
             
             Comment comment = new Comment();
             comment.Content = Request.Params["NewComment"];
-            comment.AuthorID = 0;
-            comment.PostID = 0;
+            comment.AuthorID = 1;
+            comment.PostID = 1;
             comment.MovieID = id;
-            comment.PersonID = 0;
+            comment.PersonID = 1;
             float averageRating = 0;
             int count = 0;
             comment.UserRating = float.Parse(Request.Params["NewUserRating"]);
 
-            if (comment.UserRating <= 10 && comment.UserRating >= 0)
+            if (comment.UserRating <= 10 && comment.UserRating >= 0.0)
             {
                 db.Comment.Add(comment);
                 db.SaveChanges();
