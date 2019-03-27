@@ -4,14 +4,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
+
+    <h2>Movie</h2>
+
     <form action="Movies" >
         <select name="CategoryName">
             <option value="Any">Any</option>
@@ -45,9 +41,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Description)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.Price)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Rating)
             </th>
@@ -68,20 +64,28 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.Price)
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.Rating)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.MovieID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.MovieID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.MovieID })
+                    @if (ViewBag.UserId != null)
+                    {
+                        if (ViewBag.UserId == item.User)
+                        {
+                            @Html.ActionLink("Edit", "Edit", new { id = item.MovieID })
+                        }
+                        if (ViewBag.UserId == "300fe04a-cd4f-4780-8963-fdc10b295bbd")
+                        {
+                            @Html.ActionLink("Delete", "Delete", new { id = item.MovieID })
+                        }
+
+                    }
+
                 </td>
             </tr>
         }
 
     </table>
-</body>
-</html>

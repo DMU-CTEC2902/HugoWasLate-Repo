@@ -5,6 +5,8 @@
 }
 <h2>Details</h2>
 <div>
+
+
     <h4>Person</h4>
     <hr />
     <dl class="dl-horizontal">
@@ -46,40 +48,55 @@
                 @Html.DisplayFor(model => model.personRole)
             </dd>
             <dt>Comment</dt>
-            <dt>
-
+            <dd>
                 @foreach (var item in Model.Comment)
                 {
-            <dd>
-                @if (item.PersonID == Model.personID)
-                {
-                    <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
-                    @Html.DisplayFor(Model => item.Content)
-                    @Html.ActionLink("Reply", "CommentReply", new { id = item.PersonID, commentID = item.CommentID }, null)
-                }
-                @if (item.CommentReply != null)
-                {
-                    foreach (var reply in item.CommentReply)
+                    if (item.PersonID == Model.personID)
                     {
-                        <br />
-                        @Html.DisplayFor(model => reply.Content);
+                    
+                        if (item.CommentID == Int32.Parse(Request.Params["CommentID"]))
+                        {
+                        
+                            using (Html.BeginForm())
+                            {
+                                @Html.TextBoxFor(model => model.personID, new { style = "display: none;" })
+                                @Html.TextArea("Comment", "")
 
+                                
+                                 <input type="submit" value="reply"  />
+                            }
+
+                        
+                       }
+                        
+                        <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
+
+                        @Html.DisplayFor(Model => item.Content)
+                        @Html.ActionLink("Reply", "CommentReply", new { id = item.MovieID, commentID = item.CommentID }, null)
+
+
+                        <br />
+                        
                     }
+
                 }
 
-            </dd>
-            }
-                </dt>
+                </dd>
             </dl>
             @using (Html.BeginForm())
             {
+
                 @Html.TextBoxFor(model => model.personID, new { style = "display: none;" })
+
+
                 @Html.TextArea("Comment", "")
 
                 <input type="submit" value="send" />
+
+
             }
         </div>
         <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.personID }) |
+           
             @Html.ActionLink("Back to List", "Index")
         </p>

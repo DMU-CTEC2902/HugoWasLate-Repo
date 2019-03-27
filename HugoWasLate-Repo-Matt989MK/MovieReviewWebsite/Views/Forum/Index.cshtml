@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Forum</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -24,9 +24,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Content)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LikeForums)
-        </th>
+
         <th></th>
     </tr>
 
@@ -36,7 +34,9 @@
             @Html.DisplayFor(modelItem => item.PersonID)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Title)
+            @*@Html.DisplayFor(modelItem => item.Title)*@
+            @Html.ActionLink(item.Title, "Details", new { id = item.PostID })
+
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.PostTime)
@@ -44,14 +44,17 @@
         <td>
             @Html.DisplayFor(modelItem => item.Content)
         </td>
+
         <td>
-            @Html.DisplayFor(modelItem => item.LikeForums)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PostID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PostID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PostID })
-        </td>
+            @if (ViewBag.UserId != null)
+            {
+                if (ViewBag.UserId == item.User)
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PostID })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PostID })
+                }
+            }
+                </td>
     </tr>
 }
 

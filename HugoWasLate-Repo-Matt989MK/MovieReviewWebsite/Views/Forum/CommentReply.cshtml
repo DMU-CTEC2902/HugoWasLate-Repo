@@ -1,14 +1,12 @@
 ﻿@model MovieReviewWebsite.Models.Forum
-
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <h2>Details</h2>
-
 <div>
-    <h4>Forum</h4>
+
+    <h4>Person</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -42,38 +40,41 @@
         <dd>
             @Html.DisplayFor(model => model.Content)
         </dd>
-
-        <br />
-        <br />
-        <br />
-        <br />
         <dt>Comment</dt>
-
-        @foreach (var item in Model.Comment)
-        {
-            <dd>
-            @if (item.PostID == Model.PostID)
+        <dt>
+            @foreach (var item in Model.Comment)
             {
-               
-                 
-                    <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
-                    @Html.DisplayFor(Model => item.Content)
-                    @Html.ActionLink("Reply", "CommentReply", new { id = item.PersonID, commentID = item.CommentID }, null)
-                
-            }
-            @if (item.CommentReply != null)
-            {
-                foreach (var reply in item.CommentReply)
+                if (item.PostID == Model.PostID)
                 {
-                    <br />
-                    @Html.DisplayFor(model => reply.Content);
+                <dd>
+                    @if (item.CommentID == Int32.Parse(Request.Params["CommentID"]))
+                    {
+                    <dd>
+                        @using (Html.BeginForm())
+                        {
+                            @Html.TextBoxFor(model => model.PostID, new { style = "display: none;" })
+                            @Html.TextArea("Comment", "")
 
+
+                            <input type="submit" value="reply"  />
+                        }
+
+                    </dd>
                 }
+                    <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
+
+                    @Html.DisplayFor(Model => item.Content)
+                    @Html.ActionLink("Reply", "CommentReply", new { id = item.PostID, commentID = item.CommentID }, null)
+
+
+
+                    </dd>
+                }
+
             }
-            </dd>
-            <br />
-        }
-        <dd>
+
+            </dt>
+        </dl>
             @using (Html.BeginForm())
             {
 
@@ -86,14 +87,8 @@
 
 
             }
-        </dd>
-
-
-
-    </dl>
-</div>
-<p>
-   
-
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.PostID }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
