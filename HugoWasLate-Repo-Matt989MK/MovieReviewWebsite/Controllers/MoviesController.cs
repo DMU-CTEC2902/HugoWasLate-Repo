@@ -140,10 +140,16 @@ namespace MovieReviewWebsite.Controllers
             comment.PersonID = 1;
             float averageRating = 0;
             int count = 0;
+            comment.UserRating = float.Parse(Request.Params["NewUserRating"]);
 
-            comment.UserRating = float.Parse( Request.Params["NewUserRating"]) ;
-            db.Comment.Add(comment);
-            db.SaveChanges();
+            if (comment.UserRating <= 10 && comment.UserRating >= 0)
+            {
+                db.Comment.Add(comment);
+                db.SaveChanges();
+               
+            }
+         
+            
             List<Comment> lstComment = db.Comment.Where(c => c.MovieID == id).ToList();
             foreach (Comment item in lstComment)
             {
@@ -191,7 +197,7 @@ namespace MovieReviewWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MovieID,CategoryName,MovieName,Description,Price,Rating")] Movie movie)
+        public ActionResult Create([Bind(Include = "MovieID,CategoryName,MovieName,Description,Rating")] Movie movie)
         {
             if (ModelState.IsValid)
             {
@@ -224,7 +230,7 @@ namespace MovieReviewWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MovieID,CategoryName,MovieName,Description,Price,Rating")] Movie movie)
+        public ActionResult Edit([Bind(Include = "MovieID,CategoryName,MovieName,Description,Rating")] Movie movie)
         {
             if (ModelState.IsValid)
             {
