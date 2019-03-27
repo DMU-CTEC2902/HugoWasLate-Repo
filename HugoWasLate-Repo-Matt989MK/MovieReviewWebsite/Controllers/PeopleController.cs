@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using MovieReviewWebsite.Models;
 
 namespace MovieReviewWebsite.Controllers
@@ -91,7 +92,7 @@ namespace MovieReviewWebsite.Controllers
             commentReply.Content = Request.Params["Comment"];
             commentReply.CommentID = commentID;
             commentReply.CommentReplyID = 2;
-            commentReply.AuthorID = 1;
+            commentReply.AuthorID = User.Identity.GetUserId(); ;
             commentReply.PostID = 1;
             commentReply.PersonID = id;
             commentReply.MovieID = 1;
@@ -122,7 +123,7 @@ namespace MovieReviewWebsite.Controllers
             int id = Convert.ToInt32(Request.Params["PersonId"]);
             Comment comment = new Comment();
             comment.Content = Request.Params["Comment"];
-            comment.AuthorID = 1;
+            comment.AuthorID = User.Identity.GetUserId();
             comment.PostID = 1;
             comment.PersonID = id;
             comment.MovieID = 1;

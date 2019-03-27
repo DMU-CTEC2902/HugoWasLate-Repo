@@ -94,7 +94,7 @@
                             <nbsp style="color:red"> @Html.DisplayFor(model => item.UserRating) </nbsp>
                             @Html.DisplayFor(Model => item.Content)
 
-                            <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
+                            <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.AuthorID)</nbsp>
                             @Html.ActionLink("Reply", "CommentReply", new { id = item.MovieID, commentID = item.CommentID }, null)
                             if (ViewBag.UserId != null)
                             {
@@ -122,7 +122,7 @@
 
                                 @Html.DisplayFor(model => reply.Content);
 
-                                <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
+                                <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => reply.AuthorID)</nbsp>
 
 
                                 <br />

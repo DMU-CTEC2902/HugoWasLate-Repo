@@ -105,7 +105,7 @@ namespace MovieReviewWebsite.Controllers
             commentReply.Content = Request.Params["NewReply"];
             commentReply.CommentID = commentID;
             //commentReply.CommentReplyID = 2;
-            commentReply.AuthorID = 0;
+            commentReply.AuthorID = User.Identity.GetUserId();
             commentReply.PostID = 0;
             commentReply.PersonID = 0;
             commentReply.MovieID = id;
@@ -131,10 +131,10 @@ namespace MovieReviewWebsite.Controllers
         {
 
             int id = Convert.ToInt32(Request.Params["MovieID"]);
-            
+
             Comment comment = new Comment();
             comment.Content = Request.Params["NewComment"];
-            comment.AuthorID = 1;
+            comment.AuthorID = User.Identity.GetUserId();
             comment.PostID = 1;
             comment.MovieID = id;
             comment.PersonID = 1;
@@ -302,4 +302,4 @@ namespace MovieReviewWebsite.Controllers
             base.Dispose(disposing);
         }
     }
-}
+}//HugoWasLate
