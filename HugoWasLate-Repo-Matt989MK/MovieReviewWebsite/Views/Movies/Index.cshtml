@@ -45,7 +45,8 @@
                 @Html.DisplayNameFor(model => model.Price)
             </th>*@
             <th>
-                @Html.DisplayNameFor(model => model.Rating)
+                @Html.DisplayNameFor(model => model.AverageRating)
+
             </th>
             <th></th>
         </tr>
@@ -68,7 +69,7 @@
                     @Html.DisplayFor(modelItem => item.Price)
                 </td>*@
                 <td>
-                    @Html.DisplayFor(modelItem => item.Rating)
+                    @Html.DisplayFor(modelItem => item.AverageRating)
                 </td>
                 <td>
                     @if (ViewBag.UserId != null)

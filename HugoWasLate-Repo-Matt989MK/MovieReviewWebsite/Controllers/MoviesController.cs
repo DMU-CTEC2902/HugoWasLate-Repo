@@ -18,6 +18,7 @@ namespace MovieReviewWebsite.Controllers
         // GET: Movies
         public ActionResult Index(string CategoryName, string Rating)
         {
+            
             ViewBag.UserId = User.Identity.GetUserId();//impletemnt
             
             List<Movie> lstMovies = new List<Movie>();
@@ -31,14 +32,44 @@ namespace MovieReviewWebsite.Controllers
             { lstMovies = db.Movies.Where(i => i.CategoryName == CategoryName).ToList(); }
             if (Rating == "Worst") { lstMovies = lstMovies.OrderBy(i => i.Rating).ToList(); }
             else if (Rating == "Best") { lstMovies = lstMovies.OrderByDescending(i => i.Rating).ToList(); }
+
+
+
+            List<Movie> mo = db.Movies.ToList();
+            foreach (Movie movies in mo)
+            {
+               // Movie movie = new Movie();
+                int a = movies.MovieID;
+                movies.AverageRating = movies.Rating;
+                int count = 1;
+
+                //lstCommentReply = db.CommentReply.Where(c => c.CommentID == item.CommentID).ToList();
+
+                List<Comment> lstComment = db.Comment.Where(c => c.MovieID == a).ToList();
+                foreach (Comment item in lstComment)
+                {
+                    CommentReply commentReply = new CommentReply();
+                    List<CommentReply> lstCommentReply = new List<CommentReply>();
+                    if (db.CommentReply.Where(c => c.CommentID == item.CommentID).ToList() != null)//
+                    {
+                        lstCommentReply = db.CommentReply.Where(c => c.CommentID == item.CommentID).ToList();
+                    }
+                    movies.AverageRating += item.UserRating;
+                    count++;
+                }
+
+                movies.AverageRating= movies.AverageRating / count;
+            }
             return View(lstMovies);
         }
         [HttpGet]
         public ActionResult Details(int? id)
         {
+
+            Movie movie = db.Movies.Find(id);//
             List<Comment> lstComment = db.Comment.Where(c => c.MovieID == id).ToList();
-            float averageRating = 0;
-            int count = 0;
+            float averageRating = movie.Rating;
+            int count = 1;
             foreach (Comment item in lstComment)
             {
                 CommentReply commentReply = new CommentReply();
@@ -57,10 +88,9 @@ namespace MovieReviewWebsite.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Movie movie = db.Movies.Find(id);//
             movie.Comment = lstComment;
             int numerFilmu = movie.MovieID;//
-            movie.Rating = averageRating / count;
+            movie.Rating = averageRating / count ;
             List<MoviePerson> mp = db.MoviePerson.Where(i => i.MovieID == numerFilmu).ToList();
 
             foreach (MoviePerson movpers in mp)
@@ -130,15 +160,17 @@ namespace MovieReviewWebsite.Controllers
         [HttpPost]
         public ActionResult Details()
         {
+
             int id = Convert.ToInt32(Request.Params["MovieID"]);
+            Movie movie = db.Movies.Find(id);//
             Comment comment = new Comment();
             comment.Content = Request.Params["NewComment"];
             comment.AuthorID = User.Identity.GetUserId();
             comment.PostID = 1;
             comment.MovieID = id;
             comment.PersonID = 1;
-            float averageRating = 0;
-            int count = 0;
+            float averageRating = movie.Rating;
+            int count = 1;
             comment.UserRating = float.Parse(Request.Params["NewUserRating"]);
 
             if (comment.UserRating <= 10 && comment.UserRating >= 0.0)
@@ -165,7 +197,7 @@ namespace MovieReviewWebsite.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Movie movie = db.Movies.Find(id);//
+
 
             int numerFilmu = movie.MovieID;//
             movie.Rating = averageRating / count;
@@ -188,6 +220,7 @@ namespace MovieReviewWebsite.Controllers
         public ActionResult Create()
         {
 
+            ViewBag.UserId = User.Identity.GetUserId();//impletemnt
             return View();
         }
 
@@ -200,6 +233,23 @@ namespace MovieReviewWebsite.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                //List<Comment> lstComment = db.Comment.Where(c => c.MovieID == id).ToList();
+                //foreach (Comment item in lstComment)
+                //{
+                //    CommentReply commentReply = new CommentReply();
+                //    List<CommentReply> lstCommentReply = new List<CommentReply>();
+                //    if (db.CommentReply.Where(c => c.CommentID == item.CommentID).ToList() != null)//
+                //    {
+                //        lstCommentReply = db.CommentReply.Where(c => c.CommentID == item.CommentID).ToList();
+                //    }
+                //List<Person> lstPeople = db.People.ToList();
+                //    Person people = new Person();
+                //foreach(Person  item in lstPeople )
+                //{
+                //    lstPeople = item.personName;
+
+                //}
                 movie.User = User.Identity.GetUserId();//added this to user
                 db.Movies.Add(movie);
                 db.SaveChanges();
