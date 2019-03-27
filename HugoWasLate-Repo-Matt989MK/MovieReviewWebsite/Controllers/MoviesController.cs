@@ -201,6 +201,23 @@ namespace MovieReviewWebsite.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                //List<Comment> lstComment = db.Comment.Where(c => c.MovieID == id).ToList();
+                //foreach (Comment item in lstComment)
+                //{
+                //    CommentReply commentReply = new CommentReply();
+                //    List<CommentReply> lstCommentReply = new List<CommentReply>();
+                //    if (db.CommentReply.Where(c => c.CommentID == item.CommentID).ToList() != null)//
+                //    {
+                //        lstCommentReply = db.CommentReply.Where(c => c.CommentID == item.CommentID).ToList();
+                //    }
+                //List<Person> lstPeople = db.People.ToList();
+                //    Person people = new Person();
+                //foreach(Person  item in lstPeople )
+                //{
+                //    lstPeople = item.personName;
+
+                //}
                 movie.User = User.Identity.GetUserId();//added this to user
                 db.Movies.Add(movie);
                 db.SaveChanges();

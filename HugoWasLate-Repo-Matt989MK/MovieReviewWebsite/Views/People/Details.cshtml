@@ -46,40 +46,99 @@
                 @Html.DisplayFor(model => model.personRole)
             </dd>
             <dt>Comment</dt>
-            <dt>
 
+            <dd>
                 @foreach (var item in Model.Comment)
                 {
-            <dd>
-                @if (item.PersonID == Model.personID)
-                {
-                    <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
-                    @Html.DisplayFor(Model => item.Content)
-                    @Html.ActionLink("Reply", "CommentReply", new { id = item.PersonID, commentID = item.CommentID }, null)
-                }
-                @if (item.CommentReply != null)
-                {
-                    foreach (var reply in item.CommentReply)
+
+
+                    if (item.PersonID == Model.personID)
                     {
+
+               
+                        @Html.DisplayFor(Model => item.Content)
+
+                        <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.AuthorID)</nbsp>
+                        @Html.ActionLink("Reply", "CommentReply", new { id = item.PersonID, commentID = item.CommentID }, null)
+                        if (ViewBag.UserId != null)
+                        {
+                            @*if (ViewBag.UserId == item.User)
+                                {
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.MovieID })
+                                }*@
+                            if (ViewBag.UserId == "300fe04a-cd4f-4780-8963-fdc10b295bbd")
+                            {
+                            }
+
+                        }
+
+                        @Html.ActionLink("DeleteComment", "DeleteComment", new { id = item.CommentID, personID = item.PersonID })
+
                         <br />
-                        @Html.DisplayFor(model => reply.Content);
 
                     }
+                    if (item.CommentReply != null)
+                    {
+                        foreach (var reply in item.CommentReply)
+                        {
+
+                            <nbsp> -----  </nbsp>
+
+                            @Html.DisplayFor(model => reply.Content);
+
+                            <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => reply.AuthorID)</nbsp>
+
+
+                            <br />
+                        }
+                        <br />
+
+                    }
+
+
+
                 }
 
-            </dd>
-            }
-                </dt>
-            </dl>
-            @using (Html.BeginForm())
-            {
-                @Html.TextBoxFor(model => model.personID, new { style = "display: none;" })
-                @Html.TextArea("Comment", "")
 
-                <input type="submit" value="send" />
-            }
-        </div>
-        <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.personID }) |
-            @Html.ActionLink("Back to List", "Index")
-        </p>
+
+
+            </dd>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+
+            <dt>
+
+                New Comment
+            </dt>
+            <dd>
+
+                @using (Html.BeginForm())
+                {
+
+                    if (ViewBag.UserId)
+                    {
+                        @Html.TextBoxFor(model => model.personID, new { style = "display: none;" })
+                        @Html.TextArea("NewComment", "");
+                        <input type="submit" value="send" />
+
+                    }
+                    else
+                    {
+                        
+                    }
+
+
+
+
+                }
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.personID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
