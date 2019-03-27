@@ -19,6 +19,7 @@ namespace MovieReviewWebsite.Controllers
         public ActionResult Index(string CategoryName, string Rating)
         {
             ViewBag.UserId = User.Identity.GetUserId();//impletemnt
+            
             List<Movie> lstMovies = new List<Movie>();
             if (CategoryName == "Any" || CategoryName == null)
             {
