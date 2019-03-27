@@ -18,6 +18,7 @@ namespace MovieReviewWebsite.Controllers
         // GET: Movies
         public ActionResult Index(string CategoryName, string Rating)
         {
+            
             ViewBag.UserId = User.Identity.GetUserId();//impletemnt
             List<Movie> lstMovies = new List<Movie>();
             if (CategoryName == "Any" || CategoryName == null)
@@ -30,6 +31,34 @@ namespace MovieReviewWebsite.Controllers
             { lstMovies = db.Movies.Where(i => i.CategoryName == CategoryName).ToList(); }
             if (Rating == "Worst") { lstMovies = lstMovies.OrderBy(i => i.Rating).ToList(); }
             else if (Rating == "Best") { lstMovies = lstMovies.OrderByDescending(i => i.Rating).ToList(); }
+
+
+
+            List<Movie> mo = db.Movies.ToList();
+            foreach (Movie movies in mo)
+            {
+               // Movie movie = new Movie();
+                int a = movies.MovieID;
+                movies.AverageRating = movies.Rating;
+                int count = 1;
+
+                //lstCommentReply = db.CommentReply.Where(c => c.CommentID == item.CommentID).ToList();
+
+                List<Comment> lstComment = db.Comment.Where(c => c.MovieID == a).ToList();
+                foreach (Comment item in lstComment)
+                {
+                    CommentReply commentReply = new CommentReply();
+                    List<CommentReply> lstCommentReply = new List<CommentReply>();
+                    if (db.CommentReply.Where(c => c.CommentID == item.CommentID).ToList() != null)//
+                    {
+                        lstCommentReply = db.CommentReply.Where(c => c.CommentID == item.CommentID).ToList();
+                    }
+                    movies.AverageRating += item.UserRating;
+                    count++;
+                }
+
+                movies.AverageRating= movies.AverageRating / count;
+            }
             return View(lstMovies);
         }
         [HttpGet]
