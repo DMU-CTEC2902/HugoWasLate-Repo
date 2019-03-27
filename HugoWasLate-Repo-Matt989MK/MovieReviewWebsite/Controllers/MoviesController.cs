@@ -187,6 +187,7 @@ namespace MovieReviewWebsite.Controllers
         public ActionResult Create()
         {
 
+            ViewBag.UserId = User.Identity.GetUserId();//impletemnt
             return View();
         }
 

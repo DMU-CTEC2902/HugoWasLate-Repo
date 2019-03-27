@@ -16,6 +16,8 @@
 
 
 <body>
+
+    
     @if (ViewBag.UserId == null)
     {
         <h2>Please Log in first</h2>
@@ -85,26 +87,7 @@
             @Html.ActionLink("Back to List", "Index")
         </div>
     }
-    @*<form action=">
-            <fieldset>
-                <label>
-                    Select People
-                </label>
-                <select id="selLanguage"
-                        multiple="multiple"
-                        size="10">
-                    <option value="HTML">HTML</option>
-                    @foreach (var item in Model.People)
-                    {
-                        <option value=item>Person 1</option>
-                    }
-                </select>
-                <button type="button"
-                        onclick="showChoices()">
-                    Submit
-                </button>
-            </fieldset>
-        </form>*@
+
 
 </body>
 </html>
