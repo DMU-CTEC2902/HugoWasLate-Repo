@@ -35,9 +35,11 @@ namespace MovieReviewWebsite.Controllers
         [HttpGet]
         public ActionResult Details(int? id)
         {
+
+            Movie movie = db.Movies.Find(id);//
             List<Comment> lstComment = db.Comment.Where(c => c.MovieID == id).ToList();
-            float averageRating = 0;
-            int count = 0;
+            float averageRating = movie.Rating;
+            int count = 1;
             foreach (Comment item in lstComment)
             {
                 CommentReply commentReply = new CommentReply();
@@ -56,10 +58,9 @@ namespace MovieReviewWebsite.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Movie movie = db.Movies.Find(id);//
             movie.Comment = lstComment;
             int numerFilmu = movie.MovieID;//
-            movie.Rating = averageRating / count;
+            movie.Rating = averageRating / count ;
             List<MoviePerson> mp = db.MoviePerson.Where(i => i.MovieID == numerFilmu).ToList();
 
             foreach (MoviePerson movpers in mp)
@@ -129,15 +130,17 @@ namespace MovieReviewWebsite.Controllers
         [HttpPost]
         public ActionResult Details()
         {
+
             int id = Convert.ToInt32(Request.Params["MovieID"]);
+            Movie movie = db.Movies.Find(id);//
             Comment comment = new Comment();
             comment.Content = Request.Params["NewComment"];
             comment.AuthorID = User.Identity.GetUserId();
             comment.PostID = 1;
             comment.MovieID = id;
             comment.PersonID = 1;
-            float averageRating = 0;
-            int count = 0;
+            float averageRating = movie.Rating;
+            int count = 1;
             comment.UserRating = float.Parse(Request.Params["NewUserRating"]);
 
             if (comment.UserRating <= 10 && comment.UserRating >= 0.0)
@@ -164,7 +167,7 @@ namespace MovieReviewWebsite.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Movie movie = db.Movies.Find(id);//
+
 
             int numerFilmu = movie.MovieID;//
             movie.Rating = averageRating / count;
