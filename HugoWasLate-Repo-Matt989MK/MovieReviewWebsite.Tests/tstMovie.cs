@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MovieReviewWebsite.Models;
-using MovieReviewWebsite.Models;
+
 
 
 namespace MovieReviewWebsite.Tests

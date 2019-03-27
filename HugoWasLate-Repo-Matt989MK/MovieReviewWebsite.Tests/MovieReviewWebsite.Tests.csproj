@@ -94,6 +94,8 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
+    <Compile Include="tstCommentReply.cs" />
+    <Compile Include="tstForum.cs" />
     <Compile Include="tstMovie.cs" />
   </ItemGroup>
   <ItemGroup>
