@@ -104,10 +104,10 @@ namespace MovieReviewWebsite.Controllers
             CommentReply commentReply = new CommentReply();
             commentReply.Content = Request.Params["NewReply"];
             commentReply.CommentID = commentID;
-            commentReply.CommentReplyID = 2;
-            commentReply.AuthorID = 1;
-            commentReply.PostID = 1;
-            commentReply.PersonID = 1;
+            //commentReply.CommentReplyID = 2;
+            commentReply.AuthorID = 0;
+            commentReply.PostID = 0;
+            commentReply.PersonID = 0;
             commentReply.MovieID = id;
             db.CommentReply.Add(commentReply);
             db.SaveChanges();
@@ -134,10 +134,10 @@ namespace MovieReviewWebsite.Controllers
             
             Comment comment = new Comment();
             comment.Content = Request.Params["NewComment"];
-            comment.AuthorID = 1;
-            comment.PostID = 1;
+            comment.AuthorID = 0;
+            comment.PostID = 0;
             comment.MovieID = id;
-            comment.PersonID = 1;
+            comment.PersonID = 0;
             float averageRating = 0;
             int count = 0;
             comment.UserRating = float.Parse(Request.Params["NewUserRating"]);
@@ -265,6 +265,32 @@ namespace MovieReviewWebsite.Controllers
             db.Movies.Remove(movie);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        // GET: Movies/Delete/5
+        public ActionResult DeleteComment(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Comment comment = db.Comment.Find(id);
+            if (comment == null)
+            {
+                return HttpNotFound();
+            }
+            return View(comment);
+        }
+
+        // POST: Movies/Delete/5
+        [HttpPost, ActionName("DeleteComment")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteCommentConfirmed(int id, int movieID)
+        {
+           Comment comment = db.Comment.Find(id);
+            db.Comment.Remove(comment);
+            db.SaveChanges();
+            return RedirectToAction("Details/"+ movieID);
         }
 
         protected override void Dispose(bool disposing)
