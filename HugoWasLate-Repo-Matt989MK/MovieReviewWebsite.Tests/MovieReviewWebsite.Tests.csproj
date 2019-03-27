@@ -97,6 +97,7 @@
     <Compile Include="tstCommentReply.cs" />
     <Compile Include="tstForum.cs" />
     <Compile Include="tstMovie.cs" />
+    <Compile Include="tstMoviePerson.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
