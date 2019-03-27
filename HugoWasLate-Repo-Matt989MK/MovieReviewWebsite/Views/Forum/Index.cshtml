@@ -51,10 +51,14 @@
                 if (ViewBag.UserId == item.User)
                 {
                     @Html.ActionLink("Edit", "Edit", new { id = item.PostID })
+                }
+                if (ViewBag.UserId == "300fe04a-cd4f-4780-8963-fdc10b295bbd")
+                {
                     @Html.ActionLink("Delete", "Delete", new { id = item.PostID })
                 }
+
             }
-                </td>
+        </td>
     </tr>
 }
 

@@ -1,0 +1,47 @@
+﻿@model MovieReviewWebsite.Models.Movie
+
+@{
+    ViewBag.Title = "AddPeopleToMovie";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AddPeopleToMovie</h2>
+
+<div>
+    <h4>Person</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MovieName)
+        </dt>
+
+        <dd>
+            @if (ViewBag.Test != null)
+            {
+
+                @ViewBag.Test
+            }
+
+            @Html.DisplayFor(model => model.MovieName)
+        </dd>
+        @using (Html.BeginForm())
+        {
+            @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" });
+
+            foreach (var item in Model.People)
+            {
+                @*@Html.DisplayFor(Model => item.personName);
+
+                    @Html.CheckBox("PersonID", new { value = item.personID, @checked = true });*@
+                <input type="checkbox" id="@item.personID" name="@item.personID" value="@item.personID" />
+                <label for="optionId">@item.personName</label>
+                <br>
+            }
+            <input type="submit" value="send" />
+        }
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MovieID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

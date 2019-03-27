@@ -23,13 +23,13 @@ namespace MovieReviewWebsite.Controllers
             if (CategoryName == "Any" || CategoryName == null)
             {
                 lstMovies = db.Movies.ToList();
-                if (Rating == "Worst") { lstMovies= lstMovies.OrderBy(i => i.Rating).ToList(); }
-              else if (Rating == "Best") { lstMovies=lstMovies.OrderByDescending(i => i.Rating).ToList(); }
+                if (Rating == "Worst") { lstMovies = lstMovies.OrderBy(i => i.Rating).ToList(); }
+                else if (Rating == "Best") { lstMovies = lstMovies.OrderByDescending(i => i.Rating).ToList(); }
             }
             else
             { lstMovies = db.Movies.Where(i => i.CategoryName == CategoryName).ToList(); }
-            if (Rating == "Worst") { lstMovies=lstMovies.OrderBy(i => i.Rating).ToList(); }
-            else if(Rating == "Best") { lstMovies=lstMovies.OrderByDescending(i => i.Rating).ToList(); }
+            if (Rating == "Worst") { lstMovies = lstMovies.OrderBy(i => i.Rating).ToList(); }
+            else if (Rating == "Best") { lstMovies = lstMovies.OrderByDescending(i => i.Rating).ToList(); }
             return View(lstMovies);
         }
         [HttpGet]
@@ -50,7 +50,7 @@ namespace MovieReviewWebsite.Controllers
                 count++;
             }
 
-            
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -59,7 +59,7 @@ namespace MovieReviewWebsite.Controllers
             Movie movie = db.Movies.Find(id);//
             movie.Comment = lstComment;
             int numerFilmu = movie.MovieID;//
-            movie.Rating= averageRating / count;
+            movie.Rating = averageRating / count;
             List<MoviePerson> mp = db.MoviePerson.Where(i => i.MovieID == numerFilmu).ToList();
 
             foreach (MoviePerson movpers in mp)
@@ -89,7 +89,7 @@ namespace MovieReviewWebsite.Controllers
             movie.Comment = lstComment;
             int numerosoby = movie.MovieID;
 
-           
+
             if (movie == null)
             {
                 return HttpNotFound();
@@ -119,7 +119,7 @@ namespace MovieReviewWebsite.Controllers
             int numerosoby = movie.MovieID;
 
             List<MoviePerson> mp = db.MoviePerson.Where(i => i.personID == numerosoby).ToList();
-        
+
             if (movie == null)
             {
                 return HttpNotFound();
@@ -129,9 +129,7 @@ namespace MovieReviewWebsite.Controllers
         [HttpPost]
         public ActionResult Details()
         {
-
             int id = Convert.ToInt32(Request.Params["MovieID"]);
-
             Comment comment = new Comment();
             comment.Content = Request.Params["NewComment"];
             comment.AuthorID = User.Identity.GetUserId();
@@ -146,10 +144,10 @@ namespace MovieReviewWebsite.Controllers
             {
                 db.Comment.Add(comment);
                 db.SaveChanges();
-               
+
             }
-         
-            
+
+
             List<Comment> lstComment = db.Comment.Where(c => c.MovieID == id).ToList();
             foreach (Comment item in lstComment)
             {
@@ -171,13 +169,13 @@ namespace MovieReviewWebsite.Controllers
             int numerFilmu = movie.MovieID;//
             movie.Rating = averageRating / count;
             List<MoviePerson> mp = db.MoviePerson.Where(i => i.MovieID == numerFilmu).ToList();
-          
+
             foreach (MoviePerson movpers in mp)
             {
                 Person p2 = db.People.Find(movpers.personID);
-            movie.People.Add(p2);
+                movie.People.Add(p2);
             }
-            
+
             if (movie == null)
             {
                 return HttpNotFound();
@@ -188,7 +186,7 @@ namespace MovieReviewWebsite.Controllers
         // GET: Movies/Create
         public ActionResult Create()
         {
-           
+
             return View();
         }
 
@@ -207,9 +205,95 @@ namespace MovieReviewWebsite.Controllers
                 return RedirectToAction("Index");
             }
 
-                     return View(movie);
+            return View(movie);
         }
+        [HttpGet]
+        public ActionResult AddPeopleToMovie(int? id)
+        {
 
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Movie movie = db.Movies.Find(id);//
+
+            int numerFilmu = movie.MovieID;//
+            ViewBag.movie = movie.MovieName;
+            List<MoviePerson> mp = db.MoviePerson.Where(i => i.MovieID == numerFilmu).ToList();
+            List<Person> lstPpl = db.People.ToList();
+            List<Person> ListToDisplay = new List<Person>();
+            if (mp != null)
+            {
+                foreach (MoviePerson mppp in mp)
+                {
+                    int x = mppp.personID;
+                    Person prs = lstPpl.Where(p => p.personID == x).Single();
+                    lstPpl.Remove(prs);
+                }
+
+            }
+
+
+            movie.People = lstPpl;
+
+            if (movie == null)
+            {
+                return HttpNotFound();
+            }
+            return View(movie);
+
+        }
+        [HttpPost]
+        public ActionResult AddPeopleToMovie()
+        {
+
+            int id = Convert.ToInt32(Request.Params["MovieID"]);
+
+
+            //selecting people id's from database
+            List<int> ListOfPeople = db.People.Select(p => p.personID).ToList();
+
+            List<int> ListOfPeopleSendedFromWeb = new List<int>();
+            List<Person> EmptyPeople = new List<Person>();
+
+            foreach (int personid in ListOfPeople)
+            {
+
+                if (Request.Params[personid.ToString()] != null)
+                {
+                    int x = Convert.ToInt32(Request.Params[personid.ToString()]);
+                    Person prs = new Person();
+                    EmptyPeople.Add(db.People.Where(p => p.personID == x).Single());
+                    //adding to movie person
+                    MoviePerson mope = new MoviePerson();
+                    mope.MovieID = id;
+                    mope.personID = x;
+                    db.MoviePerson.Add(mope);
+
+
+                    //  ListOfPeopleSendedFromWeb.Add(personid);
+                }
+                db.SaveChanges();
+
+            }
+
+
+            Movie movie = db.Movies.Find(id);//
+
+            int numerFilmu = movie.MovieID;//
+            ViewBag.movie = movie.MovieName;
+            List<MoviePerson> mp = db.MoviePerson.Where(i => i.MovieID == numerFilmu).ToList();
+            /// List<Person> lstPpl = db.People.ToList();
+            movie.People = EmptyPeople;
+
+            if (movie == null)
+            {
+                return HttpNotFound();
+            }
+            //return View(movie);
+            return RedirectToAction("Details/" + id);
+        }
         // GET: Movies/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -287,10 +371,10 @@ namespace MovieReviewWebsite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteCommentConfirmed(int id, int movieID)
         {
-           Comment comment = db.Comment.Find(id);
+            Comment comment = db.Comment.Find(id);
             db.Comment.Remove(comment);
             db.SaveChanges();
-            return RedirectToAction("Details/"+ movieID);
+            return RedirectToAction("Details/" + movieID);
         }
 
         protected override void Dispose(bool disposing)
