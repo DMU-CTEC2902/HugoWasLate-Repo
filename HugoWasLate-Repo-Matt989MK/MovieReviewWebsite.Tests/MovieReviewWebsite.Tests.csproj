@@ -95,9 +95,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="tstCommentReply.cs" />
+    <Compile Include="tstComments.cs" />
     <Compile Include="tstForum.cs" />
     <Compile Include="tstMovie.cs" />
     <Compile Include="tstMoviePerson.cs" />
+    <Compile Include="tstPerson.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
