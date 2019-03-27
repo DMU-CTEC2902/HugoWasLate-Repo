@@ -242,6 +242,36 @@ namespace MovieReviewWebsite.Controllers
             return RedirectToAction("Index");
         }
 
+
+
+        // GET: Movies/Delete/5
+        public ActionResult DeleteComment(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Comment comment = db.Comment.Find(id);
+            if (comment == null)
+            {
+                return HttpNotFound();
+            }
+            return View(comment);
+        }
+
+        // POST: Movies/Delete/5
+        [HttpPost, ActionName("DeleteComment")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteCommentConfirmed(int id, int personID)
+        {
+
+            Comment comment = db.Comment.Find(id);
+            db.Comment.Remove(comment);
+            db.SaveChanges();
+            return RedirectToAction("Details/" + personID);
+        }
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

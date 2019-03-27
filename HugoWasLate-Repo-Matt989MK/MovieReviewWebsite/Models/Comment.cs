@@ -19,6 +19,6 @@ namespace MovieReviewWebsite.Models
         public virtual string Content { get; set; }
         public virtual float UserRating { get; set; }
         public virtual List<CommentReply> CommentReply { get; set; }
-
+        public virtual bool isBlocked { get; set; }
     }
 }
