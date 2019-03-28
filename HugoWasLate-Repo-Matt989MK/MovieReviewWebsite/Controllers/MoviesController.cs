@@ -20,6 +20,7 @@ namespace MovieReviewWebsite.Controllers
         {
             
             ViewBag.UserId = User.Identity.GetUserId();//impletemnt
+            
             List<Movie> lstMovies = new List<Movie>();
             if (CategoryName == "Any" || CategoryName == null)
             {
