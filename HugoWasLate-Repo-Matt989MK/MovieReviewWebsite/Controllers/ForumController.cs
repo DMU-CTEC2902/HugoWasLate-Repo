@@ -18,6 +18,8 @@ namespace MovieReviewWebsite.Controllers
         // GET: Forum
         public ActionResult Index()
         {
+
+            ViewBag.UserId = User.Identity.GetUserId();//impletemnt
             return View(db.Forums.ToList());
         }
         [HttpGet]
@@ -74,7 +76,7 @@ namespace MovieReviewWebsite.Controllers
             int id = Convert.ToInt32(Request.Params["PostId"]);
             int commentID = Convert.ToInt32(Request.Params["CommentID"]);
             CommentReply commentReply = new CommentReply();
-            commentReply.Content = Request.Params["Comment"];
+            commentReply.Content = Request.Params["NewComment"];
             commentReply.CommentID = commentID;
             commentReply.CommentReplyID = 2;
             commentReply.AuthorID = User.Identity.GetUserId();
@@ -134,6 +136,8 @@ namespace MovieReviewWebsite.Controllers
         // GET: Forum/Create
         public ActionResult Create()
         {
+
+            ViewBag.UserId = User.Identity.GetUserId();//impletemnt
             return View();
         }
 
@@ -142,7 +146,7 @@ namespace MovieReviewWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PostID,UserID,Title,PostTime,Content,LikeForums")] Forum forum)
+        public ActionResult Create([Bind(Include = "PostID,PersonID,Title,PostTime,Content,User")] Forum forum)
         {
             if (ModelState.IsValid)
             {
