@@ -110,8 +110,8 @@ namespace MovieReviewWebsite.Controllers
             Comment comment = new Comment();
             comment.Content = Request.Params["NewComment"];
             comment.AuthorID = User.Identity.Name; 
-            comment.PostID = 1;
-            comment.PersonID = id;
+            comment.PostID = id;
+            comment.PersonID = 1;
             comment.MovieID = 1;
             db.Comment.Add(comment);
             db.SaveChanges();
@@ -135,7 +135,7 @@ namespace MovieReviewWebsite.Controllers
             {
                 return HttpNotFound();
             }
-            return View(forum);
+            return RedirectToAction("Details/" + id);
         }
         // GET: Forum/Create
         public ActionResult Create()

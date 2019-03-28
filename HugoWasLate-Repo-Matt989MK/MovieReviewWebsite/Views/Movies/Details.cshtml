@@ -2,6 +2,7 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Details";
 }
 
 <!DOCTYPE html>
@@ -42,22 +43,25 @@
                 @Html.DisplayFor(model => model.Description)
             </dd>
 
-        
+
 
             <dt>
                 @Html.DisplayNameFor(model => model.Rating)
             </dt>
-            
+
             <dd>
 
                 @Html.DisplayFor(model => model.Rating)
-            
+
 
 
 
 
             </dd>
-               <dd>@Html.ActionLink("AddPeopleToMovie","AddPeopleToMovie", "Movies", new {id=Model.MovieID },null)</dd>
+            @if (ViewBag.UserId == "abc@gmail.com")
+            {
+            <dd>@Html.ActionLink("AddPeopleToMovie", "AddPeopleToMovie", "Movies", new { id = Model.MovieID }, null)</dd>
+              }
             <dt>
                 @Html.DisplayNameFor(model => model.People)
             </dt>
@@ -97,13 +101,17 @@
                             <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.AuthorID)</nbsp>
                             if (ViewBag.UserId != "")
                             {
-                            @Html.ActionLink("Reply", "CommentReply", new { id = item.MovieID, commentID = item.CommentID }, null)
+                                @Html.ActionLink("Reply", "CommentReply", new { id = item.MovieID, commentID = item.CommentID }, null)
 
 
                                 if (ViewBag.UserId == "abc@gmail.com")
                                 {
 
                                     @Html.ActionLink("DeleteComment", "DeleteComment", new { id = item.CommentID, movieID = item.MovieID })
+                                    <nbsp> | </nbsp>
+
+                                    @Html.ActionLink("Ban this user or change content", "BanUser", new { id = item.CommentID })
+
                                 }
 
                             }
@@ -170,14 +178,16 @@
                             if (isUserBanned)
                             {
                                 <h2>you are banned</h2>
-                            } else {
+                            }
+                            else
+                            {
                                 @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" })
-                                 @Html.TextArea("NewComment", "");
+                                @Html.TextArea("NewComment", "");
                                 <nbsp> Rating </nbsp>
                                 @Html.TextArea("NewUserRating", "0.0", 1, 2, 0);
-                                
-                                <input type = "submit" value = "send" />
-                             }
+
+                                <input type="submit" value="send" />
+                            }
                         }
                     }
                     else
@@ -192,7 +202,7 @@
             </dl>
     </div>
     <p>
-        @Html.ActionLink("back", "Details", new { id = Model.MovieID })
+        @Html.ActionLink("back", "index", new { id = Model.MovieID })
         @Html.ActionLink("Back to List", "Index")
     </p>
 </body>
