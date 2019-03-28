@@ -2,6 +2,7 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Details";
 }
 
 <!DOCTYPE html>
@@ -196,7 +197,7 @@
             </dl>
     </div>
     <p>
-        @Html.ActionLink("back", "Details", new { id = Model.MovieID })
+        @Html.ActionLink("back", "index", new { id = Model.MovieID })
         @Html.ActionLink("Back to List", "Index")
     </p>
 </body>

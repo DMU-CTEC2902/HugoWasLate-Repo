@@ -12,6 +12,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>Details</title>
 </head>
+<body>
 
 
 <h2>Details</h2>
@@ -60,45 +61,50 @@
 
         @foreach (var item in Model.Comment)
         {
-        <dd>
-            @if (item.PostID == Model.PostID)
-            {
-
-
-                @Html.DisplayFor(Model => item.Content)
-                <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.AuthorID)</nbsp>
-
-                if (ViewBag.UserId != "")
+            <dd>
+                @if (item.PostID == Model.PostID)
                 {
-                    @Html.ActionLink("Reply", "CommentReply", new { id = item.MovieID, commentID = item.CommentID }, null)
 
 
-                    if (ViewBag.UserId == "abc@gmail.com")
+                    @Html.DisplayFor(Model => item.Content)
+                    <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.AuthorID)</nbsp>
+
+                    if (ViewBag.UserId != "")
                     {
+                        @Html.ActionLink("Reply", "CommentReply", new { id = item.PostID, commentID = item.CommentID }, null)
 
-                        @Html.ActionLink("DeleteComment", "DeleteComment", new { id = item.CommentID, movieID = item.MovieID })
 
-                        <nbsp> | </nbsp>
+                        if (ViewBag.UserId == "abc@gmail.com")
+                        {
 
-                        @Html.ActionLink("Ban this user or change content", "BanUser/" + item.CommentID, "movies");
+                            @Html.ActionLink("DeleteComment", "DeleteComment", new { id = item.CommentID, movieID = item.MovieID })
+
+                            <nbsp> | </nbsp>
+
+                            @Html.ActionLink("Ban this user or change content", "BanUser/" + item.CommentID, "movies");
+
+                        }
 
                     }
 
                 }
-
-            }
-            @if (item.CommentReply != null)
-            {
-                foreach (var reply in item.CommentReply)
+                @if (item.CommentReply != null)
                 {
-                    <br />
-                    @Html.DisplayFor(model => reply.Content);
+                    foreach (var reply in item.CommentReply)
+                    {
+                        <br />
+                        @Html.DisplayFor(model => reply.Content);
 
+                    }
                 }
-            }
-        </dd>
+            </dd>
             <br />
         }
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
         <dt>
 
             New Comment
@@ -137,6 +143,11 @@
                 }
             }
 
+            else
+            {
+                <h2>Please log in first</h2>
+            }
+
 
 
 
@@ -153,3 +164,5 @@
 
     @Html.ActionLink("Back to List", "Index")
 </p>
+</body>
+</html>
