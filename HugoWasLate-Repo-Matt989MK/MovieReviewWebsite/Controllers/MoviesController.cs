@@ -380,6 +380,7 @@ namespace MovieReviewWebsite.Controllers
         // GET: Movies/Edit/5
         public ActionResult BanUser(int? id)
         {
+            ViewBag.UserId = User.Identity.Name;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
