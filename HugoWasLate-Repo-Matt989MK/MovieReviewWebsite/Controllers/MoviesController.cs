@@ -65,13 +65,15 @@ namespace MovieReviewWebsite.Controllers
         [HttpGet]
         public ActionResult Details(int? id)
         {
-
+           
+        
             Movie movie = db.Movies.Find(id);//
             List<Comment> lstComment = db.Comment.Where(c => c.MovieID == id).ToList();
             float averageRating = movie.Rating;
             int count = 1;
             foreach (Comment item in lstComment)
             {
+                //if (item.isBlocked) { bannedUsers.blockedUsers.Add(User.Identity.GetUserId().ToString()); }
                 CommentReply commentReply = new CommentReply();
                 List<CommentReply> lstCommentReply = new List<CommentReply>();
                 if (db.CommentReply.Where(c => c.CommentID == item.CommentID).ToList() != null)//
@@ -81,7 +83,7 @@ namespace MovieReviewWebsite.Controllers
                 averageRating += item.UserRating;
                 count++;
             }
-
+           
 
             if (id == null)
             {

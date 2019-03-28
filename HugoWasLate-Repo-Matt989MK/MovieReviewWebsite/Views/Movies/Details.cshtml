@@ -79,15 +79,28 @@
                 <br />
                 <br />
                 <br />
-
+        
+            @*@foreach(var item in Model.Comment)
+            {
+                //List<string> blockedUsers = new List<string>();
+                Model.
+                if (!item.isBlocked)
+                {
+                    //works
+                }else
+                {
+                    blockedUsers.Add(item.AuthorID);//works
+                }
+            }*@
+            @*@Html.TextBoxFor(model => model, new { style = "display: none;" });*@
 
                 <dt>Comment</dt>
 
                 <dd>
                     @foreach (var item in Model.Comment)
                     {
-
-
+                       
+                        
                         if (item.MovieID == Model.MovieID)
                         {
 
@@ -98,10 +111,7 @@
                             @Html.ActionLink("Reply", "CommentReply", new { id = item.MovieID, commentID = item.CommentID }, null)
                             if (ViewBag.UserId != null)
                             {
-                                @*if (ViewBag.UserId == item.User)
-                    {
-                        @Html.ActionLink("Edit", "Edit", new { id = item.MovieID })
-                    }*@
+                             
                                 if (ViewBag.UserId == "300fe04a-cd4f-4780-8963-fdc10b295bbd")
                                 {
                                 }
@@ -150,17 +160,32 @@
                     New Comment
                 </dt>
                 <dd>
-                    
+
                     @using (Html.BeginForm())
                     {
+                        bool isUserBanned = true;
+                        foreach (var item in Model.Comment)
+                        {
+                            if (item.isBlocked)
+                            {
+                                if (item.AuthorID == User.Identity.Name)
+                                {
+                                    isUserBanned = false;
+                                    return;
 
+                                }
+                            }
+                        }
+                        if (isUserBanned)
+                        {
+                            @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" });
+                            @Html.TextArea("NewComment", "");
+                            <nbsp>Rating</nbsp>
+                            @Html.TextArea("NewUserRating", "0.0", 1, 2, 0);
 
-                        @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" })
-                        @Html.TextArea("NewComment", "");
-                        <nbsp>Rating</nbsp>
-                        @Html.TextArea("NewUserRating", "0.0",1,2,0);
+                            <input type="submit" value="send" />
+                        }
 
-                        <input type="submit" value="send" />
 
                     }
                 </dd>
@@ -169,7 +194,7 @@
     </div>
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.MovieID }) |
-        @Html.ActionLink("Back to List", "Index")
+        @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" })
     </p>
 </body>
 </html>
