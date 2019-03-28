@@ -77,7 +77,7 @@
                     {
 
 
-                        if (ViewBag.UserId == "abc@gmail.com" || ViewBag.UserId == item.User)//admin
+                        if (ViewBag.UserId == "abc@gmail.com" || ViewBag.UserId == item.User.ToString())//admin
                         {
 
                             @Html.ActionLink("Edit", "Edit", new { id = item.MovieID })

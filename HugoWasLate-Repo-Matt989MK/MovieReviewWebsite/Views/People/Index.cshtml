@@ -40,7 +40,7 @@
             @if (ViewBag.UserId != "")
             {
 
-                if (ViewBag.UserId == "abc@gmail.com" || ViewBag.UserId == item.User)//admin
+                if (ViewBag.UserId == "abc@gmail.com" || ViewBag.UserId == item.User.ToString())//admin
                 {
                     @Html.ActionLink("Delete", "Delete", new { id = item.personID }) 
                     <nbsp> | </nbsp>
