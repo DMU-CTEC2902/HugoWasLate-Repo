@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 
 <html>
+<body>
 <h2>Details</h2>
 <div>
     <script>
@@ -14,7 +15,7 @@
             window.location = ""
         }
     </script>
-    <h4>Person</h4>
+    <h4>Movie</h4>
     <hr />
     <dl class="dl-horizontal">
 
@@ -123,7 +124,7 @@
               
             }
 
-        <dt>
+        @*<dt>
             New Comment
         </dt>
 
@@ -141,7 +142,7 @@
 
 
                         }
-                    </dd>
+                    </dd>*@
 
 
         </dl>
@@ -151,5 +152,5 @@
         @Html.ActionLink("Edit", "Edit", new { id = Model.MovieID }) |
         @Html.ActionLink("Back to List", "Index")
     </p>
-
+    </body>
 </html>
