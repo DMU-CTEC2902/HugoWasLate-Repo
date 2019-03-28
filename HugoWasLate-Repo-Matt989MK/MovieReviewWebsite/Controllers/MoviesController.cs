@@ -173,7 +173,8 @@ namespace MovieReviewWebsite.Controllers
             comment.PersonID = 1;
             float averageRating = movie.Rating;
             int count = 1;
-            comment.UserRating = float.Parse(Request.Params["NewUserRating"]);
+            float.TryParse(Request.Params["NewUserRating"], out float resulta);
+            comment.UserRating = resulta;
 
             if (comment.UserRating <= 10 && comment.UserRating >= 0.0)
             {
