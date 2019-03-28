@@ -2,6 +2,7 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Details";
 }
 
 <!DOCTYPE html>
@@ -107,6 +108,10 @@
                                 {
 
                                     @Html.ActionLink("DeleteComment", "DeleteComment", new { id = item.CommentID, movieID = item.MovieID })
+                                    <nbsp> | </nbsp>
+
+                                    @Html.ActionLink("Ban this user or change content", "BanUser", new { id = item.CommentID })
+
                                 }
 
                             }
@@ -197,7 +202,7 @@
             </dl>
     </div>
     <p>
-        @Html.ActionLink("back", "Details", new { id = Model.MovieID })
+        @Html.ActionLink("back", "index", new { id = Model.MovieID })
         @Html.ActionLink("Back to List", "Index")
     </p>
 </body>
