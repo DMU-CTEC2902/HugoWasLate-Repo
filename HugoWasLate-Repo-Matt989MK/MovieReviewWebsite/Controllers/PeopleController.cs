@@ -181,11 +181,12 @@ namespace MovieReviewWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "personID,personName,personSurname,dateOfBirth,movies,personRole,User")] Person person)
+        public ActionResult Create([Bind(Include = "personID,personName,personSurname,dateOfBirth,movies,personRole")] Person person)
         {
             if (ModelState.IsValid)
             {
                 db.People.Add(person);
+                person.User = User.Identity.Name;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -201,6 +202,7 @@ namespace MovieReviewWebsite.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Person person = db.People.Find(id);
+            person.User = User.Identity.Name;
             if (person == null)
             {
                 return HttpNotFound();
@@ -217,6 +219,7 @@ namespace MovieReviewWebsite.Controllers
         {
             if (ModelState.IsValid)
             {
+                person.User = User.Identity.Name;
                 db.Entry(person).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
