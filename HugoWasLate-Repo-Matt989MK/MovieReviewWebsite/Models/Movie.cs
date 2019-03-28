@@ -17,9 +17,9 @@ namespace MovieReviewWebsite.Models
         public virtual string MovieName { get; set; }
         [Required]
         public virtual string Description { get; set; }
-        // public virtual decimal Price { get; set; }
-        [Range(0, 10)]
-        
+        [RegularExpression(@"^\d+\.?\d{0,5}$")]
+        [Range(0,10)]
+        [Required]
         public virtual float Rating { get; set; }
         
         public virtual float AverageRating { get; set; }
