@@ -104,19 +104,36 @@
                 using (Html.BeginForm())
                 {
 
+                    bool isUserBanned = false;
+                    foreach (var item in Model.Comment)
+                    {
+                        if (item.isBlocked)
+                        {
+                            if (item.AuthorID == User.Identity.Name)
+                            {
+                                isUserBanned = true;
+                                //return;
 
-                    @Html.TextBoxFor(model => model.PostID, new { style = "display: none;" })
-                    @Html.TextArea("NewComment", "");
+                            }
+                        }
+                    }
+                    if (isUserBanned)
+                    {
+                        <h2>you are banned</h2>
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(model => model.PostID, new { style = "display: none;" })
+                        @Html.TextArea("NewComment", "");
+                        <input type="submit" value="send" />
+                    }
 
-
-                    <input type="submit" value="send" />
 
                 }
             }
-            else
-            {
-                <h2>Please log in first</h2>
-            }
+
+
+
 
 
 
