@@ -38,6 +38,7 @@ namespace MovieReviewWebsite.Controllers
                     lstCommentReply =db.CommentReply.Where(c => c.CommentID == item.CommentID).ToList();
                 }
                 }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
