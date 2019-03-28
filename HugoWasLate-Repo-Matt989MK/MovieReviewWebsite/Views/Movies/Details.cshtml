@@ -97,13 +97,17 @@
                             <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.AuthorID)</nbsp>
                             if (ViewBag.UserId != "")
                             {
-                            @Html.ActionLink("Reply", "CommentReply", new { id = item.MovieID, commentID = item.CommentID }, null)
+                                @Html.ActionLink("Reply", "CommentReply", new { id = item.MovieID, commentID = item.CommentID }, null)
 
 
                                 if (ViewBag.UserId == "abc@gmail.com")
                                 {
 
                                     @Html.ActionLink("DeleteComment", "DeleteComment", new { id = item.CommentID, movieID = item.MovieID })
+                                    <nbsp> | </nbsp>
+
+                                    @Html.ActionLink("Ban this user or change content", "BanUser", new { id = item.CommentID })
+
                                 }
 
                             }

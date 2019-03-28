@@ -77,6 +77,11 @@
                     {
 
                         @Html.ActionLink("DeleteComment", "DeleteComment", new { id = item.CommentID, movieID = item.MovieID })
+
+                        <nbsp> | </nbsp>
+
+                        @Html.ActionLink("Ban this user or change content", "BanUser/" + item.CommentID, "movies");
+
                     }
 
                 }
