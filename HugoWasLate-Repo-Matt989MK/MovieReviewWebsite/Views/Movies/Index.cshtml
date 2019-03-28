@@ -73,13 +73,13 @@
                     @Html.DisplayFor(modelItem => item.AverageRating)
                 </td>
                 <td>
-                    @if (ViewBag.UserId != null)
+                    @if (ViewBag.UserId != "")
                     {
                         if (ViewBag.UserId == item.User)
                         {
                             @Html.ActionLink("Edit", "Edit", new { id = item.MovieID })
                         }
-                        if (ViewBag.UserId == "300fe04a-cd4f-4780-8963-fdc10b295bbd")//admin
+                        if (ViewBag.UserId == "abc@gmail.com")//admin
                         {
                             @Html.ActionLink("Delete", "Delete", new { id = item.MovieID })
                         }

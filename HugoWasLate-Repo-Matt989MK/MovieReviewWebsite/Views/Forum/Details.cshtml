@@ -65,15 +65,15 @@
             {
 
 
-
-                <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
                 @Html.DisplayFor(Model => item.Content)
-                if (ViewBag.UserId != null)
+                <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.AuthorID)</nbsp>
+
+                if (ViewBag.UserId != "")
                 {
                     @Html.ActionLink("Reply", "CommentReply", new { id = item.MovieID, commentID = item.CommentID }, null)
 
 
-                    if (ViewBag.UserId == "300fe04a-cd4f-4780-8963-fdc10b295bbd")
+                    if (ViewBag.UserId == "abc@gmail.com")
                     {
 
                         @Html.ActionLink("DeleteComment", "DeleteComment", new { id = item.CommentID, movieID = item.MovieID })
@@ -99,7 +99,7 @@
             New Comment
         </dt>
         <dd>
-            @if (ViewBag.UserId != null)
+            @if (ViewBag.UserId != "")
             {
                 using (Html.BeginForm())
                 {

@@ -19,7 +19,7 @@ namespace MovieReviewWebsite.Controllers
         public ActionResult Index()
         {
 
-            ViewBag.UserId = User.Identity.GetUserId();//impletemnt
+            ViewBag.UserId = User.Identity.Name;//impletemnt
             return View(db.Forums.ToList());
         }
         [HttpGet]
@@ -27,7 +27,7 @@ namespace MovieReviewWebsite.Controllers
         public ActionResult Details(int? id)
         {
 
-            ViewBag.UserId = User.Identity.GetUserId();//impletemnt
+            ViewBag.UserId = User.Identity.Name;//impletemnt
             List<Comment> lstComment = db.Comment.Where(c => c.PersonID == id).ToList();
             foreach (Comment item in lstComment)
             {
@@ -81,7 +81,7 @@ namespace MovieReviewWebsite.Controllers
             commentReply.Content = Request.Params["NewReply"];
             commentReply.CommentID = commentID;
             commentReply.CommentReplyID = 2;
-            commentReply.AuthorID = User.Identity.GetUserId();
+            commentReply.AuthorID = User.Identity.Name;
             commentReply.PostID = 1;
             commentReply.PersonID = id;
             commentReply.MovieID = 0;
@@ -105,11 +105,11 @@ namespace MovieReviewWebsite.Controllers
         public ActionResult Details()
         {
 
-            ViewBag.UserId = User.Identity.GetUserId();//impletemnt
+            ViewBag.UserId = User.Identity.Name;//impletemnt
             int id = Convert.ToInt32(Request.Params["PostId"]);
             Comment comment = new Comment();
             comment.Content = Request.Params["NewComment"];
-            comment.AuthorID = User.Identity.GetUserId(); 
+            comment.AuthorID = User.Identity.Name; 
             comment.PostID = 1;
             comment.PersonID = id;
             comment.MovieID = 1;
@@ -141,7 +141,7 @@ namespace MovieReviewWebsite.Controllers
         public ActionResult Create()
         {
 
-            ViewBag.UserId = User.Identity.GetUserId();//impletemnt
+            ViewBag.UserId = User.Identity.Name;//impletemnt
             return View();
         }
 
@@ -218,6 +218,33 @@ namespace MovieReviewWebsite.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        // GET: Movies/Delete/5
+        public ActionResult DeleteComment(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Comment comment = db.Comment.Find(id);
+            if (comment == null)
+            {
+                return HttpNotFound();
+            }
+            return View(comment);
+        }
+
+        // POST: Movies/Delete/5
+        [HttpPost, ActionName("DeleteComment")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteCommentConfirmed(int id, int movieID)
+        {
+            Comment comment = db.Comment.Find(id);
+            db.Comment.Remove(comment);
+            db.SaveChanges();
+            return RedirectToAction("Details/" + movieID);
+        }
+
 
         protected override void Dispose(bool disposing)
         {
