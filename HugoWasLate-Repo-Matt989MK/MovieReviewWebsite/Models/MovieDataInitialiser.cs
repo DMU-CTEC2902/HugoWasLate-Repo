@@ -194,7 +194,7 @@ namespace MovieReviewWebsite.Models
             Comment com2 = new Comment();
             com2.CommentID = 2;
             com2.AuthorID = "1";
-            com2.Content = " 2 So talented! ";
+            com2.Content = "  So talented! ";
             com2.PersonID = 2;
             com2.MovieID = 1;
             com2.PostID = 1;
@@ -205,7 +205,7 @@ namespace MovieReviewWebsite.Models
             Comment com3 = new Comment();
             com3.CommentID = 3;
             com3.AuthorID = "testing@gmail.com";
-            com3.Content = " 3 So GOOD! ";
+            com3.Content = "  So GOOD! ";
             com3.PersonID = 2;
             com3.MovieID = 2;
             com3.PostID = 1;
@@ -216,7 +216,7 @@ namespace MovieReviewWebsite.Models
             Comment com4 = new Comment();
             com4.CommentID = 4;
             com4.AuthorID = "1";
-            com4.Content = "4 So BADDD! ";
+            com4.Content = " So BADDD! ";
             com4.PersonID = 1;
             com4.MovieID = 1;
             com4.PostID = 1;
