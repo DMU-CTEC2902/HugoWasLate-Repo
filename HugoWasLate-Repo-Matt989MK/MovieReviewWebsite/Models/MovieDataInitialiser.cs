@@ -229,7 +229,7 @@ namespace MovieReviewWebsite.Models
 
             Forum foru1 = new Forum();
             foru1.PostID = 1;
-            foru1.UserID = 1;
+            foru1.UserID = "1";
             foru1.Title = "check this movie";
             foru1.PostTime = new DateTime(2028, 2, 14, 8, 30, 50);
             foru1.Content = "I think this movie is the best";
@@ -238,7 +238,7 @@ namespace MovieReviewWebsite.Models
 
             Forum foru2 = new Forum();
             foru2.PostID = 2;
-            foru2.UserID = 2;
+            foru2.UserID = "2";
             foru2.Title = "check this aksjdnakjsdh movie";
             foru2.PostTime = new DateTime(2128, 12, 4, 8, 30, 50);
             foru2.Content = "I think this movie is the sadasdasdas best";
