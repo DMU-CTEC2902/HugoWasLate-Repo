@@ -181,7 +181,7 @@ namespace MovieReviewWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "personID,personName,personSurname,dateOfBirth,movies,personRole")] Person person)
+        public ActionResult Create([Bind(Include = "personID,personName,personSurname,dateOfBirth,movies,personRole,User")] Person person)
         {
             if (ModelState.IsValid)
             {

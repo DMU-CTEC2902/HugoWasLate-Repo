@@ -17,6 +17,7 @@ namespace MovieReviewWebsite.Models
             cat1.personSurname = "fsafsa";
             cat1.dateOfBirth = new DateTime(2008, 5, 1, 8, 30, 52);
             cat1.personRole = "Actor";
+            cat1.User = "1";
             context.People.Add(cat1);
 
             Person cat2 = new Person();
@@ -24,7 +25,7 @@ namespace MovieReviewWebsite.Models
             cat2.personName = "hugo";
             cat2.personSurname = "HO";
             cat2.dateOfBirth = new DateTime(2028, 3, 4, 8, 30, 52);
-
+            cat2.User = "1";
             cat2.personRole = "Director";
             context.People.Add(cat2);
 
@@ -34,7 +35,7 @@ namespace MovieReviewWebsite.Models
             p1.personName = "Bob";
             p1.personSurname = "Marley";
             p1.dateOfBirth = new DateTime(2008, 5, 1, 8, 30, 52);
-
+            p1.User = "1";
             p1.personRole = "Actor";
             context.People.Add(p1);
 
@@ -44,6 +45,7 @@ namespace MovieReviewWebsite.Models
             p2.personSurname = "HO";
             p2.dateOfBirth = new DateTime(2028, 3, 4, 8, 30, 52);
             p2.personRole = "Director";
+            p2.User = "1";
             context.People.Add(p2);
 
 
