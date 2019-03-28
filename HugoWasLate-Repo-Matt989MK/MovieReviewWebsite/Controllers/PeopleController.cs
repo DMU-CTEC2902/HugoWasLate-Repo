@@ -92,7 +92,7 @@ namespace MovieReviewWebsite.Controllers
             int id = Convert.ToInt32(Request.Params["PersonId"]);
             int commentID = Convert.ToInt32(Request.Params["CommentID"]);
             CommentReply commentReply = new CommentReply();
-            commentReply.Content = Request.Params["Comment"];
+            commentReply.Content = Request.Params["NewReply"];
             commentReply.CommentID = commentID;
             commentReply.CommentReplyID = 2;
             commentReply.AuthorID = User.Identity.GetUserId(); ;
@@ -127,7 +127,7 @@ namespace MovieReviewWebsite.Controllers
             ViewBag.UserId = User.Identity.GetUserId();//impletemnt
             int id = Convert.ToInt32(Request.Params["PersonId"]);
             Comment comment = new Comment();
-            comment.Content = Request.Params["Comment"];
+            comment.Content = Request.Params["NewComment"];
             comment.AuthorID = User.Identity.GetUserId();
             comment.PostID = 1;
             comment.PersonID = id;

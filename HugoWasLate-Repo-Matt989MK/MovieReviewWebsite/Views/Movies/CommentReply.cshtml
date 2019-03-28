@@ -92,16 +92,6 @@
 
                         }
 
-                        @*@using (Html.BeginForm())
-                        {
-                            @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" })
-                            @Html.TextArea("NewReply", "")
-
-
-                            <input type="submit" value="reply" onclick="ReirectToPeopleDetails()" />
-                        }*@
-
-                        @*@Html.DisplayFor(Model => item.Content)*@
                         @Html.ActionLink("Reply", "CommentReply", new { id = item.PersonID, commentID = item.CommentID }, null)
                     </dd>
 
@@ -124,25 +114,6 @@
               
             }
 
-        @*<dt>
-            New Comment
-        </dt>
-
-
-                    <dd>
-                        @using (Html.BeginForm())
-                        {
-
-                            @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" })
-
-
-                            @Html.TextArea("NewComment", "")
-
-                            <input type="submit" value="send" />
-
-
-                        }
-                    </dd>*@
 
 
         </dl>
