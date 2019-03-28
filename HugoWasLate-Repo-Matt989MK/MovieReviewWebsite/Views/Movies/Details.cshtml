@@ -79,20 +79,7 @@
                 <br />
                 <br />
                 <br />
-        
-            @*@foreach(var item in Model.Comment)
-            {
-                //List<string> blockedUsers = new List<string>();
-                Model.
-                if (!item.isBlocked)
-                {
-                    //works
-                }else
-                {
-                    blockedUsers.Add(item.AuthorID);//works
-                }
-            }*@
-            @*@Html.TextBoxFor(model => model, new { style = "display: none;" });*@
+
 
                 <dt>Comment</dt>
 
@@ -160,18 +147,10 @@
                     New Comment
                 </dt>
                 <dd>
-
-                    @using (Html.BeginForm())
+                    @if (ViewBag.UserId != null)
                     {
-                        bool isUserBanned = true;
-                        foreach (var item in Model.Comment)
+                        using (Html.BeginForm())
                         {
-                            if (item.isBlocked)
-                            {
-                                if (item.AuthorID == User.Identity.Name)
-                                {
-                                    isUserBanned = false;
-                                    return;
 
                                 }
                             }
@@ -187,7 +166,15 @@
                         }
 
 
+                        }
                     }
+                    else
+                    {
+                        <h2>Please log in first</h2>
+                    }
+
+
+
                 </dd>
 
             </dl>

@@ -17,7 +17,7 @@
 
 <body>
 
-    
+
     @if (ViewBag.UserId == null)
     {
         <h2>Please Log in first</h2>
@@ -83,10 +83,11 @@
             </div>
 
         }
-        <div>
-            @Html.ActionLink("Back to List", "Index")
-        </div>
     }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
 
 
 </body>

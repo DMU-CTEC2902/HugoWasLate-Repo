@@ -5,6 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+
+
 <h2>Details</h2>
 
 <div>
@@ -12,11 +21,11 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.PersonID)
+            @Html.DisplayNameFor(model => model.UserID)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PersonID)
+            @Html.DisplayFor(model => model.UserID)
         </dd>
 
         <dt>
@@ -52,40 +61,53 @@
         @foreach (var item in Model.Comment)
         {
             <dd>
-            @if (item.PostID == Model.PostID)
-            {
-               
-                 
+                @if (item.PostID == Model.PostID)
+                {
+
+
                     <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
                     @Html.DisplayFor(Model => item.Content)
                     @Html.ActionLink("Reply", "CommentReply", new { id = item.PersonID, commentID = item.CommentID }, null)
-                
-            }
-            @if (item.CommentReply != null)
-            {
-                foreach (var reply in item.CommentReply)
-                {
-                    <br />
-                    @Html.DisplayFor(model => reply.Content);
 
                 }
-            }
+                @if (item.CommentReply != null)
+                {
+                    foreach (var reply in item.CommentReply)
+                    {
+                        <br />
+                        @Html.DisplayFor(model => reply.Content);
+
+                    }
+                }
             </dd>
             <br />
         }
+        <dt>
+
+            New Comment
+        </dt>
         <dd>
-            @using (Html.BeginForm())
+            @if (ViewBag.UserId != null)
             {
-
-                @Html.TextBoxFor(model => model.PostID, new { style = "display: none;" })
-
-
-                @Html.TextArea("Comment", "")
-
-                <input type="submit" value="send" />
+                using (Html.BeginForm())
+                {
 
 
+                    @Html.TextBoxFor(model => model.PostID, new { style = "display: none;" })
+                    @Html.TextArea("NewComment", "");
+
+
+                    <input type="submit" value="send" />
+
+                }
             }
+            else
+            {
+                <h2>Please log in first</h2>
+            }
+
+
+
         </dd>
 
 
@@ -93,7 +115,7 @@
     </dl>
 </div>
 <p>
-   
+
 
     @Html.ActionLink("Back to List", "Index")
 </p>

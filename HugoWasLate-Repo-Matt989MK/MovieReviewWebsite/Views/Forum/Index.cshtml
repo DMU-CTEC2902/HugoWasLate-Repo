@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<MovieReviewWebsite.Models.Forum>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Forum";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -13,7 +13,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.PersonID)
+            @Html.DisplayNameFor(model => model.UserID)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Title)
@@ -31,7 +31,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.PersonID)
+            @Html.DisplayFor(modelItem => item.UserID)
         </td>
         <td>
             @*@Html.DisplayFor(modelItem => item.Title)*@
@@ -48,7 +48,7 @@
         <td>
             @if (ViewBag.UserId != null)
             {
-                if (ViewBag.UserId == item.User)
+                if (ViewBag.UserId == item.UserID.ToString())
                 {
                     @Html.ActionLink("Edit", "Edit", new { id = item.PostID })
                 }
