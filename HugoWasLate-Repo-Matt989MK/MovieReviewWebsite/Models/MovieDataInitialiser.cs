@@ -17,6 +17,7 @@ namespace MovieReviewWebsite.Models
             cat1.personSurname = "fsafsa";
             cat1.dateOfBirth = new DateTime(2008, 5, 1, 8, 30, 52);
             cat1.personRole = "Actor";
+            cat1.User = "1";
             context.People.Add(cat1);
 
             Person cat2 = new Person();
@@ -24,7 +25,7 @@ namespace MovieReviewWebsite.Models
             cat2.personName = "hugo";
             cat2.personSurname = "HO";
             cat2.dateOfBirth = new DateTime(2028, 3, 4, 8, 30, 52);
-
+            cat2.User = "1";
             cat2.personRole = "Director";
             context.People.Add(cat2);
 
@@ -34,7 +35,7 @@ namespace MovieReviewWebsite.Models
             p1.personName = "Bob";
             p1.personSurname = "Marley";
             p1.dateOfBirth = new DateTime(2008, 5, 1, 8, 30, 52);
-
+            p1.User = "1";
             p1.personRole = "Actor";
             context.People.Add(p1);
 
@@ -44,6 +45,7 @@ namespace MovieReviewWebsite.Models
             p2.personSurname = "HO";
             p2.dateOfBirth = new DateTime(2028, 3, 4, 8, 30, 52);
             p2.personRole = "Director";
+            p2.User = "1";
             context.People.Add(p2);
 
 
@@ -54,6 +56,8 @@ namespace MovieReviewWebsite.Models
             prod1.Description = "Animated movie";
             prod1.CategoryName = "Horror";
             prod1.Rating = 3.0f;
+            prod1.User = "1";
+            prod1.People = new List<Person>();
             context.Movies.Add(prod1);
 
             Movie prod3 = new Movie();
@@ -62,6 +66,7 @@ namespace MovieReviewWebsite.Models
             prod3.Description = "Animal Documentary";
             prod3.CategoryName = "Romance";
             prod3.Rating = 10.0f;
+            prod3.User = "2";
             prod3.People = new List<Person>();
             context.Movies.Add(prod3);
 
@@ -72,6 +77,8 @@ namespace MovieReviewWebsite.Models
             prod2.Description = "More terrible car wrecks";
             prod2.CategoryName = "Comedy";
             prod2.Rating = 7.0f;
+            prod2.User = "1";
+            prod2.People = new List<Person>();
             context.Movies.Add(prod2);
 
             Movie prod4 = new Movie();
@@ -80,6 +87,8 @@ namespace MovieReviewWebsite.Models
             prod4.Description = "Movie with all marvel heroes";
             prod4.CategoryName = "Action";
             prod4.Rating = 10f;
+            prod4.User = "1";
+            prod4.People = new List<Person>();
             context.Movies.Add(prod4);
 
             Movie prod5 = new Movie();
@@ -88,6 +97,8 @@ namespace MovieReviewWebsite.Models
             prod5.Description = "2nd Movie with all marvel heroes";
             prod5.CategoryName = "Action";
             prod5.Rating = 9f;
+            prod5.User = "1";
+            prod5.People = new List<Person>();
             context.Movies.Add(prod5);
 
             Movie prod6 = new Movie();
@@ -96,6 +107,8 @@ namespace MovieReviewWebsite.Models
             prod6.Description = "Romance movie with Di Caprio";
             prod6.CategoryName = "Romance";
             prod6.Rating = 5f;
+            prod6.User = "1";
+            prod6.People = new List<Person>();
             context.Movies.Add(prod6);
 
             Movie prod7 = new Movie();
@@ -104,6 +117,8 @@ namespace MovieReviewWebsite.Models
             prod7.Description = "Scary movie prequel of The Conjuring";
             prod7.CategoryName = "Horror";
             prod7.Rating = 10f;
+            prod7.User = "1";
+            prod7.People = new List<Person>();
             context.Movies.Add(prod7);
 
             Movie prod8 = new Movie();
@@ -112,6 +127,8 @@ namespace MovieReviewWebsite.Models
             prod8.Description = "Oscar nominated, movie about teacher giving top grades to students";
             prod8.CategoryName = "Comedy";
             prod8.Rating = 10f;
+            prod8.User = "1";
+            prod8.People = new List<Person>();
             context.Movies.Add(prod8);
             //----------------------------------------- MOVIEPERSON
             MoviePerson mp = new MoviePerson();
@@ -212,7 +229,7 @@ namespace MovieReviewWebsite.Models
 
             Forum foru1 = new Forum();
             foru1.PostID = 1;
-            foru1.UserID = 1;
+            foru1.UserID = "1";
             foru1.Title = "check this movie";
             foru1.PostTime = new DateTime(2028, 2, 14, 8, 30, 50);
             foru1.Content = "I think this movie is the best";
@@ -221,7 +238,7 @@ namespace MovieReviewWebsite.Models
 
             Forum foru2 = new Forum();
             foru2.PostID = 2;
-            foru2.UserID = 2;
+            foru2.UserID = "2";
             foru2.Title = "check this aksjdnakjsdh movie";
             foru2.PostTime = new DateTime(2128, 12, 4, 8, 30, 50);
             foru2.Content = "I think this movie is the sadasdasdas best";

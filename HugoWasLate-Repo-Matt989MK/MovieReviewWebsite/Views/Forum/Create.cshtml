@@ -15,7 +15,7 @@
 
 <h2>Create</h2>
 <body>
-@if (ViewBag.UserId == null)
+@if (ViewBag.UserId == "")
 {
     <h2>Please log in first</h2>
 }
@@ -30,15 +30,7 @@ else
         <h4>Forum</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.UserID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UserID, new { htmlAttributes = new { @class = "form-control" } })
-                @*@Html.EditorFor(model => model.UserID, ViewBag.UserId);*@
-                @*//@Html.EditorFor(model => model.UserID, new { htmlAttributes = new { @class = "form-control" } })*@
-                @Html.ValidationMessageFor(model => model.UserID, "", new { @class = "text-danger" })
-            </div>
-        </div>
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -47,7 +39,7 @@ else
                 @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        mm/dd/yyyy
         <div class="form-group">
             @Html.LabelFor(model => model.PostTime, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">

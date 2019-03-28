@@ -111,26 +111,48 @@
                 New Comment
             </dt>
             <dd>
-
-                @using (Html.BeginForm())
+                @if (ViewBag.UserId != "")
                 {
-
-                    if (ViewBag.UserId != "")
+                    using (Html.BeginForm())
                     {
-                        @Html.TextBoxFor(model => model.personID, new { style = "display: none;" })
-                        @Html.TextArea("NewComment", "");
-                        <input type="submit" value="send" />
+
+                        bool isUserBanned = false;
+                        foreach (var item in Model.Comment)
+                        {
+                            if (item.isBlocked)
+                            {
+                                if (item.AuthorID == User.Identity.Name)
+                                {
+                                    isUserBanned = true;
+                                    //return;
+
+                                }
+                            }
+                        }
+                        if (isUserBanned)
+                        {
+                            <h2>you are banned</h2>
+                        }
+                        else
+                        {
+                            @Html.TextBoxFor(model => model.personID, new { style = "display: none;" })
+                            @Html.TextArea("NewComment", "");
+                            <input type="submit" value="send" />
+                        }
 
                     }
-                    else
-                    {
-                        <h2>Please log in first</h2>
-                    }
-
-
-
-
                 }
+                else
+                {
+                    <h2>Please log in first</h2>
+                }
+
+
+
+
+
+
+
             </dd>
 
         </dl>

@@ -27,28 +27,28 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-           
+
             @Html.ActionLink(item.personName + " " + item.personSurname, "Details", "People", new { id = item.personID }, null)
 
         </td>
-              
-        
+
+
         <td>
             @Html.DisplayFor(modelItem => item.personRole)
         </td>
         <td>
             @if (ViewBag.UserId != "")
             {
-                if (ViewBag.UserId == item.User)
+
+                if (ViewBag.UserId == "abc@gmail.com" || ViewBag.UserId == item.User.ToString())//admin
                 {
+                    @Html.ActionLink("Delete", "Delete", new { id = item.personID }) 
+                    <nbsp> | </nbsp>
                     @Html.ActionLink("Edit", "Edit", new { id = item.personID })
-                }
-                if (ViewBag.UserId == "abc@gmail.com")
-                {
-                    @Html.ActionLink("Delete", "Delete", new { id = item.personID })
                 }
 
             }
+
         </td>
     </tr>
 }

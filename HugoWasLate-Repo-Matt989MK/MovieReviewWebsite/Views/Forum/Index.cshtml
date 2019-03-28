@@ -48,12 +48,13 @@
         <td>
             @if (ViewBag.UserId != "")
             {
-                if (ViewBag.UserId == item.UserID.ToString())
+                
+                if (ViewBag.UserId == "abc@gmail.com" || ViewBag.UserId == item.UserID.ToString())//admin
                 {
+
                     @Html.ActionLink("Edit", "Edit", new { id = item.PostID })
-                }
-                if (ViewBag.UserId == "abc@gmail.com")
-                {
+
+                    <nbsp> | </nbsp>
                     @Html.ActionLink("Delete", "Delete", new { id = item.PostID })
                 }
 

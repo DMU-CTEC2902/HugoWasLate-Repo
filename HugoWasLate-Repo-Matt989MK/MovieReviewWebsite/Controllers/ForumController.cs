@@ -150,10 +150,12 @@ namespace MovieReviewWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PostID,PersonID,Title,PostTime,Content,User")] Forum forum)
+        public ActionResult Create([Bind(Include = "PostID,PersonID,Title,PostTime,Content")] Forum forum)
         {
             if (ModelState.IsValid)
             {
+
+                forum.UserID = User.Identity.Name;
                 db.Forums.Add(forum);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -170,6 +172,7 @@ namespace MovieReviewWebsite.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Forum forum = db.Forums.Find(id);
+            forum.UserID = User.Identity.Name;
             if (forum == null)
             {
                 return HttpNotFound();
@@ -186,6 +189,8 @@ namespace MovieReviewWebsite.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                forum.UserID = User.Identity.Name;
                 db.Entry(forum).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
