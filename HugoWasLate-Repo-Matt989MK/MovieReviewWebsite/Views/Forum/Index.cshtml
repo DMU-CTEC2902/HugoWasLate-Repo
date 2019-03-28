@@ -34,7 +34,7 @@
             @Html.DisplayFor(modelItem => item.UserID)
         </td>
         <td>
-            @*@Html.DisplayFor(modelItem => item.Title)*@
+           
             @Html.ActionLink(item.Title, "Details", new { id = item.PostID })
 
         </td>
@@ -49,7 +49,7 @@
             @if (ViewBag.UserId != "")
             {
                 
-                if (ViewBag.UserId == "abc@gmail.com" || ViewBag.UserId == item.UserID.ToString())//admin
+                if (ViewBag.UserId == "abc@gmail.com" || ViewBag.UserId == item.UserID.ToString())//admin or the person that created the post
                 {
 
                     @Html.ActionLink("Edit", "Edit", new { id = item.PostID })

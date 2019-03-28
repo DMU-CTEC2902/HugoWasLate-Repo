@@ -17,7 +17,7 @@ namespace MovieReviewWebsite.Models
         public virtual string MovieName { get; set; }
         [Required]
         public virtual string Description { get; set; }
-        [RegularExpression(@"^\d+\.?\d{0,5}$")]
+        [RegularExpression(@"^\d+\.?\d{0,5}$")]//getting only numbers, no characters
         [Range(0,10)]
         [Required]
         public virtual float Rating { get; set; }

@@ -62,7 +62,7 @@
         @foreach (var item in Model.Comment)
         {
             <dd>
-                @if (item.PostID == Model.PostID)
+                @if (item.PostID == Model.PostID)//check if post id is the same in comment post id
                 {
 
 
@@ -71,16 +71,16 @@
 
                     if (ViewBag.UserId != "")
                     {
-                        @Html.ActionLink("Reply", "CommentReply", new { id = item.PostID, commentID = item.CommentID }, null)
+                        @Html.ActionLink("Reply", "CommentReply", new { id = item.PostID, commentID = item.CommentID }, null)//reply comment redirect
 
 
-                        if (ViewBag.UserId == "abc@gmail.com")
+                        if (ViewBag.UserId == "abc@gmail.com")//if userID is equal to the admin email
                         {
-
+                            //redirect to delete comment
                             @Html.ActionLink("DeleteComment", "DeleteComment", new { id = item.CommentID, movieID = item.MovieID })
 
                             <nbsp> | </nbsp>
-
+                            //redirect to banning user
                             @Html.ActionLink("Ban this user or change content", "BanUser/" + item.CommentID, "movies");
 
                         }
@@ -115,14 +115,14 @@
                 using (Html.BeginForm())
                 {
 
-                    bool isUserBanned = false;
+                    bool isUserBanned = false; // user is not banned by default
                     foreach (var item in Model.Comment)
                     {
-                        if (item.isBlocked)
+                        if (item.isBlocked) //if the comment's property isBlocked
                         {
-                            if (item.AuthorID == User.Identity.Name)
+                            if (item.AuthorID == User.Identity.Name) //check if the author is the person logged in now 
                             {
-                                isUserBanned = true;
+                                isUserBanned = true; // if it is trigger isUserBanned
                                 //return;
 
                             }
@@ -130,7 +130,7 @@
                     }
                     if (isUserBanned)
                     {
-                        <h2>you are banned</h2>
+                        <h2>you are banned</h2> //display this instead of comment box
                     }
                     else
                     {
@@ -145,7 +145,7 @@
 
             else
             {
-                <h2>Please log in first</h2>
+                <h2>Please log in first</h2>//if not logged in display this instead of comment box
             }
 
 
