@@ -50,5 +50,18 @@ namespace MovieReviewWebsite.Tests.Controllers
             // Assert
             Assert.IsNotNull(result);
         }
+
+        [TestMethod]
+        public void Movie()
+        {
+            // Arrange
+            HomeController controller = new HomeController();
+
+            // Act
+            ViewResult result = controller.Movie() as ViewResult;
+
+            // Assert
+            Assert.AreEqual("Movie review page", result.ViewBag.Message);
+        }
     }
 }

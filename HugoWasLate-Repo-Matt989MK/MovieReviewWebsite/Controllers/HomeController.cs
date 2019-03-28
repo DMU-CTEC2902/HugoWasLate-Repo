@@ -26,5 +26,12 @@ namespace MovieReviewWebsite.Controllers
 
             return View();
         }
+
+        public ActionResult Movie()
+        {
+
+            ViewBag.Message = "Movie review page";
+            return View();
+        }
     }
 }
