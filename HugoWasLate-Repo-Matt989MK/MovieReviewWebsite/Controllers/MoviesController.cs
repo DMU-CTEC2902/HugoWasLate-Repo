@@ -397,7 +397,7 @@ namespace MovieReviewWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult BanUser([Bind(Include = "CommentID,AuthorID,PersonID,MovieID,Content,UserRating,isBlocked")] Comment comment)
+        public ActionResult BanUser([Bind(Include = "CommentID,AuthorID,PersonID,MovieID,PostID,Content,UserRating,isBlocked")] Comment comment)
         {
             if (ModelState.IsValid)
             {

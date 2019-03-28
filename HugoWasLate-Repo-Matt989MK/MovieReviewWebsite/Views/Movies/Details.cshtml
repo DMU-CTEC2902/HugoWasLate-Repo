@@ -153,29 +153,31 @@
                     {
                         using (Html.BeginForm())
                         {
-                            <h2>get banned</h2>
-                            bool isUserBanned = true;
+
+                            bool isUserBanned = false;
                             foreach (var item in Model.Comment)
                             {
                                 if (item.isBlocked)
                                 {
                                     if (item.AuthorID == User.Identity.Name)
                                     {
-                                        isUserBanned = false;
-                                        return;
+                                        isUserBanned = true;
+                                        //return;
 
                                     }
                                 }
                             }
                             if (isUserBanned)
                             {
-                            @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" })
-                            @Html.TextArea("NewComment", "");
-                            <nbsp>Rating</nbsp>
-                            @Html.TextArea("NewUserRating", "0.0", 1, 2, 0);
-
-                            <input type="submit" value="send" />
-                            }
+                                <h2>get banned</h2>
+                            } else {
+                                @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" })
+                                 @Html.TextArea("NewComment", "");
+                                <nbsp> Rating </nbsp>
+                                @Html.TextArea("NewUserRating", "0.0", 1, 2, 0);
+                                
+                                <input type = "submit" value = "send" />
+                             }
                         }
                     }
                     else
