@@ -204,12 +204,12 @@ namespace MovieReviewWebsite.Models
 
             Comment com3 = new Comment();
             com3.CommentID = 3;
-            com3.AuthorID = "abc@gmail.com";
+            com3.AuthorID = "testing@gmail.com";
             com3.Content = " 3 So GOOD! ";
             com3.PersonID = 2;
-            com3.MovieID = 1;
+            com3.MovieID = 2;
             com3.PostID = 1;
-            com3.isBlocked = false; ;
+            com3.isBlocked = true; 
             com3.UserRating = 4.0f;
             context.Comment.Add(com3);
 

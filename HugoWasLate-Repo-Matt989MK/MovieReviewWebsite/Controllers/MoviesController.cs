@@ -68,6 +68,18 @@ namespace MovieReviewWebsite.Controllers
         {
             ViewBag.UserId = User.Identity.Name;//impletemnt
             Movie movie = db.Movies.Find(id);//
+
+            List<Comment> Allcomment = db.Comment.ToList();
+            ViewBag.isban = false;
+            foreach (Comment test in Allcomment)
+            {
+
+                if (test.isBlocked == true && User.Identity.Name == test.AuthorID)
+                {
+                    ViewBag.isban = true;
+                }
+            }
+
             List<Comment> lstComment = db.Comment.Where(c => c.MovieID == id).ToList();
             float averageRating = movie.Rating;
             int count = 1;

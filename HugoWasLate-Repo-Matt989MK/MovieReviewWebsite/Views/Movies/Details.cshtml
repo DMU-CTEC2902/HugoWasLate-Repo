@@ -99,7 +99,7 @@
                             @Html.DisplayFor(Model => item.Content)
 
                             <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.AuthorID)</nbsp>
-                            if (ViewBag.UserId != "")
+                            if (ViewBag.UserId != "" )
                             {
                                 @Html.ActionLink("Reply", "CommentReply", new { id = item.MovieID, commentID = item.CommentID }, null)
 
@@ -175,7 +175,7 @@
                                     }
                                 }
                             }
-                            if (isUserBanned)
+                            if (isUserBanned == true || ViewBag.isban == true)
                             {
                                 <h2>you are banned</h2>
                             }

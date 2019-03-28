@@ -28,6 +28,16 @@ namespace MovieReviewWebsite.Controllers
         {
 
             ViewBag.UserId = User.Identity.Name;//impletemnt
+            ViewBag.isban = false;
+            List<Comment> Allcomment = db.Comment.ToList();
+            foreach (Comment test in Allcomment)
+            {
+
+                if (test.isBlocked == true && User.Identity.Name == test.AuthorID)
+                {
+                    ViewBag.isban = true;
+                }
+            }
             List<Comment> lstComment = db.Comment.Where(c => c.PersonID == id).ToList();
                 foreach(Comment item in lstComment)
                 {
