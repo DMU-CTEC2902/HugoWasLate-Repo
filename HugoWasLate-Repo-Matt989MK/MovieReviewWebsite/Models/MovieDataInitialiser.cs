@@ -192,7 +192,7 @@ namespace MovieReviewWebsite.Models
             com3.PersonID = 2;
             com3.MovieID = 1;
             com3.PostID = 1;
-            com3.isBlocked = true; ;
+            com3.isBlocked = false; ;
             com3.UserRating = 4.0f;
             context.Comment.Add(com3);
 
