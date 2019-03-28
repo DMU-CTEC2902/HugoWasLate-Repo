@@ -147,35 +147,36 @@
                     New Comment
                 </dt>
                 <dd>
-                    @if (ViewBag.UserId != null)
-                    {
-                        using (Html.BeginForm())
+                    @using (Html.BeginForm()) { }
+                        @if (ViewBag.UserId != null)
                         {
+                            using (Html.BeginForm())
+                            {
 
-                                }
                             }
+                        }
                         }
                         if (isUserBanned)
                         {
-                            @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" });
-                            @Html.TextArea("NewComment", "");
-                            <nbsp>Rating</nbsp>
-                            @Html.TextArea("NewUserRating", "0.0", 1, 2, 0);
+                        @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" });
+                        @Html.TextArea("NewComment", "");
+                        <nbsp>Rating</nbsp>
+                        @Html.TextArea("NewUserRating", "0.0", 1, 2, 0);
 
-                            <input type="submit" value="send" />
+                        <input type="submit" value="send" />
                         }
 
 
                         }
-                    }
-                    else
-                    {
+                        }
+                        else
+                        {
                         <h2>Please log in first</h2>
-                    }
+                        }
 
 
 
-                </dd>
+                    </dd>
 
             </dl>
     </div>
