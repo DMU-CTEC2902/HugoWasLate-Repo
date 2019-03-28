@@ -302,6 +302,8 @@
     <Content Include="Views\Movies\DeleteComment.cshtml" />
     <Content Include="Views\People\DeleteComment.cshtml" />
     <Content Include="Views\Movies\AddPeopleToMovie.cshtml" />
+    <Content Include="Views\Forum\DeleteComment.cshtml" />
+    <Content Include="Views\Movies\BanUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

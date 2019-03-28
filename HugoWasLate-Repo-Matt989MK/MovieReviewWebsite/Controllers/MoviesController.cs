@@ -20,7 +20,7 @@ namespace MovieReviewWebsite.Controllers
         public ActionResult Index(string CategoryName, string Rating)
         {
             
-            ViewBag.UserId = User.Identity.GetUserId();//impletemnt
+            ViewBag.UserId = User.Identity.Name;//impletemnt
             
             List<Movie> lstMovies = new List<Movie>();
             if (CategoryName == "Any" || CategoryName == null)
@@ -66,7 +66,7 @@ namespace MovieReviewWebsite.Controllers
         [HttpGet]
         public ActionResult Details(int? id)
         {
-            ViewBag.UserId = User.Identity.GetUserId();//impletemnt
+            ViewBag.UserId = User.Identity.Name;//impletemnt
             Movie movie = db.Movies.Find(id);//
             List<Comment> lstComment = db.Comment.Where(c => c.MovieID == id).ToList();
             float averageRating = movie.Rating;
@@ -137,7 +137,7 @@ namespace MovieReviewWebsite.Controllers
             commentReply.Content = Request.Params["NewReply"];
             commentReply.CommentID = commentID;
             //commentReply.CommentReplyID = 2;
-            commentReply.AuthorID = User.Identity.GetUserId();
+            commentReply.AuthorID = User.Identity.Name;
             commentReply.PostID = 0;
             commentReply.PersonID = 0;
             commentReply.MovieID = id;
@@ -162,12 +162,12 @@ namespace MovieReviewWebsite.Controllers
         public ActionResult Details()
         {
 
-            ViewBag.UserId = User.Identity.GetUserId();//impletemnt
+            ViewBag.UserId = User.Identity.Name;//impletemnt
             int id = Convert.ToInt32(Request.Params["MovieID"]);
             Movie movie = db.Movies.Find(id);//
             Comment comment = new Comment();
             comment.Content = Request.Params["NewComment"];
-            comment.AuthorID = User.Identity.GetUserId();
+            comment.AuthorID = User.Identity.Name;
             comment.PostID = 1;
             comment.MovieID = id;
             comment.PersonID = 1;
@@ -222,7 +222,7 @@ namespace MovieReviewWebsite.Controllers
         public ActionResult Create()
         {
 
-            ViewBag.UserId = User.Identity.GetUserId();//impletemnt
+            ViewBag.UserId = User.Identity.Name;//impletemnt
             return View();
         }
 
@@ -252,7 +252,7 @@ namespace MovieReviewWebsite.Controllers
                 //    lstPeople = item.personName;
 
                 //}
-                movie.User = User.Identity.GetUserId();//added this to user
+                movie.User = User.Identity.Name;//added this to user
                 db.Movies.Add(movie);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -377,7 +377,36 @@ namespace MovieReviewWebsite.Controllers
             }
             return View(movie);
         }
+        // GET: Movies/Edit/5
+        public ActionResult BanUser(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Comment comment = db.Comment.Find(id);
+            if (comment == null)
+            {
+                return HttpNotFound();
+            }
+            return View(comment);
+        }
 
+        // POST: Movies/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult BanUser([Bind(Include = "CommentID,AuthorID,PersonID,MovieID,Content,UserRating,isBlocked")] Comment comment)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(comment).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(comment);
+        }
         // GET: Movies/Delete/5
         public ActionResult Delete(int? id)
         {
