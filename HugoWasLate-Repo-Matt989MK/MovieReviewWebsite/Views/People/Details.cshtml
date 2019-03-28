@@ -118,7 +118,7 @@
                 @using (Html.BeginForm())
                 {
 
-                    if (ViewBag.UserId)
+                    if (ViewBag.UserId != null)
                     {
                         @Html.TextBoxFor(model => model.personID, new { style = "display: none;" })
                         @Html.TextArea("NewComment", "");
@@ -127,7 +127,7 @@
                     }
                     else
                     {
-                        
+                        <h2>Please log in first</h2>
                     }
 
 

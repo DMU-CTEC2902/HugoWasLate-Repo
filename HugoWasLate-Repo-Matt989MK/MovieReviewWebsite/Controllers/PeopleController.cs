@@ -18,6 +18,7 @@ namespace MovieReviewWebsite.Controllers
         // GET: People
         public ActionResult Index()
         {
+            ViewBag.UserId = User.Identity.GetUserId();
             return View(db.People.ToList());
         }
 
@@ -165,6 +166,8 @@ namespace MovieReviewWebsite.Controllers
         // GET: People/Create
         public ActionResult Create()
         {
+
+            ViewBag.UserId = User.Identity.GetUserId();//impletemnt
             return View();
         }
 
