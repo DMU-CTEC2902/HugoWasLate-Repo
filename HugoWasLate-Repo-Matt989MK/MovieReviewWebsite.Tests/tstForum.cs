@@ -16,15 +16,15 @@ namespace MovieReviewWebsite.Tests
             Assert.IsNotNull(AForum);
         }
         [TestMethod]
-        public void PersonIDPropertyOK()
+        public void UserIDPropertyOK()
         {
             //create an instance of the class we want to create 
             Forum AForum = new Forum();
             //create some test data to assign to the property
-            int TestData = 1;
-            AForum.PersonID = TestData;
+            string TestData = "Data";
+            AForum.UserID = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(AForum.PersonID, TestData);
+            Assert.AreEqual(AForum.UserID, TestData);
         }
         [TestMethod]
         public void TitlePropertyOK()
@@ -47,17 +47,6 @@ namespace MovieReviewWebsite.Tests
             AForum.Content = TestData;
             //test to see that the two values are the same
             Assert.AreEqual(AForum.Content, TestData);
-        }
-        [TestMethod]
-        public void UserPropertyOK()
-        {
-            //create an instance of the class we want to create 
-            Forum AForum = new Forum();
-            //create some test data to assign to the property
-            string TestData = "12";
-            AForum.User = TestData;
-            //test to see that the two values are the same
-            Assert.AreEqual(AForum.User, TestData);
         }
 
         [TestMethod]

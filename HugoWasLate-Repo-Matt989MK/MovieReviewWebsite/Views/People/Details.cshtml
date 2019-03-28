@@ -66,17 +66,11 @@
 
                             if (ViewBag.UserId == "abc@gmail.com")
                             {
-
+                                <nbsp> | </nbsp>
                                 @Html.ActionLink("DeleteComment", "DeleteComment", new { id = item.CommentID, movieID = item.MovieID })
 
                                 <nbsp> | </nbsp>
-
-                                @*@Html.ActionLink("Ban this user or change content", "BanUser", new { id = item.CommentID })*@
-                                @*@RedirectToAction("Details/" + id)*@
-                                @*@RedirectResult("~/Movies/BanUser/", item.CommentID);*@
-                                @*@Html.ActionLink("Ban this user or change content", "~/~/Movies/BanUser/", new { id = item.CommentID });*@
-
-                                @Html.ActionLink("Ban this user or change content", "BanUser/"+item.CommentID, "movies");
+                                @Html.ActionLink("Ban this user or change content", "BanUser/" + item.CommentID, "movies");
 
 
 

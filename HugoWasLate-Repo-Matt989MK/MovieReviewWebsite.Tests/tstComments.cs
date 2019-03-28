@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MovieReviewWebsite.Models;
 
-namespace MovieReviewWebsite
+namespace MovieReviewWebsite.Tests
 {
     [TestClass]
     public class tstComments

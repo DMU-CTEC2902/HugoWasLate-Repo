@@ -61,43 +61,44 @@
 
         @foreach (var item in Model.Comment)
         {
-            <dd>
-                @if (item.PostID == Model.PostID)//check if post id is the same in comment post id
+        <dd>
+            @if (item.PostID == Model.PostID)//check if post id is the same in comment post id
+            {
+
+
+                @Html.DisplayFor(Model => item.Content)
+                <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.AuthorID)</nbsp>
+
+                if (ViewBag.UserId != "")
                 {
+                    @Html.ActionLink("Reply", "CommentReply", new { id = item.PostID, commentID = item.CommentID }, null)//reply comment redirect
 
 
-                    @Html.DisplayFor(Model => item.Content)
-                    <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.AuthorID)</nbsp>
-
-                    if (ViewBag.UserId != "")
+                    if (ViewBag.UserId == "abc@gmail.com")//if userID is equal to the admin email
                     {
-                        @Html.ActionLink("Reply", "CommentReply", new { id = item.PostID, commentID = item.CommentID }, null)//reply comment redirect
+                        <nbsp> | </nbsp>
+                        //redirect to delete comment
+                        @Html.ActionLink("DeleteComment", "DeleteComment", new { id = item.CommentID, movieID = item.MovieID })
 
-
-                        if (ViewBag.UserId == "abc@gmail.com")//if userID is equal to the admin email
-                        {
-                            //redirect to delete comment
-                            @Html.ActionLink("DeleteComment", "DeleteComment", new { id = item.CommentID, movieID = item.MovieID })
-
-                            <nbsp> | </nbsp>
-                            //redirect to banning user
-                            @Html.ActionLink("Ban this user or change content", "BanUser/" + item.CommentID, "movies");
-
-                        }
+                        <nbsp> | </nbsp>
+                        //redirect to banning user
+                        @Html.ActionLink("Ban this user or change content", "BanUser/" + item.CommentID, "movies");
 
                     }
 
                 }
-                @if (item.CommentReply != null)
-                {
-                    foreach (var reply in item.CommentReply)
-                    {
-                        <br />
-                        @Html.DisplayFor(model => reply.Content);
 
-                    }
+            }
+            @if (item.CommentReply != null)
+            {
+                foreach (var reply in item.CommentReply)
+                {
+                    <br />
+                    @Html.DisplayFor(model => reply.Content);
+
                 }
-            </dd>
+            }
+        </dd>
             <br />
         }
         <br />
