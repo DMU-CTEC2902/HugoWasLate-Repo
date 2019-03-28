@@ -75,12 +75,14 @@
                 <td>
                     @if (ViewBag.UserId != "")
                     {
-                        if (ViewBag.UserId == item.User)
+
+
+                        if (ViewBag.UserId == "abc@gmail.com" || ViewBag.UserId == item.User)//admin
                         {
+
                             @Html.ActionLink("Edit", "Edit", new { id = item.MovieID })
-                        }
-                        if (ViewBag.UserId == "abc@gmail.com")//admin
-                        {
+
+                            <nbsp> | </nbsp>
                             @Html.ActionLink("Delete", "Delete", new { id = item.MovieID })
                         }
 
