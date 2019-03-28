@@ -37,8 +37,15 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.CategoryName, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.CategoryName, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
+                        <select name="CategoryName">
+                            <option value="Any">Any</option>
+                            <option value="Horror">Horror</option>
+                            <option value="Comedy">Comedy</option>
+                            <option value="Action">Action</option>
+                            <option value="Romance">Romance</option>
+                        </select>
+                        @*@Html.EditorFor(model => model.CategoryName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })*@
                     </div>
                 </div>
 

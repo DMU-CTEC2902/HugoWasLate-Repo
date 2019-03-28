@@ -237,6 +237,7 @@ namespace MovieReviewWebsite.Controllers
             if (ModelState.IsValid)
             {
                 movie.User = User.Identity.Name;//added this to user
+                movie.CategoryName = Request.Params["CategoryName"];
                 db.Movies.Add(movie);
                 db.SaveChanges();
                 return RedirectToAction("Index");
