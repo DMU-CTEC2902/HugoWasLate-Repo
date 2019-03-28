@@ -13,6 +13,7 @@ namespace MovieReviewWebsite.Models
         [Key]
         public virtual int PostID { get; set; }
         public virtual string UserID { get; set; }
+        [Required]
         public virtual string Title { get; set; }
         [Required]
         public virtual DateTime PostTime { get; set; }
