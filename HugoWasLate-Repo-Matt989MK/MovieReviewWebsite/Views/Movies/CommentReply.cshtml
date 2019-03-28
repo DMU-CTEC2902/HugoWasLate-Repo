@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 
 <html>
+<body>
 <h2>Details</h2>
 <div>
     <script>
@@ -14,7 +15,7 @@
             window.location = ""
         }
     </script>
-    <h4>Person</h4>
+    <h4>Movie</h4>
     <hr />
     <dl class="dl-horizontal">
 
@@ -91,16 +92,6 @@
 
                         }
 
-                        @*@using (Html.BeginForm())
-                        {
-                            @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" })
-                            @Html.TextArea("NewReply", "")
-
-
-                            <input type="submit" value="reply" onclick="ReirectToPeopleDetails()" />
-                        }*@
-
-                        @*@Html.DisplayFor(Model => item.Content)*@
                         @Html.ActionLink("Reply", "CommentReply", new { id = item.PersonID, commentID = item.CommentID }, null)
                     </dd>
 
@@ -123,25 +114,6 @@
               
             }
 
-        <dt>
-            New Comment
-        </dt>
-
-
-                    <dd>
-                        @using (Html.BeginForm())
-                        {
-
-                            @Html.TextBoxFor(model => model.MovieID, new { style = "display: none;" })
-
-
-                            @Html.TextArea("NewComment", "")
-
-                            <input type="submit" value="send" />
-
-
-                        }
-                    </dd>
 
 
         </dl>
@@ -151,5 +123,5 @@
         @Html.ActionLink("Edit", "Edit", new { id = Model.MovieID }) |
         @Html.ActionLink("Back to List", "Index")
     </p>
-
+    </body>
 </html>

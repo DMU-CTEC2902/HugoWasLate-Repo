@@ -26,6 +26,8 @@ namespace MovieReviewWebsite.Controllers
         // GET: Forum/Details/5
         public ActionResult Details(int? id)
         {
+
+            ViewBag.UserId = User.Identity.GetUserId();//impletemnt
             List<Comment> lstComment = db.Comment.Where(c => c.PersonID == id).ToList();
             foreach (Comment item in lstComment)
             {
@@ -76,7 +78,7 @@ namespace MovieReviewWebsite.Controllers
             int id = Convert.ToInt32(Request.Params["PostId"]);
             int commentID = Convert.ToInt32(Request.Params["CommentID"]);
             CommentReply commentReply = new CommentReply();
-            commentReply.Content = Request.Params["NewComment"];
+            commentReply.Content = Request.Params["NewReply"];
             commentReply.CommentID = commentID;
             commentReply.CommentReplyID = 2;
             commentReply.AuthorID = User.Identity.GetUserId();
@@ -102,9 +104,11 @@ namespace MovieReviewWebsite.Controllers
         [HttpPost]
         public ActionResult Details()
         {
+
+            ViewBag.UserId = User.Identity.GetUserId();//impletemnt
             int id = Convert.ToInt32(Request.Params["PostId"]);
             Comment comment = new Comment();
-            comment.Content = Request.Params["Comment"];
+            comment.Content = Request.Params["NewComment"];
             comment.AuthorID = User.Identity.GetUserId(); 
             comment.PostID = 1;
             comment.PersonID = id;
