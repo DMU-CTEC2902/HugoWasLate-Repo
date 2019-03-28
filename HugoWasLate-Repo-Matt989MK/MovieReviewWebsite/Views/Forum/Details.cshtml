@@ -21,11 +21,11 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.PersonID)
+            @Html.DisplayNameFor(model => model.UserID)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PersonID)
+            @Html.DisplayFor(model => model.UserID)
         </dd>
 
         <dt>
@@ -60,26 +60,38 @@
 
         @foreach (var item in Model.Comment)
         {
-            <dd>
-                @if (item.PostID == Model.PostID)
+        <dd>
+            @if (item.PostID == Model.PostID)
+            {
+
+
+
+                <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
+                @Html.DisplayFor(Model => item.Content)
+                if (ViewBag.UserId != null)
                 {
+                    @Html.ActionLink("Reply", "CommentReply", new { id = item.MovieID, commentID = item.CommentID }, null)
 
 
-                    <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
-                    @Html.DisplayFor(Model => item.Content)
-                    @Html.ActionLink("Reply", "CommentReply", new { id = item.PersonID, commentID = item.CommentID }, null)
-
-                }
-                @if (item.CommentReply != null)
-                {
-                    foreach (var reply in item.CommentReply)
+                    if (ViewBag.UserId == "300fe04a-cd4f-4780-8963-fdc10b295bbd")
                     {
-                        <br />
-                        @Html.DisplayFor(model => reply.Content);
 
+                        @Html.ActionLink("DeleteComment", "DeleteComment", new { id = item.CommentID, movieID = item.MovieID })
                     }
+
                 }
-            </dd>
+
+            }
+            @if (item.CommentReply != null)
+            {
+                foreach (var reply in item.CommentReply)
+                {
+                    <br />
+                    @Html.DisplayFor(model => reply.Content);
+
+                }
+            }
+        </dd>
             <br />
         }
         <dt>

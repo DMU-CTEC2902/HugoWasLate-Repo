@@ -170,6 +170,7 @@ namespace MovieReviewWebsite.Models
             com1.PersonID = 1;
             com1.MovieID = 1;
             com1.PostID = 1;
+            com1.isBlocked = false;
             com1.UserRating = 5.0f;
             context.Comment.Add(com1);
 
@@ -180,18 +181,18 @@ namespace MovieReviewWebsite.Models
             com2.PersonID = 2;
             com2.MovieID = 1;
             com2.PostID = 1;
-
+            com2.isBlocked = false;
             com2.UserRating = 6.0f;
             context.Comment.Add(com2);
 
             Comment com3 = new Comment();
             com3.CommentID = 3;
-            com3.AuthorID = "1";
+            com3.AuthorID = "abc@gmail.com";
             com3.Content = " 3 So GOOD! ";
             com3.PersonID = 2;
             com3.MovieID = 1;
             com3.PostID = 1;
-
+            com3.isBlocked = true; ;
             com3.UserRating = 4.0f;
             context.Comment.Add(com3);
 
@@ -202,7 +203,7 @@ namespace MovieReviewWebsite.Models
             com4.PersonID = 1;
             com4.MovieID = 1;
             com4.PostID = 1;
-
+            com1.isBlocked = true;
             com4.UserRating = 5.7f;
             context.Comment.Add(com4);
 

@@ -14,6 +14,7 @@ namespace MovieReviewWebsite.Controllers
     public class MoviesController : Controller
     {
         private MovieContext db = new MovieContext();
+        
 
         // GET: Movies
         public ActionResult Index(string CategoryName, string Rating)
@@ -65,7 +66,7 @@ namespace MovieReviewWebsite.Controllers
         [HttpGet]
         public ActionResult Details(int? id)
         {
-
+            ViewBag.UserId = User.Identity.GetUserId();//impletemnt
             Movie movie = db.Movies.Find(id);//
             List<Comment> lstComment = db.Comment.Where(c => c.MovieID == id).ToList();
             float averageRating = movie.Rating;
@@ -161,6 +162,7 @@ namespace MovieReviewWebsite.Controllers
         public ActionResult Details()
         {
 
+            ViewBag.UserId = User.Identity.GetUserId();//impletemnt
             int id = Convert.ToInt32(Request.Params["MovieID"]);
             Movie movie = db.Movies.Find(id);//
             Comment comment = new Comment();

@@ -95,20 +95,19 @@
                             @Html.DisplayFor(Model => item.Content)
 
                             <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.AuthorID)</nbsp>
-                            @Html.ActionLink("Reply", "CommentReply", new { id = item.MovieID, commentID = item.CommentID }, null)
                             if (ViewBag.UserId != null)
                             {
-                                @*if (ViewBag.UserId == item.User)
-                    {
-                        @Html.ActionLink("Edit", "Edit", new { id = item.MovieID })
-                    }*@
+                            @Html.ActionLink("Reply", "CommentReply", new { id = item.MovieID, commentID = item.CommentID }, null)
+
+
                                 if (ViewBag.UserId == "300fe04a-cd4f-4780-8963-fdc10b295bbd")
                                 {
+
+                                    @Html.ActionLink("DeleteComment", "DeleteComment", new { id = item.CommentID, movieID = item.MovieID })
                                 }
 
                             }
 
-                            @Html.ActionLink("DeleteComment", "DeleteComment", new { id = item.CommentID, movieID = item.MovieID })
 
                             <br />
 
