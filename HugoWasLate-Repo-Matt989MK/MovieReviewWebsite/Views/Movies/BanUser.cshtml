@@ -7,7 +7,7 @@
 
 <h2>BanUser</h2>
 
-@if (ViewBag.UserId == "abc@gmail.com")
+@if (ViewBag.UserId == "abc@gmail.com")//if you are admin
 {
 
 
@@ -112,7 +112,7 @@
         </div>
     }
 }
-else
+else// aaand if you somehow got here and you are not admin
 {
     <nbsp> You should not be in this page</nbsp><br />
     <nbsp>Non dovresti essere in questa pagina</nbsp>

@@ -173,7 +173,8 @@ namespace MovieReviewWebsite.Controllers
             comment.PersonID = 1;
             float averageRating = movie.Rating;
             int count = 1;
-            comment.UserRating = float.Parse(Request.Params["NewUserRating"]);
+            float.TryParse(Request.Params["NewUserRating"], out float resulta);
+            comment.UserRating = resulta;
 
             if (comment.UserRating <= 10 && comment.UserRating >= 0.0)
             {
@@ -236,6 +237,7 @@ namespace MovieReviewWebsite.Controllers
             if (ModelState.IsValid)
             {
                 movie.User = User.Identity.Name;//added this to user
+                movie.CategoryName = Request.Params["CategoryName"];
                 db.Movies.Add(movie);
                 db.SaveChanges();
                 return RedirectToAction("Index");

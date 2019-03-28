@@ -30,9 +30,7 @@
 
             foreach (var item in Model.People)
             {
-                @*@Html.DisplayFor(Model => item.personName);
-
-                    @Html.CheckBox("PersonID", new { value = item.personID, @checked = true });*@
+             //checkboxes with all current actors that are not in THAT movie yet
                 <input type="checkbox" id="@item.personID" name="@item.personID" value="@item.personID" />
                 <label for="optionId">@item.personName</label>
                 <br>

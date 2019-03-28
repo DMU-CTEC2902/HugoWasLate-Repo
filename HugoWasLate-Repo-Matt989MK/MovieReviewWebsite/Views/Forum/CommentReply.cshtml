@@ -54,13 +54,13 @@
 
                     @Html.DisplayFor(Model => item.Content)
                     <nbsp style="font-size:8px"> -post by ID @Html.DisplayFor(Model => item.PersonID)</nbsp>
-                    @if (item.CommentID == Int32.Parse(Request.Params["CommentID"]))
+                    @if (item.CommentID == Int32.Parse(Request.Params["CommentID"]))//Getting param from the URL
                     {
                         using (Html.BeginForm())
                         {
 
 
-                            @Html.TextBoxFor(model => model.PostID, new { style = "display: none;" })
+                            @Html.TextBoxFor(model => model.PostID, new { style = "display: none;" })//Need this invisible textbox to hold PostID value
                             @Html.TextArea("NewReply", "")
                             <input type="submit" value="reply" onclick="ReirectToPeopleDetails()" />
                         }
