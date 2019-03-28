@@ -71,7 +71,11 @@
 
                 if (ViewBag.UserId != "")
                 {
-                    @Html.ActionLink("Reply", "CommentReply", new { id = item.PostID, commentID = item.CommentID }, null)//reply comment redirect
+                    if (ViewBag.isban == false)
+                    {
+                        @Html.ActionLink("Reply", "CommentReply", new { id = item.PostID, commentID = item.CommentID }, null)//reply comment redirect
+
+                    }
 
 
                     if (ViewBag.UserId == "abc@gmail.com")//if userID is equal to the admin email
